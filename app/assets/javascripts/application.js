@@ -10,13 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require fastclick
-//= require jquery-jvectormap-1.2.2.min
-//= require jquery-sparkline.min
-//= require adminlte.min
 //= require adminlte
 //= require bootstrap.min
-//= require jquery.min
+//= require jquery2
+//= require jquery_ujs
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
