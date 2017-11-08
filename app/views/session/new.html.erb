@@ -1,19 +1,16 @@
 <div class="login-page">
   <div class="form">
-    <!-- <form class="login-form" action="/login" method="post">
-      <input name="email" type="text" placeholder="email"/>
-      <input name="password" type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form> -->
     <%= form_for(:session, :html => {:class => "login-form"}) do |f| %>
       <%= f.email_field :email, placeholder: "email" %>
       <%= f.password_field :password, placeholder: "password" %>
       <%= f.label :remember_me do %>
-        <%= f.check_box :remember_me %>
+        <%= f.check_box :remember_me, style: "width: 25px;"%>
         <span>Remember Me</span>
       <% end %>
-      <%= f.submit "Login", class: "submit" %>
+      <%= f.submit "Login", class: "button" %>
     <% end %>
+    <p class="message">Foget password?
+      <a href="#">Reset password</a>
+    </p>
   </div>
 </div>

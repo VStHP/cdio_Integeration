@@ -1,0 +1,26 @@
+<% provide :title, "Courses" %>
+<h1>Danh sach khoa hoc</h1>
+<% if current_user.suppervisor %>
+  <%= link_to "Them khoa hoc", new_course_path, class: "btn btn-primary" %>
+<% end %>
+<div class="ReactTable -highlight td-course-table">
+  <div class="rt-table">
+    <div class="rt-thead -header">
+      <div class="rt-tr">
+        <% display_column_course_index.each do |item| %>
+          <% style_get item.capitalize %>
+          <div class="rt-resizable-header -cursor-pointer rt-th" style="<%= @style %>">
+            <div class="rt-resizable-header-content"><%= item.capitalize %></div>
+            <div class="rt-resizer"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="rt-tbody" style="min-width: 1400px;">
+      <% @count = 1 %>
+      <%= render @courses %>
+    </div>
+  </div>
+
+</div>
+
