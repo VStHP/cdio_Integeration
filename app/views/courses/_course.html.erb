@@ -2,8 +2,10 @@
   <div class="rt-tr -odd">
     <% owner_info course %>
     <div class="rt-td" style="flex: 62 0 auto; width: 62px; max-width: 62px;">
+      <% if can? :update && :destroy, course %>
       <%= link_to "", course, method: :delete, data: { confirm: t(".confirm") }, class: "fa fa-trash" %>
       <%= link_to "", edit_course_path(course), class: "fa fa-pencil-square-o" %>
+      <% end %>
       <div class="text-right"><%= @count %></div>
       <% @count+=1 %>
     </div>
@@ -27,7 +29,3 @@
     </div>
   </div>
 </div>
- <!--  <% if current_user.suppervisor %>
-    | <%= link_to "Xoa", course, method: :delete, data: { confirm: t(".confirm") } %>
-    | <%= link_to "Chinh sua", edit_course_path(course) %>
-  <% end %> -->

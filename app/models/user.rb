@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -14,6 +12,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: 50}
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
+  scope :trainers, ->{where suppervisor: true}
 
   class << self
     def digest string

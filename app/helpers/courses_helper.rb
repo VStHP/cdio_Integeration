@@ -23,6 +23,16 @@ module CoursesHelper
     @owner ||= User.new
   end
 
+  def select_owner_list
+    @trainers = User.trainers
+  end
+
+  def org_hash
+    @orgs = {DaNang: t("courses._orgs.dn"),
+      HaNoi: t("courses._orgs.hn"),
+      HoChiMinh: t("courses._orgs.hcm")}
+  end
+
   def display_column_course_index
       %w(# Course Owner ) + Course.column_names -
       %w(id name description created_at updated_at users_id date_start)
