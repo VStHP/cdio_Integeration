@@ -21,10 +21,17 @@
   <%= f.label :training_standard, "Training Standard (*)" %>
   <%= f.text_field :training_standard, class: "form-control" %>
 
+  <%= f.label :date_start, "Date Start" %>
+  <%= f.text_field :date_start, "data-provide" => "datepicker", :value => Date.today.strftime("%m/%d/%Y") %>
+
   <%= f.label :status %>
   <%= select "course", "status", Course.statuses.map {|name, index| [t("courses._status.#{name}"),name]} %>
 
   <% unless @course.finish? %>
     <%= f.submit yield(:button_text), class: "btn btn-primary", id: "submit" %>
   <% end %>
+
 <% end %>
+<script type="text/javascript">
+  $('#course_date_start').datepicker(dateFormat: 'dd-MM-yyyy');
+</script>

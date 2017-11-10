@@ -16,8 +16,9 @@ gem "coffee-rails", "~> 4.2"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
-gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+gem "faker", :git => "git://github.com/stympy/faker.git", :branch => "master"
 gem "bcrypt", "3.1.11"
+gem "bootstrap-datepicker-rails"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

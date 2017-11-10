@@ -407,3 +407,26 @@
  -ms-user-select:none;
  user-select:none
 }
+.sttcourse {
+  width: 90px;
+  height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 4px;
+  color: #f8f5f1;
+  margin-left: 45px;
+}
+
+.sttcourse-init {
+  background-color: #37b439;
+}
+.sttcourse-in-progress {
+  background-color: #5bacf2;;
+}
+.sttcourse-finish {
+  background-color: #f97d81;
+}
+.sttcourse-close {
+  background-color: #3e3b3c;
+}
+

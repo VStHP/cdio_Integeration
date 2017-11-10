@@ -9,12 +9,11 @@
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
       <%= render "layouts/header" %>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
       <%= render "layouts/asside" %>
       <div class="content-wrapper">
-        <div class="alert-box"></div>
+        <% flash.each do |message_type, message| %>
+          <div class="alert-box alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
         <%= yield %>
       </div>
     </div>

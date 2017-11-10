@@ -48,3 +48,10 @@ end
   date_start = Time.zone.now
   UserCourse.create!(user_id: user_id, course_id: course_id, status: status)
 end
+
+arr = ["Git","Ruby","Ruby on rails 5","Scrum","PHP","Android"]
+5.times do |x|
+  name = arr[x]+" Tutorial"
+  description = "This is description of Subject"
+  Subject.create!(name: name, description: description)
+end

@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   has_many :course_subjects, dependent: :destroy
+  has_many :subjects, through: :course_subjects
   has_many :user_courses, dependent: :destroy
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :users_id, presence: true

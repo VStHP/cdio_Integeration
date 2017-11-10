@@ -37,4 +37,17 @@ module CoursesHelper
       %w(# Course Owner ) + Course.column_names -
       %w(id name description created_at updated_at users_id date_start)
   end
+
+  def define_stt_index course
+    case course.status
+    when "init"
+      @class = "cursor sttcourse sttcourse-init"
+    when "in_progress"
+      @class = "cursor sttcourse sttcourse-in-progress"
+    when "in_progress"
+      @class = "cursor sttcourse sttcourse-finish"
+    else
+      @class = "cursor sttcourse sttcourse-close"
+    end
+  end
 end
