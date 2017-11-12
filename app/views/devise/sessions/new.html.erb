@@ -4,9 +4,9 @@
       <%= f.email_field :email, autofocus: true, placeholder: "email" %>
       <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
       <% if devise_mapping.rememberable? -%>
-        <div style="padding-bottom: 5px;">
-          <%= f.check_box :remember_me, class: "remember_me" %>
-          <%= f.label :remember_me %>
+        <div class="checkbox">
+          <%= f.check_box :remember_me %>
+          <label for="user_remember_me"><span></span>Remember Login</label>
         </div>
       <% end %>
       <%= f.submit "Log in", class: "button" %>
@@ -15,3 +15,29 @@
   </div>
 
 </div>
+
+<style type="text/css">
+  .checkbox {
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+input[type="checkbox"] {
+  display:none;
+}
+
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
+    cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
+}
+</style>

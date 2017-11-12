@@ -5,11 +5,11 @@ Rails.application.routes.draw do
     post "/login", to: "sessions#create", as: :user_session
     delete "/logout", to: "sessions#destroy", as: :destroy_user_session
   end
-  root "static_pages#home"
+  root to: "courses#index", option: "2"
   get "/introduction", to: "intro_pages#home"
   get "/login", to: "session#new"
   post "/login", to: "session#create"
   delete "/logout", to: "session#destroy"
   resources :courses
-  resources :course_subjects
+  resources :course_subjects, only: [:create, :update, :destroy]
 end

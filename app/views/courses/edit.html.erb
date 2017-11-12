@@ -7,3 +7,12 @@
     <%= render "form" %>
   </div>
 </div>
+<% if @all_subjects.present? %>
+  <p>Subject</p>
+  <%= form_for(@course.course_subjects.build) do %>
+    <%= hidden_field_tag :course_id, @course.id %>
+    <%= render partial: "subject_adding", collection: @all_subjects,
+    as: :subject %>
+    <button type="submit" class="btn btn-primary">Them Vao khoa hoc</button>
+  <% end %>
+<% end %>

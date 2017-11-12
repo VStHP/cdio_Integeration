@@ -11,4 +11,8 @@ class Course < ApplicationRecord
   default_scope ->{order(date_start: :desc)}
   scope :owner, ->(user_id){where users_id: user_id}
   enum status: [:init, :in_progress, :finish, :close]
+
+  def have subject_id, date_start
+    course_subjects.create subject_id: subject_id, date_start: date_start
+  end
 end

@@ -329,7 +329,7 @@
 			position: relative;
 		}
 
-			input[type="checkbox"] + label:before,
+			/*input[type="checkbox"] + label:before,
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
@@ -375,7 +375,7 @@
 
 	input[type="radio"] + label:before {
 		border-radius: 100%;
-	}
+	}*/
 
 	::-webkit-input-placeholder {
 		color: #858585 !important;
