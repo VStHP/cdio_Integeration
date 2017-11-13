@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
     @course = Course.new course_params
     if @course.save
       flash[:success] = t "controllers.courses.flash_success_create"
-      redirect_back fallback_location: root_path
+      redirect_to courses_path
     else
       render :new
     end

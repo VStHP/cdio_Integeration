@@ -1,5 +1,16 @@
-<div class="checkbox">
-  <% load_user trainer %>
-  <input type="checkbox" id="<%= trainer.id %>" name="ids[]" value="<%= trainer.id %>"/>
-  <label for="<%= trainer.id %>"><span></span><%= @user.name %></label>
-</div>
+<% size = @trainer_courses.size %>
+<% kt = false %>
+<% if @count % @quality == 0 %>
+  <td style="padding: 2px; border-right: 1px solid;">
+<% end %>
+    <div class="checkbox">
+      <% load_user trainer %>
+      <% @count += 1 %>
+      <input type="checkbox" id="uc<%= trainer.id %>" name="ids[]" value="<%= trainer.id %>"/>
+      <label style ="padding: 0px;" for="uc<%= trainer.id %>">
+        <span></span><%= @user.name %>
+      </label>
+    </div>
+<% if kt %>
+  </td>
+<% end %>

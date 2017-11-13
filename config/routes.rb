@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :course_subjects, only: [:create, :update, :destroy, :index]
   resources :user_courses, only: [:create, :update, :destroy, :index]
   patch "/define_action", to: "course_subjects#define_action"
+  post "/del_user_courses", to: "user_courses#del_user_courses"
 end

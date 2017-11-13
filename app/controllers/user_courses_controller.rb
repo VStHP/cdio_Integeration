@@ -1,10 +1,13 @@
 class UserCoursesController < ApplicationController
-  before_action :load_course, only: %i(index create)
+  before_action :load_course, only: %i(index create del_user_courses)
 
   def index
-    @all_trainers = User.trainers
-    @trainer_courses = UserCourse.of_course(@course.id).is_trainer(@all_trainers)
+    @all_trainers = User.trainers.search params[:search]
+    @trainer_courses = UserCourse.of_course(@course.id).is_trainer(User.trainers)
     @all_trainers = @all_trainers.without_course @course if @trainer_courses.present?
+    @all_trainees = User.trainees.search params[:search_trainee]
+    @trainee_courses = UserCourse.of_course(@course.id).is_trainee(User.trainees)
+    @all_trainees = @all_trainees.without_course @course if @trainee_courses.present?
   end
 
   def create
@@ -21,20 +24,21 @@ class UserCoursesController < ApplicationController
     redirect_to user_courses_path(course_id: @course.id)
   end
 
-  def destroy
-    params[:ids].each do |line|
-      if line.destroy
-        flash[:success] = "Xoa nguoi dung khoi khoa hoc thanh cong"
-      else
-        flash[:danger] = "Xoa nguoi dung khoi khoa hoc that bai"
-        redirect_to user_courses_path(course_id: @course.id)
-      end
+  def destroy line
+    if line.destroy
+      flash[:success] = "Xoa nguoi dung khoi khoa hoc thanh cong"
+    else
+      flash[:danger] = "Xoa nguoi dung khoi khoa hoc that bai"
+      redirect_to user_courses_path(course_id: @course.id)
     end
-    redirect_to user_courses_path(course_id: @course.id)
   end
 
-  def define_action
-    debugger
+  def del_user_courses
+    params[:ids].each do |line|
+      destroy UserCourse.find_by id: line
+    end
+    flash[:success] = "Xoa nguoi dung khoi khoa hoc thanh cong"
+    redirect_to user_courses_path(course_id: @course.id)
   end
   private
 

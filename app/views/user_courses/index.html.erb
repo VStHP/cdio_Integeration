@@ -8,26 +8,93 @@
       <%= link_to "Edit Course", edit_course_path(@course) %>
       <%= link_to "Subject of Course", course_subjects_path(course_id: @course.id) %>
     </h5>
-    <table>
-      <h3>Trainers cua khoa</h3>
-      <tr>
-        <%= form_for (@course.user_courses.build, method: :delete) do %>
-          <%= hidden_field_tag :course_id, @course.id %>
-          <%= render partial: "trainer_added", collection: @trainer_courses, as: :trainer %>
-          <button type="submit" class="btn btn-primary">Xoa khoi khoa hoc</button>
-        <% end %>
-      </tr>
-    </table>
-    <% if @all_trainers.present? %>
-      <h3>Cac trainer khac</h3>
-      <%= form_for(@course.user_courses.build) do %>
+    <div style="background: #bdfebd4d">
+      <%= form_for @course.user_courses.build, :url => {:action => "del_user_courses"} do %>
         <%= hidden_field_tag :course_id, @course.id %>
-        <%= render partial: "trainer_adding", collection: @all_trainers,
-          as: :trainer %>
-        <button type="submit" class="btn btn-primary">Them vao khoa hoc</button>
+        <% define_column @trainer_courses %>
+        <table>
+          <h3>Trainers cua khoa</h3>
+          <tr>
+              <%= render partial: "trainer_added", collection: @trainer_courses, as: :trainer %>
+          </tr>
+          <tr>
+            <td>
+              <button type="submit" class="btn btn-primary">Xoa khoi khoa hoc</button>
+            </td>
+          </tr>
+        </table>
       <% end %>
-    <% end %>
+      <%= form_tag user_courses_path, method: "get", id: "trainer_search" do %>
+        <p>
+          <%= hidden_field_tag :course_id, @course.id %>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search", :name => nil %>
+        </p>
+      <% end %>
+      <% if @all_trainers.present? %>
+        <div id="trainer">
+          <%= form_for(@course.user_courses.build) do %>
+            <%= hidden_field_tag :course_id, @course.id %>
+            <% define_column @all_trainers %>
+            <table>
+              <h3>Cac trainer khac</h3>
+              <tr>
+                <%= render partial: "trainer_adding", collection: @all_trainers,
+                  as: :trainer %>
+              </tr>
+              <tr>
+                <td>
+                  <button type="submit" class="btn btn-primary">Them vao khoa hoc</button>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div style="background: #bbbbf84d">
+      <%= form_for @course.user_courses.build, :url => {:action => "del_user_courses"} do %>
+        <%= hidden_field_tag :course_id, @course.id %>
+        <% define_column @trainee_courses %>
+        <table>
+          <h3>Trainees cua khoa</h3>
+          <tr>
+              <%= render partial: "trainee_added", collection: @trainee_courses, as: :trainee %>
+          </tr>
+          <tr>
+            <td>
+              <button type="submit" class="btn btn-primary">Xoa khoi khoa hoc</button>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+      <%= form_tag user_courses_path, method: "get" do %>
+        <p>
+          <%= hidden_field_tag :course_id, @course.id %>
+          <%= text_field_tag :search_trainee, params[:search_trainee] %>
+          <%= submit_tag "Search", :name => nil %>
+        </p>
+      <% end %>
+      <% if @all_trainees.present? %>
+        <div id="trainer">
+          <%= form_for(@course.user_courses.build) do %>
+            <%= hidden_field_tag :course_id, @course.id %>
+            <% define_column @all_trainees %>
+            <table>
+              <h3>Cac trainee khac</h3>
+              <tr>
+                <%= render partial: "trainee_adding", collection: @all_trainees,
+                  as: :trainee %>
+              </tr>
+              <tr>
+                <td>
+                  <button type="submit" class="btn btn-primary">Them vao khoa hoc</button>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-
-

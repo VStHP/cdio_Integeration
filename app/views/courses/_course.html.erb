@@ -3,7 +3,7 @@
     <% owner_info course %>
     <div class="rt-td" style="flex: 62 0 auto; width: 62px; max-width: 62px;">
       <% if can? :update && :destroy, course %>
-        <%= link_to "", course, method: :delete, data: { confirm: "Delete ?" }, class: "fa fa-trash" %>
+        <%= link_to "", course, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
         <%= link_to "", edit_course_path(course), class: "fa fa-pencil-square-o" %>
       <% end %>
       <div class="text-right"><%= @count %></div>
