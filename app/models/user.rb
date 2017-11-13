@@ -13,7 +13,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
   scope :trainers, ->{where suppervisor: true}
-
+  scope :trainees, ->{where.not suppervisor: true}
+  scope :without_course, ->(course){where.not id:course.users.pluck(:id)}
   class << self
     def digest string
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

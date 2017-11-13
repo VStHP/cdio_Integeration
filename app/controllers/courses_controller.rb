@@ -21,7 +21,6 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    load_subjects @course
   end
 
   def update
@@ -67,12 +66,6 @@ class CoursesController < ApplicationController
     return if @course
     flash[:danger] = t "controllers.courses.flash_danger"
     redirect_to :root
-  end
-
-  def load_subjects course
-    @subjects = course.subjects
-    @all_subjects = Subject.all
-    @all_subjects = @all_subjects.without_course course if @subjects.present?
   end
 
   def load_trainers course

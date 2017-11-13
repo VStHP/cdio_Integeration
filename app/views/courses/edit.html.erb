@@ -1,18 +1,16 @@
 <% provide :title,  "Update Course" %>
 <% provide :button_text, "Update" %>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h2 style="text-align: center;">Update Course</h2>
-    <h5 style="text-align: center;"><%= link_to "Show", @course %></h3>
+  <div class="col-md-6 col-md-offset-3" style="width: 90%">
+    <h2 style="text-align: center;color: red">
+      <%= link_to @course.name, @course %>
+      <small> Edit</small></h2>
+    <h5 style="text-align: center;color: blue">
+      <%= link_to "Subjects of Course", course_subjects_path(course_id: @course.id) %>
+      <%= link_to "User of Course", user_courses_path(course_id: @course.id) %>
+    </h5>
     <%= render "form" %>
   </div>
 </div>
-<% if @all_subjects.present? %>
-  <p>Subject</p>
-  <%= form_for(@course.course_subjects.build) do %>
-    <%= hidden_field_tag :course_id, @course.id %>
-    <%= render partial: "subject_adding", collection: @all_subjects,
-    as: :subject %>
-    <button type="submit" class="btn btn-primary">Them Vao khoa hoc</button>
-  <% end %>
-<% end %>
+
+

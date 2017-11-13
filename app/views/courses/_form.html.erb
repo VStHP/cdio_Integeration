@@ -1,36 +1,40 @@
 <%= form_for @course do |f| %>
   <% select_owner_list%>
-  <%= render "shared/error_messages", object: @course %>
+  <table>
+    <tr>
+      <td>
+        <%= render "shared/error_messages", object: @course %>
 
-  <%= f.label :name, "Course name (*)" %>
-  <%= f.text_field :name, class: "form-control" %>
+        <%= f.label :name, "Course name (*)" %>
+        <%= f.text_field :name, class: "form-control" %>
 
-  <%= f.label :description %>
-  <%= f.text_field :description, class: "form-control" %>
+        <%= f.label :description %>
+        <%= f.text_field :description, class: "form-control" %>
 
-  <%= f.label :users_id, "Owner" %>
-  <%= select "course", "users_id", @trainers.map {|trainer| [trainer.name,trainer.id]} %>
+        <%= f.label :users_id, "Owner" %>
+        <%= select "course", "users_id", @trainers.map {|trainer| [trainer.name,trainer.id]} %>
 
-  <%= f.label :organization, "Organization" %>
-  <% org_hash %>
-  <%= collection_select("course", "organization", @orgs, :last, :last) %>
+        <%= f.label :organization, "Organization" %>
+        <% org_hash %>
+        <%= collection_select("course", "organization", @orgs, :last, :last) %>
+      </td>
+      <td>
+        <%= f.label :program, "Program (*)" %>
+        <%= f.text_field :program, class: "form-control" %>
+        <%= f.label :training_standard, "Training Standard (*)" %>
+        <%= f.text_field :training_standard, class: "form-control" %>
 
-  <%= f.label :program, "Program (*)" %>
-  <%= f.text_field :program, class: "form-control" %>
+        <%= f.label :date_start, "Date Start" %>
+        <%= f.text_field :date_start, "data-provide" => "datepicker", :value => Date.today.strftime("%m/%d/%Y") %>
 
-  <%= f.label :training_standard, "Training Standard (*)" %>
-  <%= f.text_field :training_standard, class: "form-control" %>
-
-  <%= f.label :date_start, "Date Start" %>
-  <%= f.text_field :date_start, "data-provide" => "datepicker", :value => Date.today.strftime("%m/%d/%Y") %>
-
-  <%= f.label :status %>
-  <%= select "course", "status", Course.statuses.map {|name, index| [t("courses._status.#{name}"),name]} %>
-
-  <% unless @course.finish? %>
-    <%= f.submit yield(:button_text), class: "btn btn-primary", id: "submit" %>
-  <% end %>
-
+        <%= f.label :status %>
+        <%= select "course", "status", Course.statuses.map {|name, index| [t("courses._status.#{name}"),name]} %>
+        <% unless @course.finish? %>
+        <%= f.submit yield(:button_text), class: "btn btn-primary", id: "submit" %>
+      <% end %>
+      </td>
+    </tr>
+  </table>
 <% end %>
 <script type="text/javascript">
   $('#course_date_start').datepicker(dateFormat: 'dd-MM-yyyy');

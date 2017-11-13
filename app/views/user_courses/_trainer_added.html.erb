@@ -1,0 +1,5 @@
+<div class="checkbox">
+  <% load_user trainer %>
+  <input type="checkbox" id="<%= trainer.id %>" name="ids[]" value="<%= trainer.id %>"/>
+  <label for="<%= trainer.id %>"><span></span><%= @user.name %></label>
+</div>

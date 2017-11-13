@@ -1,0 +1,9 @@
+<div>
+  <% load_subject_of coursesubject %>
+  <%= form_for coursesubject, :url => {:action => "define_action"} do |f| %>
+    <%= link_to @subject.name, "#" %>
+    <%= f.text_field :date_start, "data-provide" => "datepicker", :value => Date.today.strftime("%m/%d/%Y") %>
+    <%= f.submit "Update", class: "btn btn-info" %>
+    <%= f.submit "Clear", class: "btn btn-danger" %>
+  <% end %>
+</div>

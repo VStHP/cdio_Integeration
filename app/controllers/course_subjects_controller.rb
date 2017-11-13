@@ -1,5 +1,11 @@
 class CourseSubjectsController < ApplicationController
-  before_action :load_course
+  before_action :load_course, only: %i(index create)
+
+  def index
+    @course_subjects = CourseSubject.of_course @course.id
+    @all_subjects = Subject.all
+    @all_subjects = @all_subjects.without_course @course if @course_subjects.present?
+  end
 
   def create
     params[:ids].each do |sb|
@@ -11,11 +17,14 @@ class CourseSubjectsController < ApplicationController
         flash[:danger] = "Them mon hoc #{@subject.name} vao khoa hoc that bai"
         redirect_to edit_course_path(@course)
       end
-      flash[:success] = "Them mon hoc vao khoa hoc thanh cong"
-      redirect_to edit_course_path(@course)
     end
+    flash[:success] = "Them mon hoc vao khoa hoc thanh cong"
+    redirect_to edit_course_path(@course)
   end
 
+  def define_action
+    debugger
+  end
   private
 
   def load_subject id
