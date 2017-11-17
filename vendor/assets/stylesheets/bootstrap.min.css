@@ -4298,7 +4298,8 @@ a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover {
  padding:15px;
  margin-bottom:20px;
  border:1px solid transparent;
- border-radius:4px
+ border-radius:4px;
+ background: #9cd0f1;
 }
 .alert h4 {
  margin-top:0;

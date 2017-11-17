@@ -1,0 +1,27 @@
+<div class="rt-tr-group">
+  <div class="rt-tr -odd">
+    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+      <% if can? :update && :destroy, user %>
+        <%= link_to "", user, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
+        <%= link_to "", edit_user_path(user), class: "fa fa-pencil-square-o" %>
+      <% end %>
+      <div class="text-right"><%= @count %></div>
+      <% @count+=1 %>
+    </div>
+    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+      <%= link_to user.name, user , class: "cursor" %>
+    </div>
+    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+      <div class="cursor"><%= user.email %></div>
+    </div>
+    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+      <div class="cursor"><%= user.university %></div>
+    </div>
+    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+      <div class="cursor"><%= user.program %></div>
+    </div>
+    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+      <div class="cursor"><%= user.date_start %></div>
+    </div>
+  </div>
+</div>

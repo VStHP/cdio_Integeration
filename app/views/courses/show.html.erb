@@ -1,2 +1,45 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<% provide :title, @course.name %>
+<div class="dbox td-course-show">
+  <div class="dbox-header clearfix">
+    <div class="col-md-12 course-subject">
+      <div class="course-header">
+        <span class="header-title"><%= @course.name %></span>
+        <span class="courses-detail-status">
+          <% check_status @course %>
+          <span class="<%= @class %>">
+            <%= t("courses._status.#{@status}") %>
+          </span>
+        </span>
+        <div class="show-creator">
+          <a href="">
+            <img src="" class="creator-image">
+            <h4><%= User.find(@course.users_id).name %></h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="course-menu">
+    <ul class="nav nav-tabs course-menu-items">
+      <li class="active">
+        <a href="">
+          <i class="fa fa-address-book-o"></i>Subjects
+        </a>
+      </li>
+      <li class="">
+        <a href="">
+          <i class="fa fa-address-book-o"></i>Members
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="course-show-body">
+    <div class="col-md-12 col-list-subjects">
+      <div class="tab-pane timeline-container active clearfix" id="timeline">
+        <ul class="timeline timeline-inverse timeline-subject">
+          <%= render partial: "subject", collection: @subjects, as: :subject %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

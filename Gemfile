@@ -19,7 +19,7 @@ gem "jquery-rails"
 gem "faker", :git => "git://github.com/stympy/faker.git", :branch => "master"
 gem "bcrypt", "3.1.11"
 gem "bootstrap-datepicker-rails"
-
+gem "bootstrap-sass", "3.3.7"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"

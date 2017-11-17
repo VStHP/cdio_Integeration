@@ -15,11 +15,11 @@ class CourseSubjectsController < ApplicationController
         flash[:success] = "Them mon #{@subject.name} vao khoa hoc thanh cong"
       else
         flash[:danger] = "Them mon hoc #{@subject.name} vao khoa hoc that bai"
-        redirect_to edit_course_path(@course)
+        redirect_to course_subjects_path(course_id: @course.id)
       end
     end
     flash[:success] = "Them mon hoc vao khoa hoc thanh cong"
-    redirect_to edit_course_path(@course)
+    redirect_to course_subjects_path(course_id: @course.id)
   end
 
   def define_action

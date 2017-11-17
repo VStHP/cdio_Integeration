@@ -1,23 +1,30 @@
 class CoursesController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, except: %i(index)
   before_action :load_course, except: %i(new create index)
 
   def index
-    unless current_user.suppervisor?
-      @courses = current_user.courses
+    unless user_signed_in?
+      redirect_to "/introduction"
     else
-      case params[:option]
-      when "1"
-        @courses = Course.owner current_user.id
-      when "2"
+      unless current_user.suppervisor?
         @courses = current_user.courses
       else
-        @courses = Course.all
+        case params[:option]
+        when "1"
+          @courses = Course.owner current_user.id
+        when "2"
+          @courses = current_user.courses
+        else
+          @courses = Course.all
+        end
       end
     end
   end
 
   def show
+    load_subjects @course
+    # load_trainees @course
+    # load_trainers @course
   end
 
   def edit
@@ -79,4 +86,11 @@ class CoursesController < ApplicationController
     @all_trainees = User.without_suppervisor.alphabet_name
     @all_trainees = @all_trainees.without_course course if @trainees.present?
   end
+
+  def load_subjects course
+    @subjects = course.subjects
+    @all_subjects = Subject.all
+    @all_subjects = @all_subjects.without_course course if @subjects.present?
+  end
+
 end

@@ -1,5 +1,5 @@
 .skin-blue .main-header .navbar {
- background-color:#3c8dbc
+ background: linear-gradient(90deg,#8a7ceb,#ba7ed6);
 }
 .skin-blue .main-header .navbar .nav>li>a {
  color:#fff
@@ -33,7 +33,7 @@
  }
 }
 .skin-blue .main-header .logo {
- background-color:#367fa9;
+ background: linear-gradient(90deg,#d9e1b0,#8a7ceb);
  color:#fff;
  border-bottom:0 solid transparent
 }
@@ -47,7 +47,7 @@
  background:transparent
 }
 .skin-blue .wrapper,.skin-blue .main-sidebar,.skin-blue .left-side {
- background-color:#222d32
+ background: linear-gradient(90deg,#8a7ceb,#ba7ed6);
 }
 .skin-blue .user-panel>.info,.skin-blue .user-panel>.info>a {
  color:#fff

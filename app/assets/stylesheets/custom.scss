@@ -1,0 +1,218 @@
+
+
+/* View Subject in Course*/
+.dscroll {
+  overflow: hidden;
+  width: 72%;
+  margin-right: 10px;
+  float: left;
+}
+.dsuser {
+  float: right;
+}
+.dbox-body {
+  margin-top: 10px;
+}
+.col-list-subjects {
+  padding-right: 0;
+  padding-left: 0;
+  width: 90%;
+}
+.col-list-subjects .infor {
+  float: right;
+  width: 82%;
+  color: #000;
+}
+.col-list-subjects .subject-timeline {
+  padding-left: 55px;
+  width: 100%;
+}
+.timeline {
+  position: relative;
+  margin: 0 0 30px 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline > li {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+.timeline-label {
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding: 5px;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  position: relative;
+}
+.div-status {
+  position: relative;
+  float: left;
+  font-size: 0;
+  height: 100%;
+  left: -32px;
+  margin-top: 45px;
+  width: 15px;
+}
+.div-status .status {
+    border-radius: 100%;
+    height: 25px;
+    position: absolute;
+    width: 25px;
+    z-index: 1000;
+}
+.div-status .status-finished {
+  background-color: #f9c1b3;
+  border: solid 3px #fb6e52;
+}
+
+.div-status .status-init {
+    background-color: #58fa82;
+    border: 3px solid #04b404;
+}
+.div-status .status-in_progress {
+    background-color: #f2fb9de6;
+    border: 3px solid #eaf900;
+}
+.subject-body {
+  background-color: #e1e4e6cc;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  box-shadow: 1px 2px 1px #adadad;
+  margin: 5px;
+  margin-right: 0;
+  min-height: 100px;
+  padding: 5px 2px;
+  transition: all .3s;
+}
+.subject-name {
+  color: #21abc7;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 4px 0;
+}
+.td-subject-description {
+  color: #404040;
+}
+.start_date_label {
+  background-color: #04b404 !important;
+  font-size: 100% !important;
+}
+.end_date_label {
+  background-color: #fb6e52 !important;
+  margin-left: 46px !important;
+}
+.label-status {
+  border-radius: 3px;
+  color: #fff;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+}
+.status-in_progress {
+  background-color: #43bce9;
+}
+.status-init {
+  background-color: #04b404;
+}
+.status-finish {
+  background-color: #fb6e52;
+}
+.status-btn-dis {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: #a19b9b;
+}
+.td-course-show {
+    overflow-y: hidden;
+}
+.dbox {
+  background: #fff;
+  box-shadow: 0 1px 1px 0 #939393;
+  float: left;
+  margin-top: 8px;
+  width: 99%;
+}
+.dbox .dbox-header {
+    background-color: #f2f3ef;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 14pt;
+    font-weight: bold;
+    margin-right: 1px;
+    padding: 5px 0 5px 10px;
+}
+.course-subject {
+    background-color: #3c586a;
+    box-shadow: 0 1px 1px 1px #666;
+    color: #fff;
+    margin-bottom: 10px;
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
+.course-header {
+    width: 100%;
+    display: block;
+    font-size: 13px;
+    margin: 10px;
+}
+.course-header .header-title {
+    color: #e46c11;
+    display: inline-block;
+    font-size: 16pt;
+    font-weight: 700;
+    height: 30px;
+}
+.course-header .courses-detail-status {
+    display: inline-block;
+    height: 30px;
+    position: absolute;
+    width: 130px;
+    z-index: 999;
+}
+.course-header .status-in_progress {
+    background-color: #43bce9;
+    padding: 3px;
+    position: absolute;
+    right: 47px;
+}
+.course-header .status-init {
+    background-color: #04b404;
+    left: 10px;
+    position: absolute;
+    top: 4px;
+    text-align: center;
+    width: 65px;
+}
+.course-header .status-finish {
+    background-color: #fb6e52;
+    left: 12px;
+    position: absolute;
+    width: 66px;
+}
+img.creator-image {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+}
+.nav-tabs .active a {
+    background: #00a65a !important;
+}
+.course-show-body {
+    height: 420px;
+    overflow-y: auto;
+}
+col-list-subjects {
+    padding-right: 0;
+    padding-left: 0;
+}
+.timeline {
+    position: relative;
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none;
+}

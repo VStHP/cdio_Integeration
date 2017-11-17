@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
     super
   end
   def destroy
-    @referer_url = root_path
+    @referer_url = "logout_path"
     super
   end
   private

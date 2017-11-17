@@ -1,0 +1,22 @@
+<% provide :title, "User" %>
+<h1>Danh sach</h1>
+<div class="ReactTable -highlight td-course-table">
+  <div class="rt-table">
+    <div class="rt-thead -header">
+      <div class="rt-tr">
+        <% display_column_user_index.each do |item| %>
+          <div class="rt-resizable-header -cursor-pointer rt-th" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+            <div class="rt-resizable-header-content"><%= item.capitalize %></div>
+            <div class="rt-resizer"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="rt-tbody" style="min-width: 1400px;">
+      <% @count = 1 %>
+      <%= render partial: "user", collection: @users, as: :user %>
+    </div>
+  </div>
+
+</div>
+

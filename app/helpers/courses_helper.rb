@@ -50,4 +50,18 @@ module CoursesHelper
       @class = "cursor sttcourse sttcourse-close"
     end
   end
+
+  def check_status course
+    case true
+    when course.init?
+      @status = "init"
+    when course.in_progress?
+      @status = "in_project"
+    when course.finish?
+      @status = "finish"
+    else
+      @status = "block"
+    end
+    @class = "label-status status-#{@status}"
+  end
 end
