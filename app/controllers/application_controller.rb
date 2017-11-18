@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_url
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:warning] = exception.message
+    redirect_to root_path
+  end
   # def has_logged?
   #   logged_in?
   # end

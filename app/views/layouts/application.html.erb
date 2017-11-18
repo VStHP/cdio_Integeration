@@ -10,7 +10,7 @@
     <div class="wrapperr">
       <%= render "layouts/header" %>
       <%= render "layouts/asside" %>
-      <div class="content-wrapper">
+      <div class="content-wrapper" style="min-height: 642px;">
         <div class="clearfix">
           <% flash.each do |message_type, message| %>
             <div class="alert-box alert alert-<%= message_type %>"><%= message %></div>

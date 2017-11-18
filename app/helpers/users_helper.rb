@@ -1,6 +1,23 @@
 module UsersHelper
 
   def display_column_user_index
-      %w(# Name Email University Program Date_Start )
+      %w(# Name Email University Program DateStart )
+  end
+
+  def style_get arg
+    case arg
+    when "#"
+      @style = "flex: 62 0 auto; width: 62px; max-width: 62px;"
+    when "Name"
+      @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
+    when "Email"
+      @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
+    when "University"
+      @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
+    when "Program"
+      @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
+    when "DateStart"
+      @style = "flex: 80 0 auto; width: 80px; max-width: 80px;"
+    end
   end
 end

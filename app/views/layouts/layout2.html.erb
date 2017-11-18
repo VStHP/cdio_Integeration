@@ -3,15 +3,63 @@
   <head>
     <title>IndexCdio</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "introcustom", media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body class="landing">
     <% flash.each do |message_type, message| %>
       <div class="alert-box alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
+    <header id="header">
+      <h1><a href="index.html">Transit</a></h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="generic.html">Generic</a></li>
+          <li><a href="elements.html">Elements</a></li>
+          <li><%= link_to "Sign up", new_user_session_path, class: "button special" %></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="banner">
+      <h2>Hi. This is Transit.</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <ul class="actions">
+        <li>
+          <a href="#" class="button big">Lorem ipsum dolor</a>
+        </li>
+      </ul>
+    </section>
     <%= yield %>
+    <footer id="footer">
+        <div class="container">
+          <div class="row">
+            <div class="8u 12u$(medium)">
+              <ul class="copyright">
+                <li>&copy; Untitled. All rights reserved.</li>
+                <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+                <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+              </ul>
+            </div>
+            <div class="4u$ 12u$(medium)">
+              <ul class="icons">
+                <li>
+                  <a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
+                </li>
+                <li>
+                  <a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
+                </li>
+                <li>
+                  <a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
+                </li>
+                <li>
+                  <a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
   </body>
 </html>

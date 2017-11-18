@@ -1,35 +1,3 @@
-<div class="modal fade login-modal in" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
-  <div class="modal-dialog">
-    <div id="div-forms" class="div-forms">
-      <div id="login-form">
-        <div class="content-top">Login</div>
-        <div class="content-body">
-          <div class="line-or"></div>
-          <div class="form-modal">
-            <%= form_for(:session, :html => {:class => "login-form"}) do |f| %>
-              <div class="form-group">
-                <%= f.email_field :email, placeholder: "email", class: "form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.password_field :password, placeholder: "password", class: "form-control" %>
-              </div>
-              <%= f.label :remember_me do %>
-                <%= f.check_box :remember_me, style: "width: 25px;"%>
-                <span>Remember Me</span>
-              <% end %>
-              <%= f.submit "Login", class: "btn btn-warning btn-login" %>
-            <% end %>
-
-          </div>
-          <div class="content-footer">
-            <a id="login_lost_btn" class="see-more pull-right">Reset password</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<style type="text/css">
   .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto;
@@ -80,12 +48,14 @@
     padding: 15px 0;
     text-align: center;
   }
-  .login-modal .content-body, .login-modal .content-body a, .login-modal .content-body p {
+  .login-modal .content-body, .login-modal .content-body p {
+    background-image:  url(login.jpg);
     color: #cecece;
     font-size: 13px;
   }
   .login-modal .content-body .line-or {
-    background: #fff;
+    /*background-image: url(login.jpg);*/
+    /*background: #fff;*/
     color: #999;
     font-size: 14px;
     height: 100px;
@@ -97,6 +67,7 @@
     height: 200px;
     margin-left: 5%;
     width: 90%;
+    /*background-image: url(login.jpg);*/
   }
   .login-modal form {
     display: block;
@@ -107,6 +78,7 @@
   }
   .form-group {
     margin-bottom: 15px;
+    background:rgba(249, 247, 247, 0.88);
   }
   .form-control {
     display: block;
@@ -115,7 +87,7 @@
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.428571429;
-    color: #555555;
+    color: #555555 !important;
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
@@ -130,17 +102,15 @@
     background: #e1e300;
     border: 0;
     border-radius: 3px;
-    color: #000;
+    color: #000 !important;
     cursor: pointer;
     display: block;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 1em;
-    margin-left: 25%;
     outline: none;
-    padding: .6em 1em;
     text-align: center;
     transition: .5s all;
-    width: 50%;
+    width: 100%;
   }
   .login-modal .content-footer {
     background: #1a1a1a;
@@ -155,5 +125,26 @@
     display: block;
     text-decoration: underline;
   }
+  .checkbox {
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+input[type="checkbox"] {
+  display:none;
+}
 
-</style>
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
+    cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
+}

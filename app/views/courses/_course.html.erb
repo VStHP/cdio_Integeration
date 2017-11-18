@@ -9,23 +9,20 @@
       <div class="text-right"><%= @count %></div>
       <% @count+=1 %>
     </div>
-    <div class="rt-td" style="flex: 300 0 auto; width: 300px; max-width: 300px;">
+    <div class="rt-td" style="flex: 270 0 auto; width: 270px; max-width: 270px;">
       <%= link_to course.name, course , class: "cursor" %>
     </div>
-    <div class="rt-td" style="flex: 150 0 auto; width: 150px; max-width: 150px;">
+    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
       <%= link_to @owner.name, root_path , class: "cursor" %>
     </div>
-    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
+    <div class="rt-td" style="flex: 150 0 auto; width: 150px; max-width: 150px;">
       <% define_stt_index course %>
       <div class="<%= @class %>"><%= course.status %></div>
     </div>
-    <div class="rt-td" style="flex: 150 0 auto; width: 150px; max-width: 150px;">
+    <div class="rt-td" style="flex: 140 0 auto; width: 140px; max-width: 140px;">
       <div class="cursor"><%= course.organization %></div>
     </div>
-    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
-      <div class="cursor"><%= course.program %></div>
-    </div>
-    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
+    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
       <div class="cursor"><%= course.training_standard %></div>
     </div>
   </div>

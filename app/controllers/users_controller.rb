@@ -1,5 +1,6 @@
 class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
+  load_and_authorize_resource
 
   def index
     case params[:option]

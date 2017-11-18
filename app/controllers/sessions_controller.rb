@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  layout "layout_login"
+  layout "layout2"
   def new
     get_pre_login_url
     super

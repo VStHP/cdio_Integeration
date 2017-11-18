@@ -1,20 +1,18 @@
 module CoursesHelper
-  def style_get arg
+  def style_get_course arg
     case arg
     when "#"
       @style = "flex: 62 0 auto; width: 62px; max-width: 62px;"
     when "Course"
-      @style = "flex: 300 0 auto; width: 300px; max-width: 300px;"
+      @style = "flex: 270 0 auto; width: 270px; max-width: 270px;"
     when "Owner"
-      @style = "flex: 150 0 auto; width: 150px; max-width: 150px;"
-    when "Status"
       @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
-    when "Organization"
+    when "Status"
       @style = "flex: 150 0 auto; width: 150px; max-width: 150px;"
-    when "Program"
-      @style = "flex: 250 0 auto; width: 250px; max-width: 250px;"
+    when "Organization"
+      @style = "flex: 140 0 auto; width: 140px; max-width: 140px;"
     else
-      @style = "flex: 250 0 auto; width: 250px; max-width: 250px;"
+      @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
     end
   end
 
@@ -35,7 +33,7 @@ module CoursesHelper
 
   def display_column_course_index
       %w(# Course Owner ) + Course.column_names -
-      %w(id name description created_at updated_at users_id date_start)
+      %w(id name description created_at updated_at users_id date_start program training_standard) + %w(Standard)
   end
 
   def define_stt_index course

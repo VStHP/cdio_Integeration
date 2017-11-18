@@ -78,7 +78,9 @@ body {
  }
 }
 .content-wrapper {
- max-height: 621.5px;
+ max-height:643px;
+ height: 643px;
+ min-height: 643px;
  background-color:#ecf0f5;
  z-index:800
 }
@@ -2823,6 +2825,9 @@ table.text-center,table.text-center td,table.text-center th {
 
 .treeview-menu>li>div>.fa,.treeview-menu>li>div>.glyphicon,.treeview-menu>li>div>.ion {
  width:20px
+}
+.treeview-menu>li>div>i>a {
+  margin-left: 5px;
 }
 .treeview-menu>li>div>.pull-right-container>.fa-angle-left,.treeview-menu>li>div>.pull-right-container>.fa-angle-down,.treeview-menu>li>div>.fa-angle-left,.treeview-menu>li>div>.fa-angle-down {
  width:auto

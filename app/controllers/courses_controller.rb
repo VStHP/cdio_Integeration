@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :logged_in_user, except: %i(index)
   before_action :load_course, except: %i(new create index)
-
+  load_and_authorize_resource
   def index
     unless user_signed_in?
       redirect_to "/introduction"

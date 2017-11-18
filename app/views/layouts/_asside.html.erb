@@ -26,27 +26,29 @@
       <li class="header">My WorkSpace</li>
       <li class="active treeview menu-open">
         <a>
-          <i class="fa fa-list-alt"></i> <span>Courses Managerment</span>
+          <i class="fa fa-book"></i> <span>Courses Managerment</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
           <li><div>
-            <i class="fa fa-circle-o">
+            <i class="fa fa-list-ol">
               <%= link_to "My courses", courses_path(option: 1)%>
             </i>
           </div></li>
-           <li><div>
-            <i class="fa fa-circle-o">
-              <%= link_to "Courses in Training", courses_path(option: 2)%>
-            </i>
-          </div></li>
-          <li><div>
-            <i class="fa fa-circle-o">
-              <%= link_to "System's courses", courses_path(option: 3)%>
-            </i>
-          </div></li>
+          <% if can? :create, Course %>
+            <li><div>
+              <i class="fa fa-list-ol">
+                <%= link_to "Courses in Training", courses_path(option: 2)%>
+              </i>
+            </div></li>
+            <li><div>
+              <i class="fa fa-list-ol">
+                <%= link_to "System's courses", courses_path(option: 3)%>
+              </i>
+            </div></li>
+          <% end %>
         </ul>
       </li>
       <li class="active treeview menu-open">
@@ -59,16 +61,16 @@
         </a>
         <ul class="treeview-menu">
           <li><div>
-            <i class="fa fa-circle-o">
+            <i class="fa fa-list-ol">
               <%= link_to "Trainer", user_trainer_path(option: "trainer") %></i>
             </i>
           </div></li>
           <li><div>
-            <i class="fa fa-circle-o">
+            <i class="fa fa-list-ol">
               <%= link_to "Trainee", user_trainee_path(option: "trainee") %></i></i>
           </div></li>
           <li><div>
-            <i class="fa fa-circle-o">
+            <i class="fa fa-plus">
               <%= link_to "Add new user", signup_path %></i>
           </div></li>
         </ul>

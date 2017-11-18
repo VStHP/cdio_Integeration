@@ -16,6 +16,8 @@ class User < ApplicationRecord
   scope :trainees, ->{where.not suppervisor: true}
   scope :without_course, ->(course){where.not id:course.users.pluck(:id)}
   scope :search, ->(search){where("name LIKE ?", "%#{search}%")}
+
+  enum suppervisor: [:trainee, :trainer, :admin]
   class << self
     def digest string
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
