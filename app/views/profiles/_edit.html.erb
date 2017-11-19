@@ -1,0 +1,33 @@
+<div class="box-body" id="profile-form-update">
+  <%= form_for @user, as: :user, url: update_profile_path(@user), method: :put, remote: true do |f| %>
+  <p class="text-muted">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <hr>
+  <p class="text-muted">
+    Email : <%= f.text_field :email, disabled: true %>
+  </p>
+  <hr>
+  <p class="text-muted">
+    University : <%= f.text_field :university %>
+  </p>
+  <hr>
+  <p class="text-muted">
+    Program : <%= f.text_field :program %>
+  </p>
+  <hr>
+  <p class="text-muted">
+    Date Start : <%= f.text_field :date_start, disabled: true %>
+  </p>
+  <%= f.submit "Save", class: "btn btn-info btn-save"%>
+  <% end %>
+  <hr>
+</div>
+<style type="text/css">
+  .btn-save {
+    position: absolute;
+    bottom: 4px;
+    right: 25px;
+  }
+</style>

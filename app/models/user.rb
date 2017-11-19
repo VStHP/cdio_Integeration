@@ -18,6 +18,7 @@ class User < ApplicationRecord
   scope :search, ->(search){where("name LIKE ?", "%#{search}%")}
 
   enum suppervisor: [:trainee, :trainer, :admin]
+  enum gender: [:male, :female]
   class << self
     def digest string
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -58,4 +59,6 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
+
+
 end

@@ -1,5 +1,7 @@
 {
   "name": "cdio_integration",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "pretty-checkbox": "^3.0.3"
+  }
 }

@@ -1,6 +1,7 @@
 class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   load_and_authorize_resource
+  before_action :reg_avatar_default, only: %i(create)
 
   def index
     case params[:option]
@@ -19,27 +20,51 @@ class UsersController < Devise::RegistrationsController
     set_password_default
     @user = User.new user_params
     if @user.save
-      flash[:info] = t "controllers.users.flash_info_create"
+      flash[:success] = "Success! User hass been create successfully"
       redirect_to :root
     else
       render :new
     end
   end
 
+  def edit
+    super
+  end
+
+  def update
+    super
+  end
+
+  def show
+    @user = User.find_by id: params[:id]
+  end
+
   private
+
+  def reg_avatar_default
+    if params[:user][:gender] == "male"
+      params[:user][:avatar] = "male-avatar-default.png"
+    else
+      params[:user][:avatar] = "female-avatar-default.png"
+    end
+  end
+
+  def params_update
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password)
+  end
 
   def set_password_default
     case params[:user][:suppervisor]
     when true
-      params[:user][:password] = "12345678"
-      params[:user][:password_confirmation] = "12345678"
+      params[:user][:password] = "123123"
+      params[:user][:password_confirmation] = "123123"
     else
-      params[:user][:password] = "123456"
-      params[:user][:password_confirmation] = "123456"
+      params[:user][:password] = "123123"
+      params[:user][:password_confirmation] = "123123"
     end
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :university, :program, :suppervisor, :password, :password_confirmation)
+    params.require(:user).permit(:name, :gender, :email, :university, :program, :suppervisor, :password, :password_confirmation)
   end
 end

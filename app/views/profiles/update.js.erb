@@ -1,0 +1,15 @@
+<% if @user.errors.any? %>
+  alertify.error('<%= escape_javascript(render :partial => "shared/error_messages", :locals => {:object => @user })%>');
+<% else %>
+  <% if flash[:success].present? %>
+    $('#profile-form-update').remove();
+    $('#profile-box').replaceWith('<%= j render("component/profile_component/boxprofile") %>').show();
+    alertify.success('<%= flash[:success] %>');
+    <% flash.clear %>
+    $('#profile_name').text('<%= @user.name %>');
+    $('#profile_university').text('<%= @user.university %>');
+  <% else %>
+    alertify.error('<%= flash[:danger] %>');
+  <% end %>
+<% end %>
+

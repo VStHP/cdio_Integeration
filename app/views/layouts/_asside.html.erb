@@ -23,15 +23,14 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">My WorkSpace</li>
-      <li class="active treeview menu-open">
+      <li id="course_tree_li" class="active treeview menu-open">
         <a>
           <i class="fa fa-book"></i> <span>Courses Managerment</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu">
+        <ul id="course_tree_ul" class="treeview-menu">
           <li><div>
             <i class="fa fa-list-ol">
               <%= link_to "My courses", courses_path(option: 1)%>
@@ -51,7 +50,7 @@
           <% end %>
         </ul>
       </li>
-      <li class="active treeview menu-open">
+      <li id="user_tree_li" class="active treeview menu-open">
         <a>
           <i class="fa fa-user"></i>
           <span>Users</span>
@@ -69,10 +68,12 @@
             <i class="fa fa-list-ol">
               <%= link_to "Trainee", user_trainee_path(option: "trainee") %></i></i>
           </div></li>
-          <li><div>
-            <i class="fa fa-plus">
-              <%= link_to "Add new user", signup_path %></i>
-          </div></li>
+          <% if can? :create, User %>
+            <li><div>
+              <i class="fa fa-plus">
+                <%= link_to "Add new user", new_user_registration_path %></i>
+            </div></li>
+          <% end %>
         </ul>
       </li>
       <li>
@@ -88,3 +89,4 @@
   </section>
   <!-- /.sidebar -->
 </aside>
+

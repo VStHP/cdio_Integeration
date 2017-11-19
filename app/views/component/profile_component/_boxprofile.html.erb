@@ -1,28 +1,37 @@
-<div class="box box-primary">
-  <div class="box-body">
-    <p class="text-muted">
-      <%= t "users.profile.name" %> : <%= @user.name %>
-    </p>
-    <hr>
-    <p class="text-muted">
-      <%= t "users.profile.email" %> : <%= @user.email %>
-    </p>
-    <hr>
-    <p class="text-muted">
-      <%= t "users.profile.university" %> : <%= @user.university %>
-    </p>
-    <hr>
-    <p class="text-muted">
-      <%= t "users.profile.organization" %> : <%= @user.organization %>
-    </p>
-    <hr>
-    <p class="text-muted">
-      <%= t "users.profile.program" %> : <%= @user.program %>
-    </p>
-    <hr>
-    <p class="text-muted">
-      <%= t "users.profile.date_start" %> : <%= @user.date_start %>
-    </p>
-    <hr>
+<div class="box box-primary" id="profile-box" style="max-height: 543px;">
+  <div id="profile-content">
+    <%= link_to edit_profile_path(@user), class: "btn btn-sm btn-default form-btn-edit", remote: true do %>
+      <i class="fa fa-cog"></i>
+    <% end %>
+    <div class="box-body">
+      <p class="text-muted">
+        Name : <%= @user.name %>
+      </p>
+      <hr>
+      <p class="text-muted">
+        Email : <%= @user.email %>
+      </p>
+      <hr>
+      <p class="text-muted">
+        University : <%= @user.university %>
+      </p>
+      <hr>
+      <p class="text-muted">
+        Program : <%= @user.program %>
+      </p>
+      <hr>
+      <p class="text-muted">
+        Date Start : <%= @user.date_start %>
+      </p>
+      <hr>
+    </div>
   </div>
 </div>
+<style type="text/css">
+  .form-btn-edit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+  }
+</style>

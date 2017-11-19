@@ -16,4 +16,8 @@
  *= require bootstrap.min
  *= require font-awesome.min
  *= require _all-skins.min
+ *= require pretty-checkbox/dist/pretty-checkbox.min.css
+ *= require alertify/themes/alertify.default.css
+ *= require alertify/themes/alertify.bootstrap.css
+ *= require alertify/themes/alertify.core.css
  */

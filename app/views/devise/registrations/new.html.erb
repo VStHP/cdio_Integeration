@@ -5,6 +5,24 @@
     <%= devise_error_messages! %>
     <%= f.label :name, "User name (*)" %>
     <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    <div style="padding: 10px 0px;">
+        <%= f.label :gender %>
+        <div class="pretty p-icon p-round">
+            <%= f.radio_button :gender, "male", :checked => true %>
+            <div class="state p-primary">
+                <i class="icon mdi mdi-check"></i>
+                <%= f.label :gender, "Male", :value => "male"  %>
+            </div>
+        </div>
+        <div class="pretty p-icon p-round">
+            <%= f.radio_button :gender, "female" %>
+            <div class="state p-primary">
+                <i class="icon mdi mdi-check"></i>
+                <%= f.label :autolyse, "Female", :value => "female" %>
+            </div>
+        </div>
+    </div>
+
 
     <%= f.label :email %>
     <%= f.email_field :email, class: "form-control" %>
@@ -16,8 +34,12 @@
     <%= f.text_field :program, class: "form-control" %>
 
     <%= f.label :suppervisor, "Type user" %>
-    <%= f.select :suppervisor, [['Trainer', true], ['Trainee', false]] %>
 
+    <% if current_user.admin? %>
+        <%= f.select :suppervisor, [['Trainer', 'trainer'], ['Trainee', 'trainee']] %>
+    <% else %>
+        <%= f.text_field :suppervisor, class: "form-control", disabled: true, value: "trainee" %>
+    <% end %>
     <%= f.submit "Create", class: "btn btn-primary", id: "submit" %>
     <% end %>
   </div>

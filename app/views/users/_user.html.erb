@@ -3,7 +3,7 @@
     <div class="rt-td" style="flex: 62 0 auto; width: 62px; max-width: 62px;">
       <% if can? :update && :destroy, user %>
         <%= link_to "", user, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
-        <%= link_to "", edit_user_path(user), class: "fa fa-pencil-square-o" %>
+         <!-- link_to "", edit_user_path(user), class: "fa fa-pencil-square-o"  -->
       <% end %>
       <div class="text-right"><%= @count %></div>
       <% @count+=1 %>

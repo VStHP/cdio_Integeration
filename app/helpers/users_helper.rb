@@ -20,4 +20,8 @@ module UsersHelper
       @style = "flex: 80 0 auto; width: 80px; max-width: 80px;"
     end
   end
+
+  def show_avatar_for user
+    image_tag(user.avatar.url, class: "img-circle img-responsive", size: Settings.user.avatar.size_default)
+  end
 end
