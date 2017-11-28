@@ -1,0 +1,21 @@
+<div id="info_task_<%= task.id %>" class="sortable content-section">
+  <span class="form-btn-edit">
+    <%= link_to task, method: :delete, data: {confirm: "Are you sure to delete this task?"},
+      class: "btn btn-sm btn-default", remote: true do %>
+      <i class="glyphicon glyphicon-trash"></i>
+    <% end %>
+    <%= link_to edit_task_path(task), class: "btn btn-sm btn-default", remote: true do %>
+      <i class="glyphicon glyphicon-pencil"></i>
+    <% end %>
+  </span>
+  <div>
+    <div class="view-field">
+      <h4 class="view-control"><%= task.name %></h4>
+    </div>
+  </div>
+  <div>
+    <div class="view-field">
+      <div class="view-control"><%= task.description %></div>
+    </div>
+  </div>
+</div>

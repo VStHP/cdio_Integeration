@@ -1,9 +1,9 @@
 <% size = @trainee_courses.size %>
 <% kt = false %>
 <% if @count % @quality == 0 %>
-  <td style="padding: 2px; border-right: 1px solid;">
+  <td style="padding: 2px; border-right: 1px solid #adacac;">
 <% end %>
-    <div class="checkbox">
+    <div class="checkbox" id="trainee-added-<%= trainee.id %>">
       <% load_user trainee %>
       <% @count += 1 %>
       <input type="checkbox" id="trainee_uc<%= trainee.id %>" name="ids[]" value="<%= trainee.id %>"/>

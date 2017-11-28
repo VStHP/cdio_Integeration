@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :user_courses, dependent: :destroy
   has_many :courses, through: :user_courses
   has_many :user_subjects, dependent: :destroy
+  has_many :having_subject, through: :user_subjects, source: :course_subject
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 50},
@@ -12,13 +13,18 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: 50}
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
-  scope :trainers, ->{where suppervisor: true}
-  scope :trainees, ->{where.not suppervisor: true}
+  scope :trainers, ->{where suppervisor: "trainer"}
+  scope :trainees, ->{where suppervisor: "trainee"}
   scope :without_course, ->(course){where.not id:course.users.pluck(:id)}
   scope :search, ->(search){where("name LIKE ?", "%#{search}%")}
-
+  scope :need_active_date_start, ->{where date_start: nil}
+  scope :with_ids, ->(ids){where id: ids}
+  scope :alphabet_name, ->{order(name: :desc)}
   enum suppervisor: [:trainee, :trainer, :admin]
   enum gender: [:male, :female]
+  mount_uploader :avatar, AvatarUploader
+  validates_integrity_of  :avatar
+  validates_processing_of :avatar
   class << self
     def digest string
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -28,6 +34,14 @@ class User < ApplicationRecord
     def new_token
       SecureRandom.urlsafe_base64
     end
+  end
+
+  def add_user_subject course_subject
+    having_subject << course_subject
+  end
+
+  def remove_user_subject course_subject
+    having_subject.delete course_subject
   end
 
   def remember
@@ -60,5 +74,7 @@ class User < ApplicationRecord
     self.email = email.downcase
   end
 
-
+  def avatar_size_validation
+    errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
+  end
 end

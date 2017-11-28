@@ -1,7 +1,9 @@
 class CoursesController < ApplicationController
+  before_action :verify_suppervisor_true
   before_action :logged_in_user, except: %i(index)
-  before_action :load_course, except: %i(new create index)
-  load_and_authorize_resource
+  before_action :load_course, except: %i(new create index )
+  load_and_authorize_resource except: :create
+
   def index
     unless user_signed_in?
       redirect_to "/introduction"
@@ -22,15 +24,21 @@ class CoursesController < ApplicationController
   end
 
   def show
-    load_subjects @course
-    # load_trainees @course
-    # load_trainers @course
+    @subjects = @course.subjects
+    @trainers = @course.users.trainers.alphabet_name
+    @trainees = @course.users.trainees.alphabet_name
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    if @course.update_attributes course_params
+      flash[:success] = "Success! This course has been update successful"
+      redirect_to @course
+    else
+      flash[:danger] =  "Oop! Can't update course"
+      render :edit
+    end
   end
 
   def new
@@ -40,7 +48,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new course_params
     if @course.save
-      flash[:success] = t "controllers.courses.flash_success_create"
+      flash[:success] = "Success! This course has been create successful"
       redirect_to courses_path
     else
       render :new
@@ -64,14 +72,13 @@ class CoursesController < ApplicationController
 
   def course_params
     params[:course][:date_start] = Date.strptime(params[:course][:date_start], "%m/%d/%Y")
-    params.require(:course).permit(:name, :description, :users_id, :organization,
-      :program, :training_standard, :date_start, :status)
+    params.require(:course).permit(:name, :description, :users_id, :program, :training_standard, :date_start, :status)
   end
 
   def load_course
     @course = Course.find_by id: params[:id]
     return if @course
-    flash[:danger] = t "controllers.courses.flash_danger"
+    flash[:danger] = "Oop! Can't found course"
     redirect_to :root
   end
 

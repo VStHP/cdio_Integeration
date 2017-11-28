@@ -5,4 +5,6 @@ class CourseSubject < ApplicationRecord
   enum status: [:init, :in_progress, :finish]
 
   scope :of_course, -> (course_id){where course_id: course_id}
+  scope :not_this_course_subject, ->(id){where.not id: id }
+  scope :has_another_in_progress, ->(course_id){where status: "in_progress", course_id: course_id}
 end

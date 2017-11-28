@@ -1,0 +1,4 @@
+if($('#hide-div').length != 0){
+  $('#subject-index').hide().after('<%= j render("edit") %>');
+  $('#hide-div').remove();
+}

@@ -63,3 +63,73 @@ input[type="checkbox"] + label span {
 input[type="checkbox"]:checked + label span {
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
 }
+
+
+.box {
+  background: #fff;
+  margin-bottom: 15px;
+  border: 1px #ded7d766 solid;
+  box-shadow: 0 .5px 0 rgba(0,0,0,.1);
+}
+.box-md {
+  padding: 32px;
+}
+.placeholder {
+  color: #999;
+  font-style: italic;
+}
+.my-profile .section-detail legend.box-md {
+  background: #fff !important;
+  color: #666 !important;
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  padding: 12px 25px;
+    padding-left: 25px;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #ddd;
+}
+.form-btn-edit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+.content-section{
+  position: relative;
+  padding: 25px 30px;
+  border-bottom: 1px #edeaea99 solid;
+}
+.new-section{
+  position: relative;
+  padding: 25px 30px;
+    padding-bottom: 0;
+  background: #fff;
+  border: 1px #f3f3f3 solid;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: rgb(243, 243, 243);
+  border-left: 0;
+  box-shadow: 0 0 5px #ccc;
+  z-index: 2;
+}
+.view-control {
+  word-wrap: break-word;
+}
+.btn.add-one-more-section.no-border {
+  border-top: 1px #ddd solid !important;
+  background-color: #e0e0e0;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.m-t-lg {
+  margin-top: 30px;
+}
+.error-message {
+  color: #ef474f;
+}
+.block {
+  display: block;
+}

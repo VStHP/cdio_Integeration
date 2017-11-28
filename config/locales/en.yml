@@ -1,9 +1,17 @@
 en:
+  public:
+    init: "init"
+    in_progress: "in_progress"
+    finish: "finish"
   hello: "Hello world"
   courses:
     _status:
       init : "Init"
       in_progress: "InProgress"
+      finish: "Finish"
+      block: "Block"
+    _subject:
+      in_progress: "Active"
       finish: "Finish"
     _orgs:
       dn: "Da Nang"

@@ -1,0 +1,21 @@
+<div class="section-detail section-employment" style="max-height: 613px;">
+  <div class="box border-info">
+    <fieldset>
+      <legend class="box-md">
+        <i class="fa fa-fw fa-bank"></i><%= @subject.name %>
+      </legend>
+      <% if @tasks.blank? %>
+        <div class="placeholder-section box-md">
+          <p class="placeholder">This subject hasn't task, let's add some tasks!</p>
+        </div>
+      <% end %>
+      <div id="hidden"></div>
+      <div id="form-task">
+        <%= render partial: "tasks/task", collection: @tasks, as: :task %>
+      </div>
+      <%= link_to "Addition Task", new_task_path(id: @subject.id), id: "task-add-id",
+        class: "btn btn-default btn-block no-border add-one-more-section",
+        remote: true %>
+    </fieldset>
+  </div>
+</div>

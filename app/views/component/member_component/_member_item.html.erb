@@ -1,5 +1,4 @@
-<hr>
-<p class="text-muted">
-  <%= show_avatar_for user %>
-  <%= link_to user.name, suppervisor_user_path(user) %>
+<p class="text-muted" style="position: relative;">
+  <%= image_tag(user.avatar.url, class: "img-member img-circle img-responsive", title: user.name) %>
+  <%= link_to user.name, user, style: "position: absolute; top: 11px; left: 34px" %>
 </p>

@@ -1,9 +1,12 @@
 <div class="modal fade login-modal in" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
   <div class="modal-dialog">
     <div id="div-forms" class="div-forms">
-      <div id="login-form">
+      <div id="login-form" style="position: relative;">
         <div class="content-top">Login</div>
         <div class="content-body">
+          <% flash.each do |message_type, message| %>
+            <span class="alert-login"><%= message %></span>
+          <% end %>
           <div class="line-or"></div>
           <div class="form-modal">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -32,3 +35,13 @@
   </div>
 </div>
 
+<style type="text/css">
+  .alert-login {
+    color: #060606;
+    font-size: 18px;
+    position: absolute;
+    top: 133px;
+    right: 85px;
+    background: #e28787;
+  }
+</style>

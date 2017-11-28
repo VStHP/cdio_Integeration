@@ -10,11 +10,12 @@
             <%= t("courses._status.#{@status}") %>
           </span>
         </span>
+        <% owner = User.find(@course.users_id) %>
         <div class="show-creator">
-          <a href="">
-            <img src="" class="creator-image">
-            <h4><%= User.find(@course.users_id).name %></h4>
-          </a>
+          <%= link_to owner, style: "color: white;" do %>
+            <%= image_tag(owner.avatar.url, class: "creator-image") %>
+            <h4><%= owner.name %></h4>
+          <% end %>
         </div>
       </div>
     </div>
@@ -22,12 +23,12 @@
   <div class="course-menu">
     <ul class="nav nav-tabs course-menu-items">
       <li class="active">
-        <a href="">
+        <a id="active-timeline" data-toggle="tab">
           <i class="fa fa-address-book-o"></i>Subjects
         </a>
       </li>
-      <li class="">
-        <a href="">
+      <li>
+        <a id="active-member" data-toggle="tab">
           <i class="fa fa-address-book-o"></i>Members
         </a>
       </li>
@@ -35,11 +36,85 @@
   </div>
   <div class="course-show-body">
     <div class="col-md-12 col-list-subjects">
-      <div class="tab-pane timeline-container active clearfix" id="timeline">
+      <div class="course-container xt-height content-block active" id="timeline">
         <ul class="timeline timeline-inverse timeline-subject">
           <%= render partial: "subject", collection: @subjects, as: :subject %>
+        </ul>
+      </div>
+      <div class="content-block" id="member" style="max-height: 100%">
+        <ul>
+          <%= render "component/member_component/box_member" %>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  <% if @option == "trainee" %>
+    alert('can bo sung tu dong click data-toggle');
+  <% end %>
+  $('#active-timeline').click(function(){
+    if($('#member').hasClass('active')){
+      $('#timeline').addClass('active');
+      $('#member').removeClass('active');
+    }
+  });
+  $('#active-member').click(function(){
+    if($('#timeline').hasClass('active')){
+      $('#member').addClass('active');
+      $('#timeline').removeClass('active');
+    }
+  });
+</script>
+
+<style type="text/css">
+  .btn-danger {
+    color: rgb(255, 255, 255);
+    background-color: rgb(201, 48, 44);
+    border-color: rgb(172, 41, 37);
+  }
+  td {
+    width: 50%;
+    border-right: 1px solid #eee;
+  }
+  .search-form {
+    position: absolute;
+    right: 50px;
+    top: 105px;
+  }
+  .search-input {
+    width: 187px !important;
+    background: white !important;
+    border: 1px solid #b7b6b6 !important;
+    position: absolute;
+    right: 69px;
+  }
+  .search-btn {
+    position: absolute;
+    right: -33px;
+    top: -6px;
+  }
+  .list {
+    height: 300px;
+  }
+  .nav-tabs-custom {
+    background: #d4d2d2;
+  }
+  nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #3c8dbc;
+  }
+  .nav-tabs .active a {
+      background: rgb(145, 209, 255) !important;
+  }
+  .content-block {
+    display: none;
+  }
+  .active {
+    display: block;
+  }
+  .img-member{
+    width: 30px;
+    height: 30px
+  }
+</style>

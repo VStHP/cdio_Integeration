@@ -33,6 +33,11 @@
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li>
+            <a href="#profile" data-toggle="tab">
+              <%= t "users.profile.profile" %>
+            </a>
+          </li>
+          <li>
             <a href="#timeline" data-toggle="tab">
               <%= t "users.profile.timeline" %>
             </a>
@@ -47,21 +52,17 @@
               <%= t "users.profile.progress" %>
             </a>
           </li>
-          <li>
-            <a href="#profile" data-toggle="tab">
-              <%= t "users.profile.profile" %>
-            </a>
-          </li>
+
         </ul>
         <div class="tab-content" >
+          <div class="tab-pane" id="profile">
+            <%= render "component/profile_component/boxprofile" %>
+          </div>
           <div class="active tab-pane" id="timeline">
           </div>
           <div class="tab-pane" id="activity">
           </div>
           <div class="tab-pane" id="progress">
-          </div>
-          <div class="tab-pane" id="profile">
-            <%= render "component/profile_component/boxprofile" %>
           </div>
         </div>
       </div>

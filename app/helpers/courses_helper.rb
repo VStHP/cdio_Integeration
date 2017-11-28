@@ -9,10 +9,10 @@ module CoursesHelper
       @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
     when "Status"
       @style = "flex: 150 0 auto; width: 150px; max-width: 150px;"
-    when "Organization"
-      @style = "flex: 140 0 auto; width: 140px; max-width: 140px;"
+    when "Program"
+      @style = "flex: 250 0 auto; width: 250px; max-width: 250px;"
     else
-      @style = "flex: 200 0 auto; width: 200px; max-width: 200px;"
+      @style = "flex: 250 0 auto; width: 250px; max-width: 250px;"
     end
   end
 
@@ -33,19 +33,23 @@ module CoursesHelper
 
   def display_column_course_index
       %w(# Course Owner ) + Course.column_names -
-      %w(id name description created_at updated_at users_id date_start program training_standard) + %w(Standard)
+      %w(id name description created_at updated_at users_id date_start training_standard) + %w(Standard)
   end
 
   def define_stt_index course
     case course.status
     when "init"
       @class = "cursor sttcourse sttcourse-init"
+      @status = "Init"
     when "in_progress"
       @class = "cursor sttcourse sttcourse-in-progress"
+      @status = "In Progress"
     when "in_progress"
       @class = "cursor sttcourse sttcourse-finish"
+      @status = "Finish"
     else
       @class = "cursor sttcourse sttcourse-close"
+      @status = "Block"
     end
   end
 
@@ -54,7 +58,7 @@ module CoursesHelper
     when course.init?
       @status = "init"
     when course.in_progress?
-      @status = "in_project"
+      @status = "in_progress"
     when course.finish?
       @status = "finish"
     else

@@ -33,6 +33,11 @@
     <%= f.label :program %>
     <%= f.text_field :program, class: "form-control" %>
 
+    <%= f.label :avatar do %>
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
+    <% end %>
+
     <%= f.label :suppervisor, "Type user" %>
 
     <% if current_user.admin? %>

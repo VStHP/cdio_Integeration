@@ -1,8 +1,8 @@
 module UserCoursesHelper
 
   def define_column list
-    @quality = list.size / 5
-    @quality += 1 unless list.size % 5 == 0
+    @quality = list.size / 2
+    @quality += 1 unless list.size % 2 == 0
     @count = 0
   end
 

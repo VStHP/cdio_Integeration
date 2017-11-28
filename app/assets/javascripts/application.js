@@ -17,7 +17,5 @@
 //= require rails-ujs
 //= require turbolinks
 //= require bootstrap-datepicker
-//= require jquery-1.12.4
-//= require jquery-ui
 //= require alertify/lib/alertify.min.js
 //= require_tree .

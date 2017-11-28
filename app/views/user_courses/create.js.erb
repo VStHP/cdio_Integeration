@@ -1,0 +1,8 @@
+<% debugger %>
+<% if flash[:success].present? %>
+  <% @trainer_courses.each do |u| %>
+    $('#<%= u.suppervisor %>-adding-<%= u.id %>').remove();
+  <% end %>
+  $('#trainer-added-list').append('<%= j (render :partial => "trainer_added", :collection => @trainer_courses, :as => :trainer )%>');
+  alertify.success('<%= flash[:success] %>');
+<% end %>

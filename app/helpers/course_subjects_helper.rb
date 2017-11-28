@@ -3,29 +3,40 @@ module CourseSubjectsHelper
     course.course_subjects.find_by subject_id: subject.id
   end
 
+  def course_subject_define id1, id2
+    CourseSubject.find_by subject_id: id2, course_id: id1
+  end
+
   def check_status_cs cs
     case true
     when cs.init?
-      @status = t ("public.init")
+      @status = "init"
+      @url = "/images/init.png"
+      @body_style = "background: rgba(108, 173, 50, 0.7);"
+      @style_btn = "background: #3cadd4;"
     when cs.in_progress?
-      @status = t ("public.in_progress")
+      @status = "in_progress"
+      @url = "/images/inprogress.jpg"
+      @body_style = "background: rgba(70, 175, 212, 0.62);"
+      @style_btn = "background: #f46d52;"
     else
-      @status = t ("public.finish")
+      @status = "finish"
+      @url = "/images/finish.jpg"
+      @body_style = "background: rgba(236, 108, 82, 0.72);"
+      @style_btn = "background: #000;"
     end
-    @class = "status status-#{@status}"
+    @class_point = "status status-#{@status}"
+
   end
 
   def check_status_btn cs
     case true
     when cs.init?
       @next_status = t ("public.in_progress")
-      @btn_class = "btn btn-success"
     when cs.in_progress?
       @next_status = t ("public.finish")
-      @btn_class = "btn btn-danger"
     else
       @next_status = t ("public.finish")
-      @btn_class = "btn status-btn-dis"
     end
   end
   def load_subject_of course_subject

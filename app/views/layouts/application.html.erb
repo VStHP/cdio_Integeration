@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
+    <%= favicon_link_tag "logo.png" %>
     <%= render "layouts/rails_default" %>
     <%= render "layouts/shim" %>
   </head>
@@ -12,9 +13,18 @@
       <%= render "layouts/asside" %>
       <div class="content-wrapper" style="min-height: 642px;">
         <div class="clearfix">
-          <% flash.each do |message_type, message| %>
-            <div class="alert-box alert alert-<%= message_type %>"><%= message %></div>
-          <% end %>
+          <script type="text/javascript">
+            <% flash.each do |message_type, message| %>
+              <% if message_type == "success" %>
+                alertify.success('<%= message %>');
+             <% elsif message_type == "danger" %>
+                alertify.error('<%= message %>');
+              <% else %>
+                alertify.notice('<%= message %>');
+              <% end %>
+            <% end %>
+          </script>
+
           <%= yield %>
         </div>
       </div>

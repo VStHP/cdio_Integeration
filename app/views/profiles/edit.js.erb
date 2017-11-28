@@ -1,2 +1,7 @@
-$('#profile-content').hide();
-$('#profile-box').html('<%= escape_javascript(render("edit")) %>');
+<% if flash[:danger].present? %>
+  alertify.error('<%=  flash[:danger] %>');
+  <% flash.clear %>
+<% else %>
+  $('#profile-content').hide();
+  $('#profile-box').html('<%= escape_javascript(render("edit")) %>');
+<% end %>

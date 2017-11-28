@@ -21,7 +21,7 @@ class UsersController < Devise::RegistrationsController
     @user = User.new user_params
     if @user.save
       flash[:success] = "Success! User hass been create successfully"
-      redirect_to :root
+      redirect_to @user
     else
       render :new
     end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tasks
+
   devise_for :users, skip: [:sessions], :controllers => {passwords: "passwords", registrations: "users"}
   as :user do
     get "/login", to: "sessions#new", as: :new_user_session
@@ -15,17 +17,30 @@ Rails.application.routes.draw do
     # delete "/logout", to: "sessions#destroy", as: :destroy_user_session
   end
 
-  root to: "courses#index", option: "2"
+  as :course do
+    get "/mycourse/:id", to: "trainee/courses#show", as: :trainee_course_view
+    get "/mycourses", to: "trainee/courses#index"
+    get "/courses/:id", to: "courses#show"
+    as :subjects do
+      get "/mycourse/:course_id/subjects/:subject_id", to: "course_subjects#show", as: :show_subject_in_course
+    end
+  end
+
+
+  root to: "static_pages#home"
   get "/introduction", to: "intro_pages#home"
   get "/login", to: "session#new"
   post "/login", to: "session#create"
   delete "/logout", to: "session#destroy"
+  resources :user_tasks
   resources :subjects
   resources :courses
   resources :course_subjects, only: [:create, :update, :destroy, :index]
   resources :user_courses, only: [:create, :update, :destroy, :index]
   patch "/define_action", to: "course_subjects#define_action"
   post "/del_user_courses", to: "user_courses#del_user_courses"
+  post "/del_course_subject", to: "course_subjects#del_course_subjects"
   get "/profiles/:id/edit", to: "profiles#edit", as: :edit_profile
   put "profiles/:id", to: "profiles#update", as: :update_profile
+  get "/courses/status", to: "courses#change_status", as: :course_status
 end

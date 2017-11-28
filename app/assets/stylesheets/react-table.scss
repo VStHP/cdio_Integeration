@@ -390,15 +390,7 @@
  -webkit-transform:translateY(50%);
  transform:translateY(50%)
 }
-.ReactTable input,.ReactTable select {
- border:1px solid rgba(0,0,0,0.1);
- background:#fff;
- padding:5px 7px;
- font-size:inherit;
- border-radius:3px;
- font-weight:normal;
- outline:none
-}
+
 .ReactTable .rt-resizing .rt-th,.ReactTable .rt-resizing .rt-td {
  -webkit-transition:none !important;
  transition:none !important;

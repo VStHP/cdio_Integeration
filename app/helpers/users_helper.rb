@@ -22,6 +22,35 @@ module UsersHelper
   end
 
   def show_avatar_for user
-    image_tag(user.avatar.url, class: "img-circle img-responsive", size: Settings.user.avatar.size_default)
+    image_tag(user.avatar.url, class: "img-circle img-responsive")
+  end
+
+  def month_name int
+    case int
+    when 1
+      "Jan"
+    when 2
+      "Feb"
+    when 3
+      "Mar"
+    when 4
+      "Apr"
+    when 5
+      "May"
+    when 6
+      "Jun"
+    when 7
+      "Jul"
+    when 8
+      "Aug"
+    when 9
+      "Sep"
+    when 10
+      "Oct"
+    when 11
+      "Nov"
+    else
+      "Dec"
+    end
   end
 end

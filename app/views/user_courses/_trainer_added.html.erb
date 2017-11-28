@@ -1,9 +1,9 @@
 <% size = @trainer_courses.size %>
 <% kt = false %>
 <% if @count % @quality == 0 %>
-  <td style="padding: 2px; border-right: 1px solid;">
+  <td style="padding: 2px; border-right: 1px solid #adacac;">
 <% end %>
-    <div class="checkbox">
+    <div class="checkbox" id="trainer-added-<%= trainer.id %>">
       <% load_user trainer %>
       <% @count += 1 %>
       <input type="checkbox" id="uc<%= trainer.id %>" name="ids[]" value="<%= trainer.id %>"/>

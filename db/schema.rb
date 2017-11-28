@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20171118140938) do
     t.datetime "updated_at", null: false
     t.bigint "users_id"
     t.date "date_start"
-    t.string "organization"
     t.string "program"
     t.string "training_standard"
+    t.index ["program"], name: "index_courses_on_program"
+    t.index ["training_standard"], name: "index_courses_on_training_standard"
     t.index ["users_id"], name: "index_courses_on_users_id"
   end
 

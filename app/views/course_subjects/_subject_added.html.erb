@@ -1,9 +1,16 @@
-<div>
-  <% load_subject_of coursesubject %>
-  <%= form_for coursesubject, :url => {:action => "define_action"} do |f| %>
-    <%= link_to @subject.name, "#" %>
-    <%= f.text_field :date_start, "data-provide" => "datepicker", :value => Date.today.strftime("%m/%d/%Y") %>
-    <%= f.submit "Update", class: "btn btn-info" %>
-    <%= f.submit "Clear", class: "btn btn-danger" %>
-  <% end %>
-</div>
+<% size = @course_subjects.size %>
+<% kt = false %>
+<% if @count % @quality == 0 %>
+  <td style="padding: 2px; border-right: 1px solid #adacac;">
+<% end %>
+    <div class="checkbox" id="trainee-added-<%= coursesubject.id %>">
+      <% load_subject_of coursesubject %>
+      <% @count += 1 %>
+      <input type="checkbox" id="trainee_uc<%= coursesubject.id %>" name="ids[]" value="<%= coursesubject.id %>"/>
+      <label style ="padding: 0px;" for="trainee_uc<%= coursesubject.id %>">
+        <span></span><%= @subject.name %>
+      </label>
+    </div>
+<% if kt %>
+  </td>
+<% end %>
