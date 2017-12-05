@@ -18,6 +18,7 @@ class Course < ApplicationRecord
   scope :need_active, ->{where status: "init"}
 
   enum status: [:init, :in_progress, :finish, :block]
+  paginates_per  7
 
   def add_subject subject
     adding_subject << subject

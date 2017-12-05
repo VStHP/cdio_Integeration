@@ -18,13 +18,6 @@
             show_subject_in_course_path(@course, subject) %></span>
         </div>
         <i class="td-subject-description"><%= subject.description %></i>
-        <%= form_for (sub_of_course @course, subject) do |f| %>
-          <% if can? :update, CourseSubject %>
-            <% check_status_btn @cs %>
-            <div><%= hidden_field_tag :status, @next_status %></div>
-            <%= f.submit t("courses._subject.#{@next_status}"), class: "btn", style: @style_btn %>
-          <% end %>
-        <% end %>
       </div>
     </div>
   </div>

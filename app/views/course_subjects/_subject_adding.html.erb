@@ -1,15 +1,6 @@
-<% size = @all_subjects.size %>
-<% kt = false %>
-<% if @count % @quality == 0 %>
-  <td style="padding: 2px; border-right: 1px solid #adacac;">
-<% end %>
     <div class="checkbox" id="trainee-adding-<%= subject.id %>">
-      <% @count += 1 %>
       <input type="checkbox" id="trainee_<%= subject.id %>" name="ids[]" value="<%= subject.id %>"/>
       <label style ="padding: 0px;" for="trainee_<%= subject.id %>">
         <span></span><%= subject.name %>
       </label>
     </div>
-<% if kt %>
-  </td>
-<% end %>

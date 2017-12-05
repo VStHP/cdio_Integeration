@@ -12,16 +12,19 @@ module ApplicationHelper
    unless user_task.blank?
       case user_task.status
       when "in_progress"
+        @name_plugin = " /in progress/ /let's finish this task to receive new task/"
         @btn_text = "Finish Task"
         @body_style = "background: rgba(70, 175, 212, 0.62) ;"
         @style_btn =  "background: #f46d52;"
       when "finish"
+        @name_plugin = " /finish/"
         @btn_text = "Done!"
-        @body_style = "background: rgba(236, 108, 82, 0.72) ;"
+        @body_style = "background: rgba(108, 173, 50, 0.7) ;"
         @style_btn = "background: #f46d52;"
       else
+        @name_plugin = " /init/ /let's receive task!/"
         @btn_text = "Receive Task"
-        @body_style = "background: rgba(108, 173, 50, 0.7) ;"
+        @body_style = "background: #fff ;"
         @style_btn = "background: #3cadd4;"
       end
     else

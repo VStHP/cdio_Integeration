@@ -5,7 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'figaro'
+gem "kaminari"
+gem "figaro"
 gem "carrierwave"
 gem "mini_magick"
 gem "fog"
@@ -24,6 +25,8 @@ gem "faker", :git => "git://github.com/stympy/faker.git", :branch => "master"
 gem "bcrypt", "3.1.11"
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass", "3.3.7"
+gem "jquery"
+gem "jquery-rails"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"

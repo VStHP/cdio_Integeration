@@ -1,33 +1,64 @@
 <% provide :title, "Subject" %>
-<div class="kp-courses-box" id="subject-index">
-  <div class="margin-select col-md-12 text-right">
-  </div>
-  <div id="hide-div" hidden="hidden"></div>
-  <div class="courses-index">
-    <div class="course-container xt-height">
-      <div class="row td-padding-top dadada">
-        <div class="ReactTable -highlight td-course-table">
-          <div class="rt-table">
-            <div class="rt-thead -header">
-              <div class="rt-tr">
-                <% display_column_subject_index.each do |item| %>
-                  <% style_get_subject item.capitalize %>
-                  <div class="rt-resizable-header -cursor-pointer rt-th" style="<%= @style %>">
-                    <div class="rt-resizable-header-content"><%= item.capitalize %></div>
-                    <div class="rt-resizer"></div>
-                  </div>
-                <% end %>
+<section class="content-header">
+  <h1>
+    System Subjects
+    <small>advanced tables</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Subjects</a></li>
+    <li class="active">Subjects list</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Hover Data Table</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <div id="example1_filter" class="dataTables_filter">
+                <label>Search:
+                  <input id="myInput" type="search" class="form-control input-sm" placeholder="Search for names.." aria-controls="example1">
+                </label>
               </div>
             </div>
-            <div class="rt-tbody" style="min-width: 1400px;">
-              <% @count = 1 %>
-              <%= render partial: "subject", collection: @subjects, as: :subject %>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table id="example2" class="table table-bordered table-hover dataTable">
+                <thead>
+                  <% display_column_subject_index.each do |item| %>
+                      <th><%= item.capitalize %></th>
+                    <% end %>
+                </thead>
+                <tbody>
+                  <tr>
+                    <%= render partial: "subject", collection: @subjects, as: :subject %>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                <%= page_entries_info @subjects, entry_name: 'subject' %>
+              </div>
+            </div>
+            <div class="col-sm-7">
+              <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                <%= paginate @subjects, :outer_window => 3 %>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="clearfix"></div>
       </div>
     </div>
   </div>
-</div>
+</section>

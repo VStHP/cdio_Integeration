@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionHelper
-  before_action :active_course_automation
+  before_action :active_course_automation, if: :user_signed_in?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def logged_in_user
@@ -22,12 +22,22 @@ class ApplicationController < ActionController::Base
 
   def active_course_automation
     @courses = Course.start_today.need_active
+    count = 0
     @courses.each do |c|
       c.update_attributes status: "in_progress"
       c.users.need_active_date_start.each do |u|
         u.update_attributes date_start: Time.zone.today
       end
+      count += 1
     end
+    if count > 1
+      show = "#{count} courses"
+    else
+      show = "#{count} course"
+    end
+    # unless current_user.trainee?
+    #   flash[:info] = "#{show} has been active in progress today"
+    # end
   end
 
   def verify_suppervisor_true

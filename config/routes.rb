@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   as :course do
     get "/mycourse/:id", to: "trainee/courses#show", as: :trainee_course_view
     get "/mycourses", to: "trainee/courses#index"
+    get "/course/new", to: "courses#new", as: :abcd
     get "/courses/:id", to: "courses#show"
     as :subjects do
       get "/mycourse/:course_id/subjects/:subject_id", to: "course_subjects#show", as: :show_subject_in_course

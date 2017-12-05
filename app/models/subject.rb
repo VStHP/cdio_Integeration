@@ -8,4 +8,6 @@ class Subject < ApplicationRecord
 
   scope :without_course, ->(course){where.not id: course.subjects.pluck(:id)}
   scope :search, ->(search){where("name LIKE ?", "%#{search}%")}
+
+  paginates_per  7
 end

@@ -16,6 +16,17 @@ module CoursesHelper
     end
   end
 
+  def show_title_index_course option
+    case option
+    when "2"
+      @title = "Courses Join-in"
+    when "3"
+      @title = "System Courses"
+    else
+      @title = "My Courses"
+    end
+  end
+
   def owner_info course
     @owner = User.find_by id: course.users_id
     @owner ||= User.new

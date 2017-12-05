@@ -273,3 +273,51 @@ col-list-subjects {
     height: 100px;
     width: 15%;
 }
+.dataTables_info {
+  padding-top: 8px;
+  white-space: nowrap;
+}
+.dataTables_paginate {
+  margin: 0;
+  white-space: nowrap;
+  text-align: right;
+}
+nav.pagination {
+  margin: 2px 0;
+  white-space: nowrap;
+}
+.pagination>span {
+  cursor: pointer;
+  display: inline;
+  background: #fafafa;
+  color: #666;
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  &:hover {
+    background: #f1bcbc
+  }
+}
+.pagination>.current {
+  background-color: #337ab7;
+  border-color: #337ab7;
+  z-index: 3;
+  color: #fff;
+}
+div.dataTables_filter {
+    text-align: right;
+  }
+  div.dataTables_filter label {
+    font-weight: normal;
+    white-space: nowrap;
+    text-align: left;
+  }
+  div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: auto;
+  }

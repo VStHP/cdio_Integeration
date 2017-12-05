@@ -9,7 +9,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class="landing">
-
+    <script type="text/javascript">
+      <% flash.each do |message_type, message| %>
+        <% if message_type == "success" %>
+          alertify.success('<%= message %>');
+       <% elsif message_type == "danger" %>
+          alertify.error('<%= message %>');
+        <% else %>
+          alertify.notice('<%= message %>');
+        <% end %>
+      <% end %>
+    </script>
     <header id="header">
       <h1><a href="index.html">Transit</a></h1>
       <nav id="nav">

@@ -1,4 +1,4 @@
-  <aside class="main-sidebar">
+    <aside class="main-sidebar">
   <section class="sidebar">
     <div class="user-panel" style="height: 67px;">
       <div class="pull-left image">
@@ -23,7 +23,7 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li id="course_tree_li" class="active treeview menu-open">
+      <li class="active treeview menu-open">
         <a>
           <i class="fa fa-book"></i> <span>Courses Managerment</span>
           <span class="pull-right-container">
@@ -33,26 +33,27 @@
         <ul id="course_tree_ul" class="treeview-menu">
           <li><div>
             <i class="fa fa-list-ol">
-              <%= link_to "My courses", courses_path(option: 1)%>
+              <%= link_to "My courses", courses_path(option: 1) %>
             </i>
           </div></li>
-        </ul>
-        <ul id="course_tree_ul" class="treeview-menu">
           <li><div>
             <i class="fa fa-list-ol">
-              <%= link_to "Courses Join-in", courses_path(option: 2)%>
+              <%= link_to "Courses Join-in", courses_path(option: 2) %>
             </i>
           </div></li>
-        </ul>
-        <ul id="course_tree_ul" class="treeview-menu">
           <li><div>
             <i class="fa fa-list-ol">
-              <%= link_to "System courses", courses_path(option: 3)%>
+              <%= link_to "System courses", courses_path(option: 3) %>
+            </i>
+          </div></li>
+          <li><div>
+            <i class="fa fa-plus">
+              <%= link_to "Add new course", abcd_path %>
             </i>
           </div></li>
         </ul>
       </li>
-      <li id="course_tree_li" class="active treeview menu-open">
+      <li class="treeview">
         <a>
           <i class="fa fa-book"></i> <span>Users Managerment</span>
           <span class="pull-right-container">
@@ -62,22 +63,22 @@
         <ul id="course_tree_ul" class="treeview-menu">
           <li><div>
             <i class="fa fa-list-ol">
-              <%= link_to "Trainers", mycourses_path%>
+              <%= link_to "Trainers", user_trainer_path(option: "trainer")%>
             </i>
           </div></li>
           <li><div>
             <i class="fa fa-list-ol">
-              <%= link_to "Trainees", mycourses_path%>
+              <%= link_to "Trainees", user_trainee_path%>
             </i>
           </div></li>
           <li><div>
             <i class="fa fa-plus">
-              <%= link_to "Add new user", mycourses_path%>
+              <%= link_to "Add new user", new_user_registration_path%>
             </i>
           </div></li>
         </ul>
       </li>
-      <li class="active treeview menu-open">
+      <li class="treeview">
           <a>
             <i class="fa fa-newspaper-o"></i>
             <span>Subjects</span>

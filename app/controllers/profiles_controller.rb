@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_action :logged_in_user
   before_action :load_user
 
   def edit
@@ -11,13 +12,11 @@ class ProfilesController < ApplicationController
     if current_user.trainee?
       check_user_permit
     else
-      respond_to do |f|
         if @user.update_attributes profile_params
-          f.js{flash[:success] = "Success! Your profile has been update successfully"}
+          flash[:success] = "Success! Your profile has been update successfully"
         else
-          f.js{flash[:danger] = "Oops! Some error in the update process"}
+          flash[:danger] = "Oops! Some error in the update process"
         end
-      end
     end
   end
 

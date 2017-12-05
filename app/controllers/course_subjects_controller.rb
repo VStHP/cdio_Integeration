@@ -1,4 +1,5 @@
 class CourseSubjectsController < ApplicationController
+  before_action :logged_in_user
   before_action :load_course, only: %i(index create)
   before_action :load_course_subject, only: %i(update)
   before_action :verify_permited, only: :update
@@ -34,6 +35,7 @@ class CourseSubjectsController < ApplicationController
     if @course_subject.update_attributes status: params[:status]
       case params[:status]
       when "in_progress"
+        @course_subject.update_attributes date_start: Time.zone.today
         flash[:success] = "This subject has been change to in progress successfully"
       else
         @course_subject.update_attributes date_end: Time.zone.today

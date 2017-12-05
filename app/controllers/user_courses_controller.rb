@@ -1,4 +1,5 @@
 class UserCoursesController < ApplicationController
+  before_action :logged_in_user
   before_action :load_course, only: %i(index create del_user_courses)
 
   def index

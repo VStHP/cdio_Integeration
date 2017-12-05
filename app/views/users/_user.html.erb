@@ -1,27 +1,22 @@
-<div class="rt-tr-group">
-  <div class="rt-tr -odd">
-    <div class="rt-td" style="flex: 62 0 auto; width: 62px; max-width: 62px;">
-      <% if can? :update && :destroy, user %>
-        <%= link_to "", user, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
-         <!-- link_to "", edit_user_path(user), class: "fa fa-pencil-square-o"  -->
-      <% end %>
-      <div class="text-right"><%= @count %></div>
-      <% @count+=1 %>
-    </div>
-    <div class="rt-td" style="flex: 300 0 auto; width: 200px; max-width: 200px;">
-      <%= link_to user.name, user , class: "cursor" %>
-    </div>
-    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
-      <div class="cursor"><%= user.email %></div>
-    </div>
-    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
-      <div class="cursor"><%= user.university %></div>
-    </div>
-    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
-      <div class="cursor"><%= user.program %></div>
-    </div>
-    <div class="rt-td" style="flex: 80 0 auto; width: 80px; max-width: 80px;">
-      <div class="cursor"><%= user.date_start %></div>
-    </div>
-  </div>
-</div>
+<tr>
+  <td>
+    <% if can? :update && :destroy, user %>
+      <%= link_to "", user, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to user.name, user , class: "cursor" %>
+  </td>
+  <td>
+    <div class="cursor"><%= user.email %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= user.university %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= user.program %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= user.date_start %></div>
+  </td>
+</tr>

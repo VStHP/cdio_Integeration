@@ -1,4 +1,5 @@
 class UsersController < Devise::RegistrationsController
+  before_action :logged_in_user
   skip_before_action :require_no_authentication
   load_and_authorize_resource
   before_action :reg_avatar_default, only: %i(create)
@@ -6,9 +7,9 @@ class UsersController < Devise::RegistrationsController
   def index
     case params[:option]
     when "trainer"
-      @users = User.trainers
+      @users = User.trainers.page params[:page]
     else
-      @users = User.trainees
+      @users = User.trainees.page params[:page]
     end
   end
 

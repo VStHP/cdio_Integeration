@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+  before_action :logged_in_user
   before_action :load_subject, only: %i(edit update destroy show)
 
   def new
@@ -17,7 +18,7 @@ class SubjectsController < ApplicationController
   end
 
   def index
-    @subjects = Subject.all
+    @subjects = Subject.all.page params[:page]
   end
 
   def edit

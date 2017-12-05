@@ -1,16 +1,7 @@
-<% size = @course_subjects.size %>
-<% kt = false %>
-<% if @count % @quality == 0 %>
-  <td style="padding: 2px; border-right: 1px solid #adacac;">
-<% end %>
     <div class="checkbox" id="trainee-added-<%= coursesubject.id %>">
       <% load_subject_of coursesubject %>
-      <% @count += 1 %>
       <input type="checkbox" id="trainee_uc<%= coursesubject.id %>" name="ids[]" value="<%= coursesubject.id %>"/>
       <label style ="padding: 0px;" for="trainee_uc<%= coursesubject.id %>">
         <span></span><%= @subject.name %>
       </label>
     </div>
-<% if kt %>
-  </td>
-<% end %>

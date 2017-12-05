@@ -25,6 +25,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   validates_integrity_of  :avatar
   validates_processing_of :avatar
+  paginates_per  7
   class << self
     def digest string
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

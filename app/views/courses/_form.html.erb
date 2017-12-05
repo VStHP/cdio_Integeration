@@ -26,10 +26,14 @@
         <% if @course.date_start.nil? %>
           <%= f.text_field :date_start, "data-provide" => "datepicker", :value => Time.zone.today.strftime("%m/%d/%Y") %>
         <% else %>
-          <%= f.text_field :date_start, "data-provide" => "datepicker", :value => @course.date_start.strftime("%m/%d/%Y") %>
+          <% unless @course.init? %>
+            <%= f.text_field :date_start, "data-provide" => "datepicker", :value => @course.date_start.strftime("%m/%d/%Y"), disabled: true %>
+          <% else %>
+            <%= f.text_field :date_start, "data-provide" => "datepicker", :value => @course.date_start.strftime("%m/%d/%Y") %>
+          <% end %>
         <% end %>
         <%= f.label :status %>
-        <%= select "course", "status", Course.statuses.map {|name, index| [t("courses._status.#{name}"),name]} %>
+        <%= select "course", "status", Course.statuses.map {|name, index| [t("courses._status.#{name}"),name]},   {disabled: 'init'} %>
         <% unless @course.finish? %>
         <%= f.submit yield(:button_text), class: "btn btn-primary", id: "submit", style: "position: absolute; bottom: 39px;" %>
       <% end %>

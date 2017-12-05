@@ -1,6 +1,6 @@
-class CoursesController < ApplicationController
+  class CoursesController < ApplicationController
+  before_action :logged_in_user
   before_action :verify_suppervisor_true
-  before_action :logged_in_user, except: %i(index)
   before_action :load_course, except: %i(new create index )
   load_and_authorize_resource except: :create
 
@@ -13,11 +13,11 @@ class CoursesController < ApplicationController
       else
         case params[:option]
         when "1"
-          @courses = Course.owner current_user.id
+          @courses = Course.owner(current_user.id).page params[:page]
         when "2"
-          @courses = current_user.courses
+          @courses = current_user.courses.page params[:page]
         else
-          @courses = Course.all
+          @courses = Course.all.page params[:page]
         end
       end
     end
@@ -33,6 +33,7 @@ class CoursesController < ApplicationController
 
   def update
     if @course.update_attributes course_params
+      @course.update_attributes date_start: Time.zone.today
       flash[:success] = "Success! This course has been update successful"
       redirect_to @course
     else

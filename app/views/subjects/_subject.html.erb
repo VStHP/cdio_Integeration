@@ -1,28 +1,23 @@
-<div class="rt-tr-group" id="subject-<%= subject.id %>">
-  <div class="rt-tr -odd">
-    <div class="rt-td" style="flex: 62 0 auto; width: 62px; max-width: 62px;">
-      <% if can? :manage, subject %>
-        <%= link_to "", subject, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
-        <%= link_to "", edit_subject_path(subject), class: "fa fa-pencil-square-o", remote: true %>
-      <% end %>
-      <% if defined? @count %>
-        <div class="text-right"><%= @count %></div>
-        <% @count+=1 %>
-      <% else %>
-        <label style="color: green;">U</label>
-      <% end %>
-    </div>
-    <div class="rt-td" style="flex: 250 0 auto; width: 250px; max-width: 250px;">
-      <%= link_to subject.name, subject , class: "cursor" %>
-    </div>
-    <div class="rt-td" style="flex: 300 0 auto; width: 300px; max-width: 300px;">
-      <div class="cursor"><%= subject.description %></div>
-    </div>
-    <div class="rt-td" style="flex: 170 0 auto; width: 170px; max-width: 170px;">
-      <div class="cursor"><%= subject.teacher %></div>
-    </div>
-    <div class="rt-td" style="flex: 110 0 auto; width: 110px; max-width: 110px;">
-      <div class="cursor"><%= subject.time %> days</div>
-    </div>
-  </div>
-</div>
+<tr>
+  <td>
+    <% if can? :manage, subject %>
+      <%= link_to "", subject, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
+      <%= link_to "", edit_subject_path(subject), class: "fa fa-pencil-square-o", remote: true %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to subject.name, subject , class: "cursor" %>
+  </td>
+  <td>
+    <div class="cursor"><%= subject.description %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= subject.teacher %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= subject.time %> days</div>
+  </td>
+  <td>
+    <%= subject.tasks.size %>
+  </td>
+</tr>
