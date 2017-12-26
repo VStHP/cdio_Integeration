@@ -1,74 +1,48 @@
 <% provide :title, "Courses" %>
-
-<div class="kp-courses-box">
-  <div class="margin-select col-md-12 text-right">
-  </div>
-  <div class="courses-index">
-    <div class="course-container xt-height">
-      <div class="row td-padding-top dadada">
-        <div class="ReactTable -highlight td-course-table">
-          <div class="rt-table">
-            <div class="rt-thead -header">
-              <div class="rt-tr">
-                <% display_column_course_index.each do |item| %>
-                  <% style_get_course item.capitalize %>
-                  <div class="rt-resizable-header -cursor-pointer rt-th" style="<%= @style %>">
-                    <div class="rt-resizable-header-content"><%= item.capitalize %></div>
-                    <div class="rt-resizer"></div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-            <div class="rt-tbody" style="min-width: 1400px;">
-              <% @count = 1 %>
-              <%= render @courses %>
-            </div>
-          </div>
+<section class="content-header">
+  <% show_title_index_course params[:option] %>
+  <h1>
+    <%= @title %>
+    <small>advanced boxs</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li class="active">My courses</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="row" style="padding: 20px;">
+          <%= render partial: "course", collection: @courses, as: :course %>
         </div>
-
-        <div class="clearfix"></div>
       </div>
     </div>
   </div>
-</div>
+</section>
 <style type="text/css">
-  .btn-hold-status-finish {
+.widget-advanced .widget-background {
   position: absolute;
-  top: -5px;
-  right: -24px;
-  display: block;
-  border: 1px solid red;
-  width: 15px;
-  height: 15px;
-  text-align: center;
-  line-height: 100px;
-  background: rgba(247, 193, 193, 0.8);
+  top: 0;
+  left: 0;
+  height: 150px;
 }
-
-.btn-hold-status-finish:active {
-  border: 2px solid yellow;
-  height: 18px;
-  background: red;
-}
-
-.btn-hold-status-close {
+.widget-advanced .widget-content-image {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  display: block;
-  border: 1px solid black;
-  width: 13px;
-  height: 13px;
-  text-align: center;
-  line-height: 100px;
-  background: rgba(43, 43, 43, 0.65);
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  padding-top: 25px;
+  margin: 0;
+  background: url(../img/template/ie8_opacity_dark_60.png) repeat;
+  background: rgba(0, 0, 0, 0.79);
 }
-
-.btn-hold-status-close:active {
-  border: 2px solid black;
-  width: 18px;
-  height: 18px;
-  background: black
+.widget .widget-content-light {
+  color: #ffffff;
 }
-
+.themed-color-autumn {
+  color: #e67e22 !important;
+}
 </style>

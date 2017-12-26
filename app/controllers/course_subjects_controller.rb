@@ -1,9 +1,11 @@
 class CourseSubjectsController < ApplicationController
   before_action :logged_in_user
+  skip_before_action :verify_authenticity_token, :only => [:create]
   before_action :load_course, only: %i(index create)
-  before_action :load_course_subject, only: %i(update)
+  before_action :load_course_subject, only: %i(update destroy)
   before_action :verify_permited, only: :update
   before_action :verify_can_update, only: :update
+
   def show
     cs = CourseSubject.find_by subject_id: params[:subject_id], course_id: params[:course_id]
     user_subject = UserSubject.find_by user_id: current_user.id, course_subject_id: cs.id
@@ -17,18 +19,23 @@ class CourseSubjectsController < ApplicationController
   end
 
   def create
-    params[:ids].each do |sb|
-      load_subject sb
-      if @course.add_subject @subject
-        add_user_subject @course, @subject
-        flash[:success] = "Them mon #{@subject.name} vao khoa hoc thanh cong"
-      else
-        flash[:danger] = "Them mon hoc #{@subject.name} vao khoa hoc that bai"
-        redirect_to course_subjects_path(course_id: @course.id)
+    if params[:ids].present?
+      @course_subjects = Array.new
+      @ids_deny = Array.new
+      params[:ids].each do |sb|
+        load_subject sb
+        course_subject = @course.course_subjects.create subject_id: @subject.id
+        if course_subject
+          add_user_subject @course, @subject
+          @course_subjects << course_subject
+        else
+          @ids_deny << sb
+        end
       end
+      @mes_success = "Insert subjects into course successfully"
+    else
+      @mes_success = "Nothing changes"
     end
-    flash[:success] = "Them mon hoc vao khoa hoc thanh cong"
-    redirect_to course_subjects_path(course_id: @course.id)
   end
 
   def update
@@ -48,21 +55,32 @@ class CourseSubjectsController < ApplicationController
     redirect_to course_path(id: @course_subject.course.id)
   end
 
-  def destroy line
-    if line.destroy
-      flash[:success] = "Xoa nguoi dung khoi khoa hoc thanh cong"
+  def destroy
+    if @course_subject.destroy
+      @mes_success = "Remove subject from course successfully"
     else
-      flash[:danger] = "Xoa nguoi dung khoi khoa hoc that bai"
-      redirect_to course_subjects_path(id: @course_subject.course.id)
+      @mes_danger = "Remove subject from course unsuccess"
     end
   end
 
   def del_course_subjects
-    params[:ids].each do |line|
-      destroy CourseSubject.find_by id: line
+    if params[:ids].present?
+      @ids_deny = Array.new
+      @subjects = Array.new
+      params[:ids].each do |line|
+        subject_cache = CourseSubject.find_by(id: line).subject
+        if CourseSubject.find_by(id: line).destroy
+          flash[:success] = "Xoa nguoi dung khoi khoa hoc thanh cong"
+          @subjects << subject_cache
+        else
+          flash[:danger] = "Xoa nguoi dung khoi khoa hoc that bai"
+          @ids_deny << line
+        end
+      end
+      @mes_success = "Remove subject from course successfully"
+    else
+      @mes_success = "Nothing changes"
     end
-    flash[:success] = "Xoa nguoi dung khoi khoa hoc thanh cong"
-    redirect_to course_subjects_path(course_id: params[:course_id])
   end
 
   private
@@ -119,7 +137,15 @@ class CourseSubjectsController < ApplicationController
 
   def update_status_user_subject course_subject
     course_subject.user_subjects.each do |x|
-      x.update_attributes status: params[:status]
+      unless x.status != params[:status]
+        x.update_attributes status: params[:status]
+        case params[:status]
+        when "in_progress"
+          x.update_attributes date_start: Time.zone.today
+        else
+          x.update_attributes date_end: Time.zone.today
+        end
+      end
     end
   end
 end

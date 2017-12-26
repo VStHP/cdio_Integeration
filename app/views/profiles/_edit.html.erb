@@ -1,34 +1,64 @@
 <div class="box-body" id="profile-form-update">
-  <%= form_for @user, as: :user, url: update_profile_path(@user), method: :put, remote: true do |f| %>
-  <p class="text-muted">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-  <hr>
-  <p class="text-muted">
-    Email : <%= f.text_field :email, disabled: true %>
-  </p>
-  <hr>
-  <p class="text-muted">
-    University : <%= f.text_field :university %>
-  </p>
-  <hr>
-  <p class="text-muted">
-    Program : <%= f.text_field :program %>
-  </p>
-  <hr>
-  <p class="text-muted">
-    Date Start : <%= f.text_field :date_start, disabled: true %>
-  </p>
-
-  <%= f.submit "Save", class: "btn btn-info btn-save"%>
+  <%= form_for @user, html: {class: "form-horizontal form-bordered"},
+   as: :user, url: update_profile_path(@user), method: :put, remote: true do |f| %>
+    <div class="form-group" id="name-form">
+      <label class="col-md-4 control-label" for="val_username">Name
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-md-6">
+        <%= f.text_field :name, class: "form-control", placeholder: "Your name.." %>
+        <span id="name-error" class="error-message"></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="val_username">Email
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-md-6">
+          <%= f.text_field :email, class: "form-control", disabled: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="val_username">University
+      </label>
+      <div class="col-md-6">
+        <%= f.text_field :university, class: "form-control", placeholder: "Your university.." %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="val_username">Program
+      </label>
+      <div class="col-md-6">
+          <%= f.text_field :program, class: "form-control", placeholder: "Your program.." %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="val_username">Date Start
+      </label>
+      <div class="col-md-6">
+          <%= f.text_field :date_start, class: "form-control", disabled: true %>
+      </div>
+    </div>
+    <div class="form-group form-actions">
+      <div class="col-md-8 col-md-offset-4">
+        <%= f.submit class: "btn btn-sm btn-primary" do %>
+          <i class="fa fa-floppy-o"></i>
+        <% end %>
+      </div>
+    </div>
   <% end %>
+  <button id="profile-cancel", class="btn btn-sm btn-warning"><i class="fa fa-window-close"></i> Cancel</button>
   <hr>
 </div>
 <style type="text/css">
   .btn-save {
     position: absolute;
-    bottom: 4px;
+    bottom: 0px;
     right: 25px;
+  }
+  .btn-warning {
+    position: absolute;
+    bottom: 51px;
+    right: 310px;
   }
 </style>

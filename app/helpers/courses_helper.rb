@@ -44,7 +44,7 @@ module CoursesHelper
 
   def display_column_course_index
       %w(# Course Owner ) + Course.column_names -
-      %w(id name description created_at updated_at users_id date_start training_standard) + %w(Standard)
+      %w(id name description created_at updated_at banner avatar users_id date_start training_standard) + %w(Standard)
   end
 
   def define_stt_index course

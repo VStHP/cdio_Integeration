@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :user_courses, dependent: :destroy
   has_many :courses, through: :user_courses
   has_many :user_subjects, dependent: :destroy
+  has_many :user_tasks, through: :user_subjects
   has_many :having_subject, through: :user_subjects, source: :course_subject
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -12,7 +13,7 @@ class User < ApplicationRecord
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   validates :name, presence: true, length: {maximum: 50}
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
-
+  scope :belongs_to_suppervisor, ->(option){where suppervisor: option}
   scope :trainers, ->{where suppervisor: "trainer"}
   scope :trainees, ->{where suppervisor: "trainee"}
   scope :without_course, ->(course){where.not id:course.users.pluck(:id)}

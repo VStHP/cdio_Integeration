@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118140938) do
+ActiveRecord::Schema.define(version: 20171225050741) do
 
   create_table "course_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "course_id"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20171118140938) do
     t.date "date_start"
     t.string "program"
     t.string "training_standard"
+    t.string "banner"
+    t.string "avatar"
     t.index ["program"], name: "index_courses_on_program"
     t.index ["training_standard"], name: "index_courses_on_training_standard"
     t.index ["users_id"], name: "index_courses_on_users_id"
@@ -47,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171118140938) do
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -75,6 +78,8 @@ ActiveRecord::Schema.define(version: 20171118140938) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date_start"
+    t.date "date_end"
     t.index ["course_subject_id"], name: "index_user_subjects_on_course_subject_id"
     t.index ["user_id", "course_subject_id"], name: "index_user_subjects_on_user_id_and_course_subject_id", unique: true
     t.index ["user_id"], name: "index_user_subjects_on_user_id"

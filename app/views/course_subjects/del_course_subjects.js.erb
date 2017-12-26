@@ -1,0 +1,19 @@
+<% if params[:ids].present? %>
+  <% if @ids_deny.present? %>
+    <% @name = String.new %>
+    <% @ids_deny.each do |x| %>
+      <% @name << CourseSubject.find(x).subject.name << ", " %>
+      alertify.info('Some subject remove from course unsuccess: <%= @name %>');
+    <% end %>
+  <% end %>
+  <% (params[:ids]-@ids_deny).each do |x| %>
+    $('#subject-added-<%= x %>').remove();
+  <% end %>
+  <% @subjects.each do |s| %>
+    $('#subject-adding').append('<%= j (render partial: "subject_adding", locals: {subject: s, course: Course.find(params[:course_id])}) %>');
+  <% end %>
+  alertify.success('<%= @mes_success %>');
+<% else %>
+  alertify.log('<%= @mes_success %>');
+<% end %>
+  $('#img-load').hide();

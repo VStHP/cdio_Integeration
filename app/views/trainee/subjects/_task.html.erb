@@ -1,0 +1,40 @@
+<% @course_subject = course_subject_define(params[:course_id], params[:subject_id]) %>
+<% check_status_user_task user_task %>
+<% task = user_task.task %>
+<div class="info-box status-<%= @body_class %>">
+  <span class="info-box-icon">
+    <%= image_tag(@subject.avatar.url) %>
+  </span>
+  <div class="info-box-content">
+    <span class="info-box-text">
+      <%= task.name %>
+    </span>
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <span class="progress-description">
+      <%= task.description %>
+    </span>
+  </div>
+  <% if @course_subject.in_progress? %>
+    <% unless user_task.user_subject.course_subject.init? %>
+      <% if user_task.in_progress? %>
+        <%= form_for user_task do |f| %>
+          <%= hidden_field_tag :status, "finish" %>
+          <%= hidden_field_tag :id, user_task.id %>
+          <%= f.submit @btn_text, class: "btn", style: "background: #dd4c3a;" %>
+        <% end %>
+      <% elsif user_task.init? %>
+        <%= form_for user_task do |f| %>
+          <%= hidden_field_tag :status, "in_progress" %>
+          <%= hidden_field_tag :id, user_task.id %>
+          <%= f.submit @btn_text, class: "btn", style: "background: #3cadd4;" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% if user_task.finish? %>
+      <button class="btn" style="background-color: #000" disabled="disabled">Done!</button>
+    <% end %>
+  <% end %>
+</div>

@@ -14,7 +14,7 @@ class Trainee::CoursesController < ApplicationController
   end
 
   def show
-    @subjects = @course.subjects
+    @course_subjects = @course.course_subjects
     @trainers = @course.users.trainers.alphabet_name
     @trainees = @course.users.trainees.alphabet_name
   end

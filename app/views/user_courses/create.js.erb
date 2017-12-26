@@ -1,8 +1,21 @@
-<% debugger %>
-<% if flash[:success].present? %>
-  <% @trainer_courses.each do |u| %>
-    $('#<%= u.suppervisor %>-adding-<%= u.id %>').remove();
+<% if params[:ids].present? %>
+  <% if @ids_deny.present? %>
+    <% @name = String.new %>
+    <% @ids_deny.each do |x| %>
+      <% @name << User.find(x).name << ", " %>
+      alertify.error('Some user insert into course unsuccess: <%= @name %>');
+    <% end %>
   <% end %>
-  $('#trainer-added-list').append('<%= j (render :partial => "trainer_added", :collection => @trainer_courses, :as => :trainer )%>');
-  alertify.success('<%= flash[:success] %>');
+  <% @name = String.new %>
+  <% (params[:ids]-@ids_deny).each do |x| %>
+    $('#user-adding-<%= x %>').remove();
+    <% @name << User.find(x).name << ", " %>
+  <% end %>
+  <% @user_courses.each do |uc| %>
+    $('#user-added').append('<%= j (render partial: "user_added", locals: {usercourse: uc}) %>');
+  <% end %>
+  alertify.success('<%= @mes_success %> : <%= @name %>');
+<% else %>
+  alertify.log('<%= @mes_success %>');
 <% end %>
+$('#img-load').hide();

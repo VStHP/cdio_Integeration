@@ -1,4 +1,1 @@
-if($('#hidden').length!=0){
-  $('#hidden').remove();
-  $('#task-add-id').hide().after('<%= j render("tasks/form") %>');
-}
+$('#task-add-id').hide().after('<%= j render("tasks/form") %>');

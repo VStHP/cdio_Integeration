@@ -1,0 +1,46 @@
+<div class="col-md-4">
+  <div class="widget">
+    <div class="widget-advanced widget-advanced-alt">
+      <div class="widget-header text-center">
+        <%= image_tag(course.banner.url, class: "widget-background animation-pulseSlow") %>
+        <% if can? :update, Course %>
+          <div class="widget-options-left">
+            <%= link_to edit_course_path(course), class: "btn btn-xs btn-primary" do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+          </div>
+          <div class="widget-options" style="right: 0px;">
+            <%= link_to course, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger", remote: true do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <h3 class="widget-content widget-content-image widget-content-light">
+            <%= link_to course.name, course, class: "themed-color-autumn" %><br>
+            <small><%= course.description %></small>
+        </h3>
+      </div>
+      <div class="widget-main">
+        <a href="page_ready_user_profile.html" class="widget-image-container animation-hatch">
+          <%= image_tag(course.avatar.url, class: "widget-image img-circle") %>
+        </a>
+        <div class="list-group remove-margin">
+          <a href="javascript:void(0)" class="list-group-item">
+            <span class="pull-right"><strong><%= course.subjects.size %></strong></span>
+            <h4 class="list-group-item-heading remove-margin"><i class="fa fa-file fa-fw"></i> Subjects</h4>
+          </a>
+          <a href="javascript:void(0)" class="list-group-item">
+            <span class="pull-right"><strong><%= course.users.trainers.size %></strong></span>
+            <h4 class="list-group-item-heading remove-margin"><i class="fa fa-briefcase fa-fw"></i> Trainers</h4>
+            <p class="list-group-item-text"></p>
+          </a>
+          <a href="javascript:void(0)" class="list-group-item">
+            <span class="pull-right"><strong><%= course.users.trainees.size %></strong></span>
+            <h4 class="list-group-item-heading remove-margin"><i class="fa fa-users fa-fw"></i> Trainees</h4>
+            <p class="list-group-item-text"></p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require rails-ujs
+//= require cocoon
 //= require bootstrap-datepicker
 //= require alertify/lib/alertify.min.js
 //= require_tree .

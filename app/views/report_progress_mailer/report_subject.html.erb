@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="body-build">
+    <div class="body-first">
+        <div class="first-a">
+          <div class="start-body">
+            <div class="a-left">
+              <div class="month"><h3>EDUCATION ONLINE SYSTEM</h3></div>
+            </div>
+          </div>
+          <div class="clear-both"></div>
+        </div>
+        <div class="b-first"></div>
+        <div class="b-body">
+          <div class="menu-body">
+            <b class="title-first"><h4>THÔNG BÁO CẬP NHẬT TIẾN ĐỘ MÔN HỌC</h4></b>
+            <p class="count">KHÓA HỌC: <b><%= @course.name %></b></p>
+            <p class="count">MÔN HỌC: <b><%= @subject.name %> </b>
+              (<%= @subject.time %> ngày)</p>
+          </div>
+          <div class="bodyname">
+            <div class="bottom-name">THÔNG TIN TRAINEE</div>
+            <div class="botton-div">&nbsp;</div>
+            <div class="row">
+              <div class="column">
+                <div class="card">
+                  <div>
+                    <h2><%= @user.name.upcase %></h2>
+                    <p class="title">
+                      <strong>Email :</strong>
+                      <a href="mailto:<%= @user.email %>" target="_blank">
+                        <%= @user.email %></a>
+                    </p>
+                    <p class="title">
+                      <strong>Chương trình :</strong>
+                      <%= @user.program %>
+                    </p>
+                    <p class="title">
+                    <%= @user.name %> đã hoàn thành tất cả các tasks trong môn học <%= @subject.name %>. Hãy sắp xếp lịch kiểm tra qua môn <%= @subject.name %> và gửi lịch cho T qua email : <%= @user.email %>
+                  </p>
+                    <p></p>
+                    <p>
+                      <a class="button" href="http://localhost:3000/" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=vi&amp;q=http://localhost:3000/&amp;source=gmail&amp;ust=1514283552636000&amp;usg=AFQjCNHCntd9HxgQ_EjO2Yw_hfq6sscSVA">Xem thêm >> </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="botlast">
+              <div class="secondlast">
+                <div class="vooter"></div>
+                <div class="bottom-high">
+                  <p class="footer-ls"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

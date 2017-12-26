@@ -1,5 +1,12 @@
 <% provide :title, @course.name %>
-<div class="dbox td-course-show">
+<div class="content-header">
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li><%= link_to "My courses", mycourses_path %></li>
+    <li class="active"><%= @course.name %></li>
+  </ol>
+</div>
+<div class="dbox">
   <div class="dbox-header clearfix">
     <div class="col-md-12 course-subject">
       <div class="course-header">
@@ -12,7 +19,7 @@
         </span>
         <% owner = User.find(@course.users_id) %>
         <div class="show-creator">
-          <%= link_to owner, style: "color: white;" do %>
+          <%= link_to profile_path(owner), style: "color: white;" do %>
             <%= image_tag(owner.avatar.url, class: "creator-image") %>
             <h4><%= owner.name %></h4>
           <% end %>
@@ -24,79 +31,52 @@
     <ul class="nav nav-tabs course-menu-items">
       <li class="active">
         <a id="active-timeline" data-toggle="tab">
-          <i class="fa fa-address-book-o"></i>Subjects
+          <i class="fa fa-book"></i> Subjects
         </a>
       </li>
       <li>
         <a id="active-member" data-toggle="tab">
-          <i class="fa fa-address-book-o"></i>Members
+          <i class="fa fa-address-book-o"></i> Members
         </a>
       </li>
     </ul>
   </div>
   <div class="course-show-body">
     <div class="col-md-12 col-list-subjects">
-      <div class="course-container xt-height content-block active" id="timeline">
+      <div class="course-container content-block active" id="timeline">
         <ul class="timeline timeline-inverse timeline-subject">
-          <%= render partial: "subject", collection: @subjects, as: :subject %>
+          <%= render partial: "subject", collection: @course_subjects, as: :course_subject %>
         </ul>
       </div>
       <div class="content-block" id="member" style="max-height: 100%">
-        <ul>
-          <%= render "component/member_component/box_member" %>
-        </ul>
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">
+              Members : <%= @trainers.size + @trainees.size %>
+            </h3>
+            <div class="box-tools pull-right">
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="col-md-6">
+              <h4>Trainers :  <%= @trainers.size %></h4>
+              <%= render partial: "user", collection: @trainers, as: :user%>
+            </div>
+            <div class="col-md-6">
+              <h4>Trainees : <%= @trainees.size %></h4>
+              <%= render partial: "user", collection: @trainees, as: :user%>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-  <% if @option == "trainee" %>
-    alert('can bo sung tu dong click data-toggle');
-  <% end %>
-  $('#active-timeline').click(function(){
-    if($('#member').hasClass('active')){
-      $('#timeline').addClass('active');
-      $('#member').removeClass('active');
-    }
-  });
-  $('#active-member').click(function(){
-    if($('#timeline').hasClass('active')){
-      $('#member').addClass('active');
-      $('#timeline').removeClass('active');
-    }
-  });
-</script>
-
 <style type="text/css">
-  .btn-danger {
-    color: rgb(255, 255, 255);
-    background-color: rgb(201, 48, 44);
-    border-color: rgb(172, 41, 37);
-  }
   td {
     width: 50%;
     border-right: 1px solid #eee;
-  }
-  .search-form {
-    position: absolute;
-    right: 50px;
-    top: 105px;
-  }
-  .search-input {
-    width: 187px !important;
-    background: white !important;
-    border: 1px solid #b7b6b6 !important;
-    position: absolute;
-    right: 69px;
-  }
-  .search-btn {
-    position: absolute;
-    right: -33px;
-    top: -6px;
-  }
-  .list {
-    height: 300px;
   }
   .nav-tabs-custom {
     background: #d4d2d2;

@@ -14,23 +14,28 @@ module ApplicationHelper
       when "in_progress"
         @name_plugin = " /in progress/ /let's finish this task to receive new task/"
         @btn_text = "Finish Task"
-        @body_style = "background: rgba(70, 175, 212, 0.62) ;"
+        @body_class = "in_progress"
         @style_btn =  "background: #f46d52;"
       when "finish"
         @name_plugin = " /finish/"
         @btn_text = "Done!"
-        @body_style = "background: rgba(108, 173, 50, 0.7) ;"
+        @body_class = "finish"
         @style_btn = "background: #f46d52;"
       else
         @name_plugin = " /init/ /let's receive task!/"
         @btn_text = "Receive Task"
-        @body_style = "background: #fff ;"
+        @body_class = ""
         @style_btn = "background: #3cadd4;"
       end
     else
       @btn_text = "Receive Task"
-      @body_style = "background: rgba(108, 173, 50, 0.7) ;"
+      @body_class = "background: rgba(108, 173, 50, 0.7) ;"
       @style_btn = "background: #3cadd4;"
     end
+  end
+
+  def show_errors object, name_attribute, name_error
+    messages = object.errors.messages[name_attribute]
+    return "#{messages[0]}" if messages.present?
   end
 end

@@ -1,0 +1,83 @@
+<% provide(:title, @subject.name) %>
+<section class="content-header">
+  <div class="title">
+    <h3 class="box-title name"><%= @subject.name.upcase %></h3>
+    <div class="subject-status clearfix">
+      <span class="status <%= @user_subject.status %>"><%= @user_subject.status.upcase %></span>
+    </div>
+  </div>
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li><%= link_to "My courses", mycourses_path %></li>
+    <% course = Course.find_by(id: params[:course_id]) %>
+    <li><%= link_to course.name, trainee_course_view_path(course) %></li>
+    <li class="active"><%= @subject.name %></li>
+  </ol>
+</section>
+<div class="subject-description" style="margin-left: 15px;">
+  <a id="show-details">Show details</a>
+  <div id="details" class="details">
+    <%= @subject.description %>
+  </div>
+</div>
+<div class="wrapper" style="background: #fff; height: 587px;">
+  <section class="content">
+    <div class="row row-cus">
+      <div class="col-sm-7">
+        <%= render partial: "task", collection: @user_tasks, as: :user_task%>
+      </div>
+      <div class="col-sm-5 chart">
+        <div>
+          <h4 class="sub-header">Processing Chart
+            <small> Total tasks: <%= @user_tasks.size %></small></h4>
+          <%= render partial: "process_item", collection: @user_subjects, as: :user_subject%>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<% if flash[:notify_finish_subject].present? %>
+  <script type="text/javascript">
+    alertify.alert("<%= flash[:notify_finish_subject] %>");
+  </script>
+<% end %>
+<style type="text/css">
+.chart {
+  border: solid 1px #000;
+  border-radius: 2px;
+}
+.chart-item > label {
+  padding-top: 4px;
+  float: left;
+  font-size: 9px;
+  font-family: monospace;
+  font-style: italic;
+  font-weight: 400;
+  width: 100px;
+}
+.subject-description > a {
+  cursor: pointer;
+}
+.details {
+  display: none;
+}
+.row-cus {
+  background-color: #eee;
+  margin: 0px;
+  box-shadow: 6px 8px 10px 0px #ddd;
+}
+.content-header > .title {
+  position: relative;
+  bottom: 10px;
+}
+</style>
+<script type="text/javascript">
+  $(document).on('click', '#show-details', function(){
+    if( $('#details').css("display") == "none"){
+      $('#details').show();
+    }
+    else{
+      $('#details').hide();
+    }
+  });
+</script>

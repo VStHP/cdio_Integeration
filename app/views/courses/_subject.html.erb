@@ -1,16 +1,23 @@
 <li>
-  <% @cs = find_cs @course, subject %>
+  <% subject = course_subject.subject %>
   <span class="label timeline-label start_date_label">
-    <%= @cs.date_start %>
+    <% if course_subject.date_start.present? %>
+      <%= course_subject.date_start %>
+    <% else %>
+      Not activated
+    <% end %>
   </span>
   <div class="subject-timeline subject">
-    <% check_status_cs @cs %>
+    <% check_status_cs course_subject %>
+    <div class="subject-status-box <%= @status %>-background-color corner-ribbon">
+      <%= t "courses._status.#{@status}" %>
+    </div>
     <div class="div-status" title=<%= t "courses._status.#{@status}" %>>
       <em class="<%= @class_point %>"></em>
     </div>
-    <div class="subject-body clearfix" style="<%= @body_style %>">
+    <div class="subject-body clearfix">
       <div class="subject-image">
-          <img src="<%= @url %>" class="dp-img-circle">
+        <%= image_tag(subject.avatar.url, class: "dp-img-circle") %>
       </div>
       <div class="infor">
         <div>
@@ -22,17 +29,21 @@
           <% end %>
         </div>
         <i class="td-subject-description"><%= subject.description %></i>
-        <%= form_for (sub_of_course @course, subject), method: :put do |f| %>
-            <% check_status_btn @cs %>
-            <div><%= hidden_field_tag :status, @next_status %></div>
-            <%= f.submit t("courses._subject.#{@next_status}"), class: "btn", style: @style_btn %>
+        <% if can? :update, Course %>
+          <% unless course_subject.finish? %>
+            <%= form_for (sub_of_course @course, subject), method: :put do |f| %>
+                <% check_status_btn course_subject %>
+                <div><%= hidden_field_tag :status, @next_status %></div>
+                <%= f.submit t("courses._subject.#{@next_status}"), class: "btn btn-act-subject", style: @style_btn %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>
   </div>
-  <% if @cs.finish? %>
+  <% if course_subject.finish? %>
     <span class="label timeline-label end_date_label">
-       <%= @cs.date_end %>
+       <%= course_subject.date_end %>
     </span>
   <% end %>
   <div class="clearfix"></div>

@@ -1,6 +1,20 @@
-    <div class="checkbox" id="trainee-adding-<%= subject.id %>">
-      <input type="checkbox" id="trainee_<%= subject.id %>" name="ids[]" value="<%= subject.id %>"/>
-      <label style ="padding: 0px;" for="trainee_<%= subject.id %>">
-        <span></span><%= subject.name %>
-      </label>
+<tr id="subject-adding-<%= subject.id %>">
+  <td class="text-center">
+    <input type="checkbox" id="subject_<%= subject.id %>"
+      name="ids[]" value="<%= subject.id %>">
+  </td>
+  <td class="text-center"><%= link_to subject.name, subject %></td>
+  <td class="text-center"><%= subject.teacher %></td>
+  <td class="text-center"><%= subject.time %></td>
+  <td class="text-center"><%= subject.tasks.size %></td>
+  <td class="text-center">
+    <div class="btn-group btn-group-xs">
+      <% if @course.blank? %>
+        <% @course = course %>
+      <% end %>
+      <%= link_to course_subjects_path(@course.course_subjects.build, course_id: @course.id, ids: [subject.id]), method: :post, class: "btn btn-success btn-load", remote: true do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
     </div>
+  </td>
+</tr>

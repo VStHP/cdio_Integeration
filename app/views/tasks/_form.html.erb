@@ -1,5 +1,5 @@
 <%= form_for @task, :html => {class: "new-section"}, remote: true do |f| %>
-  <%= f.hidden_field :subject_id, :value => @subject.id %>
+  <%= f.hidden_field :subject_id %>
   <div>
     <div class="edit-field block">
       <div class="form-group">
@@ -20,17 +20,23 @@
     <div class="row">
       <div class="col-sm-6"><%= t "clubs._form.require" %></div>
       <div class="col-sm-6 text-right">
-        <button id="club_cancel" type="button" class="btn-cancel btn btn-default">
+        <button id="<%= define_cancel_task_id @task %>" type="button"
+          class="btn-cancel btn btn-default" value="<%= @task.id %>">
           Cancel
         </button>
-        <%= f.submit "Add", class: "btn-save btn btn-primary" %>
+        <%= f.submit "Add", class: "btn-save btn btn-primary btn-load" %>
       </div>
     </div>
   </div>
 <% end %>
 <script type="text/javascript">
-  $('#club_cancel').click(function(){
+  $('#cancel_task_new').click(function(){
     $('#task-add-id').show();
     $('#new_task').remove();
+  });
+  $('#cancel_task_edit').click(function(){
+    var task_id = $('#cancel_task_edit').val();
+    $('#edit_task_'+task_id).remove();
+    $('#info_task_'+task_id).show();
   });
 </script>

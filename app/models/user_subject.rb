@@ -1,6 +1,8 @@
 class UserSubject < ApplicationRecord
   belongs_to :user
   belongs_to :course_subject
+  delegate :subject, :to => :course_subject, :allow_nil => true
+  delegate :course, :to => :course_subject, :allow_nil => true
   has_many  :user_tasks, dependent: :destroy
   has_many :tasks, through: :user_tasks
   has_many :add_tasks, through: :user_tasks, source: :task

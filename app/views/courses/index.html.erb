@@ -15,38 +15,65 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Hover Data Table</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <table id="example2" class="table table-bordered table-hover dataTable">
-            <thead>
-              <% display_column_course_index.each do |item| %>
-                  <th><%= item.capitalize %></th>
-                <% end %>
-            </thead>
-            <tbody>
-              <tr>
+        <% if params[:option] == "3" %>
+          <div class="box-header">
+            <h3 class="box-title">Hover Data Table</h3>
+          </div>
+          <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover dataTable">
+              <thead>
+                <% display_column_course_index.each do |item| %>
+                    <th><%= item.capitalize %></th>
+                  <% end %>
+              </thead>
+              <tbody>
                 <%= render @courses %>
-              </tr>
-            </tbody>
-          </table>
-          <div class="row">
-            <div class="col-sm-5">
-              <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
-                <%= page_entries_info @courses, entry_name: 'course' %>
+              </tbody>
+            </table>
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                  <%= page_entries_info @courses, entry_name: 'course' %>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-7">
-              <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                <%= paginate @courses, :outer_window => 3 %>
+              <div class="col-sm-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                  <%= paginate @courses, :outer_window => 3 %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% else %>
+          <div class="row" style="padding: 20px;">
+            <%= render partial: "course_item", collection: @courses, as: :course %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
-
+<style type="text/css">
+.widget-advanced .widget-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 150px;
+}
+.widget-advanced .widget-content-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  padding-top: 25px;
+  margin: 0;
+  background: url(../img/template/ie8_opacity_dark_60.png) repeat;
+  background: rgba(0, 0, 0, 0.79);
+}
+.widget .widget-content-light {
+  color: #ffffff;
+}
+.themed-color-autumn {
+  color: #e67e22 !important;
+}
+</style>

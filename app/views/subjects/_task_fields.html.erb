@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <div class="col-xs-4">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="col-xs-6">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="col-xs-2" style="padding-top: 30px;">
+    <%= link_to_remove_association f do %>
+      <i class="fa fa-trash-o" style="font-size: 23px;"></i>
+    <% end %>
+  </div>
+</div>

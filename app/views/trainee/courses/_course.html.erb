@@ -1,31 +1,35 @@
-<div class="rt-tr-group">
-  <div class="rt-tr -odd">
-    <% owner_info course %>
-    <div class="rt-td" style="flex: 62 0 auto; width: 62px; max-width: 62px;">
-      <% if can? :update && :destroy, course %>
-        <%= link_to "", course, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
-        <%= link_to "", edit_course_path(course), class: "fa fa-pencil-square-o" %>
-      <% end %>
-      <div class="text-right"><%= @count %></div>
-      <% @count+=1 %>
-    </div>
-    <div class="rt-td" style="flex: 270 0 auto; width: 270px; max-width: 270px;">
-      <%= link_to course.name, trainee_course_view_path(id: course.id), class: "cursor" %>
-    </div>
-    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
-      <%= link_to @owner.name, root_path , class: "cursor" %>
-    </div>
-    <div class="rt-td" style="flex: 150 0 auto; width: 150px; max-width: 150px;">
-      <% define_stt_index course %>
-        <div class="<%= @class %>"><%= @status %></div>
-    </div>
-    <div class="rt-td" style="flex: 140 0 auto; width: 150px; max-width: 150px;">
-      <div class="cursor">
-        <%= course.program %>
+<div class="col-md-4">
+  <div class="widget">
+    <div class="widget-advanced widget-advanced-alt">
+      <div class="widget-header text-center">
+        <%= image_tag(course.banner.url, class: "widget-background animation-pulseSlow") %>
+        <h3 class="widget-content widget-content-image widget-content-light">
+          <%= link_to course.name, trainee_course_view_path(id: course.id),
+            class: "themed-color-autumn" %><br>
+          <small><%= course.description %></small>
+        </h3>
       </div>
-    </div>
-    <div class="rt-td" style="flex: 200 0 auto; width: 200px; max-width: 200px;">
-      <div class="cursor"><%= course.training_standard %></div>
+      <div class="widget-main">
+        <a href="page_ready_user_profile.html" class="widget-image-container animation-hatch">
+          <%= image_tag(course.avatar.url, class: "widget-image img-circle") %>
+        </a>
+        <div class="list-group remove-margin">
+          <a href="javascript:void(0)" class="list-group-item">
+            <span class="pull-right"><strong><%= course.subjects.size %></strong></span>
+            <h4 class="list-group-item-heading remove-margin"><i class="fa fa-file fa-fw"></i> Subjects</h4>
+          </a>
+          <a href="javascript:void(0)" class="list-group-item">
+            <span class="pull-right"><strong><%= course.users.trainers.size %></strong></span>
+            <h4 class="list-group-item-heading remove-margin"><i class="fa fa-briefcase fa-fw"></i> Trainers</h4>
+            <p class="list-group-item-text"></p>
+          </a>
+          <a href="javascript:void(0)" class="list-group-item">
+            <span class="pull-right"><strong><%= course.users.trainees.size %></strong></span>
+            <h4 class="list-group-item-heading remove-margin"><i class="fa fa-users fa-fw"></i> Trainees</h4>
+            <p class="list-group-item-text"></p>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

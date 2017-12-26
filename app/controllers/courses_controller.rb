@@ -24,7 +24,7 @@
   end
 
   def show
-    @subjects = @course.subjects
+    @course_subjects = @course.course_subjects
     @trainers = @course.users.trainers.alphabet_name
     @trainees = @course.users.trainees.alphabet_name
   end
@@ -37,7 +37,6 @@
       flash[:success] = "Success! This course has been update successful"
       redirect_to @course
     else
-      flash[:danger] =  "Oop! Can't update course"
       render :edit
     end
   end
@@ -59,14 +58,13 @@
   def destroy
     if @course.init?
       if @course.destroy
-        flash[:success] = "Delete #{@course.name} successful"
+        @mes_success = "Delete #{@course.name} successful"
       else
-        flash[:danger] = "Delete #{@course.name} unsuccessful"
+        @mes_fail = "Delete #{@course.name} unsuccessful"
       end
     else
-      flash[:danger] = "#{@course.name} had been active, delete isn't allow"
+      @mes_fail = "#{@course.name} had been active, delete is unpermitted"
     end
-    redirect_back fallback_location: root_path
   end
 
   private

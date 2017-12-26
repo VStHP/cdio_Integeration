@@ -1,65 +1,144 @@
 <% provide :title,  "Select subject" %>
 <% provide :button_text, "Save" %>
+<section class="content-header">
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Courses</a></li>
+    <li><%= link_to @course.name, @course %></li>
+    <li class="active">select subjects</li>
+  </ol>
+</section>
 <div class="row">
   <div class="col-md-6 col-md-offset-3" style="width: 90%">
     <h2 style="text-align: center;color: red">
       <%= link_to @course.name, @course %>
-      <small>Subject Select</small></h2>
-    <h5 style="text-align: center;color: blue">
-      <%= link_to "Edit Course", edit_course_path(@course) %>
-      <%= link_to "User of Course", user_courses_path(course_id: @course.id) %>
-    </h5>
-   <div class="courses-index">
-    <div class="course-container xt-height content-block active" id="trainer">
-      <table>
-        <tr>
-          <div class="search-form">
-              <%= form_tag course_subjects_path, method: "get", id: "subject_search" do %>
-                <%= hidden_field_tag :course_id, @course.id %>
-                <%= text_field_tag :search, params[:search], class: "search-input", placeholder: "Input name subject" %>
-                <%= submit_tag "Search", class: "search-btn" %>
-              <% end %>
-            </div>
-        </tr>
-        <tr>
-          <td>
-            <h4 style="color: green">Course's Subjects</h4>
-            <%= form_for @course.course_subjects.build, :url => {:action => "del_course_subjects"} do %>
-              <%= hidden_field_tag :course_id, @course.id %>
-              <% define_column @course_subjects %>
-              <div class="list" id="trainer-added-list" style="height: 200px;">
-                <% if @course_subjects.size == 0 %>
-                  <label>Let's add subjects for course</label>
-                <% end %>
-                <%= render partial: "subject_added", collection: @course_subjects, as: :coursesubject %>
-              </div>
-              <div>
-                <button type="submit" class="btn btn-primary">Remove from Course</button>
-              </div>
-            <% end %>
-          </td>
-          <td>
-            <% if @all_subjects.present? %>
-              <h4 style="color: #2c028a">Another Subjects</h4>
-              <%= form_for @course.course_subjects.build do %>
-                <%= hidden_field_tag :course_id, @course.id %>
-                <% define_column @all_subjects %>
-                <div id="trainer-list" style="height: 200px">
-                  <%= render partial: "subject_adding", collection: @all_subjects,
-                    as: :subject %>
-                </div>
-                <div>
-                  <button type="submit" class="btn btn-primary">Add into Course</button>
-                </div>
-                <% end %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-    </div>
-   </div>
+      <small> subjects</small></h2>
   </div>
 </div>
-
-
+<div style="margin-top: 20px;">
+  <ul class="nav nav-tabs three-tabs nav-tb-c" role="tablist">
+    <li role="presentation" class="animated">
+      <%= link_to edit_course_path(@course) do %>
+        <span class="hidden-sm hidden-xs">Edit Course</span>
+        <span class="visible-sm visible-xs"> Edit</span>
+      <% end %>
+    </li>
+    <li role="presentation" class="active animated fadeIn">
+      <%= link_to "#" do %>
+        <span class="hidden-sm hidden-xs">Edit Course</span>
+        <span class="visible-sm visible-xs"> Edit</span>
+      <% end %>
+    </li>
+    <li class="animated fadeIn" role="presentation ">
+      <%= link_to user_courses_path(course_id: @course.id, option: "trainee") do %>
+        <span class="hidden-sm hidden-xs">Trainees</span>
+        <span class="visible-sm visible-xs">Trainees</span>
+      <% end %>
+    </li>
+    <li class="animated fadeIn" role="presentation">
+      <%= link_to user_courses_path(course_id: @course.id, option: "trainer") do %>
+        <span class="hidden-sm hidden-xs">Trainers</span>
+        <span class="visible-sm visible-xs">Trainers</span>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div class="block">
+  <div class="block-title">
+    <h2><strong>Subjects</strong> in course</h2>
+  </div>
+  <div class="table-options clearfix">
+    <div class="btn-group btn-group-sm pull-right">
+      <%= form_tag course_subjects_path, method: "get", id: "subject_search" do %>
+        <%= hidden_field_tag :course_id, @course.id %>
+        <%= text_field_tag :search, params[:search], class: "search-input",
+          placeholder: "Input name subject" %>
+        <%= submit_tag "Search", class: "search-btn" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <%= form_for @course.course_subjects.build, url: {action: "del_course_subjects"}, remote: true do %>
+      <%= hidden_field_tag :course_id, @course.id %>
+      <table class="table table-striped table-vcenter">
+        <thead>
+          <tr>
+            <th class="text-center"><input type="checkbox" id="select_all_added"></th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Teacher</th>
+            <th class="text-center">NumberDays</th>
+            <th class="text-center">NumberTasks</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody id="subject-added">
+          <% if @course_subjects.blank? %>
+            <tr>
+              <td colspan="6">
+                Let's add subjects for course
+              </td>
+            </tr>
+          <% end %>
+          <%= render partial: "subject_added", collection: @course_subjects, as: :coursesubject %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6">
+              <button type="submit" class="btn btn-primary btn-load">
+                <i class="fa fa-times"></i>
+              </button>
+          </tr>
+        </tfoot>
+      </table>
+    <% end %>
+  </div>
+</div>
+<div class="block">
+  <div class="block-title">
+    <h2><strong>Subjects</strong> another</h2>
+  </div>
+  <div class="table-options clearfix">
+    <div class="btn-group btn-group-sm pull-right">
+      <%= form_tag course_subjects_path, method: "get", id: "subject_search" do %>
+        <%= hidden_field_tag :course_id, @course.id %>
+        <%= text_field_tag :search, params[:search], class: "search-input",
+          placeholder: "Input name subject" %>
+        <%= submit_tag "Search", class: "search-btn" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <%= form_for @course.course_subjects.build, remote: true do %>
+      <%= hidden_field_tag :course_id, @course.id %>
+      <table class="table table-striped table-vcenter">
+        <thead>
+          <tr>
+            <th class="text-center"><input type="checkbox" id="select_all_adding"></th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Teacher</th>
+            <th class="text-center">NumberDays</th>
+            <th class="text-center">NumberTasks</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody id="subject-adding">
+          <% if @all_subjects.blank? %>
+            <tr>
+              <td colspan="6">
+                No subject to show
+              </td>
+            </tr>
+          <% end %>
+          <%= render partial: "subject_adding", collection: @all_subjects, as: :subject %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6">
+              <button type="submit" class="btn btn-primary btn-load">
+                <i class="fa fa-plus"></i></button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    <% end %>
+  </div>
+</div>

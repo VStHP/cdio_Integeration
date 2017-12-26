@@ -1,0 +1,3 @@
+$('#example2 tbody').html('<%= j render partial: "subjects/subject", collection: @subjects, as: :subject %>');
+$('#example2_paginate').html('<%= j paginate @subjects %>');
+$('#example2_info').html('<%= j page_entries_info @subjects, entry_name: "subject" %>');

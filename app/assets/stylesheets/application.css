@@ -10,7 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require bootstrap-datepicker
  *= require_self
  *= require AdminLTE.min
@@ -21,4 +20,7 @@
  *= require alertify/themes/alertify.default.css
  *= require alertify/themes/alertify.bootstrap.css
  *= require alertify/themes/alertify.core.css
+ *= require dataTables.bootstrap.min
+ *= require custom
+ *= require react-table
  */

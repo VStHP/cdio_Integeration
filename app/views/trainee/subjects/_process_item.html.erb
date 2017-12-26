@@ -1,0 +1,9 @@
+<div class="chart-item">
+  <label><%= user_subject.user.name %></label>
+  <% calc_percent user_subject %>
+  <div class="progress">
+    <div class="<%= @class %>" role="progressbar"
+      aria-valuenow="<%= @percent %>" aria-valuemin="0" aria-valuemax="100"
+      style="width: <%= @percent %>%"><%= @percent %>%</div>
+  </div>
+</div>

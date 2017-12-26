@@ -1,0 +1,67 @@
+<section class="content-header">
+  <h1>
+    <%= @user.name %>
+    <small>profile</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li class="active">Profile</li>
+  </ol>
+</section>
+<section class="content" style="max-height: 642px;">
+  <div class="row">
+    <div class="col-md-3" >
+      <div class="box box-primary">
+        <div class="box-body box-profile">
+          <div class="avt_div">
+            <%= show_avatar_for @user %>
+            <% if can? :update, @user %>
+              <%= form_for @user, url: avatar_path(@user), method: :patch,
+                html: {class: "avt_form"}, remote: true do |f| %>
+                <%= f.file_field :avatar, id: "avatarSelect" %>
+                <%= f.submit "Save" %>
+              <% end %>
+            <% end %>
+          </div>
+          <h3 class="profile-username text-center" id="profile_name"><%= @user.name %></h3>
+          <p class="text-muted text-center"><%= @user.email %></p>
+        </div>
+      </div>
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><%= t "users.profile.about_me" %></h3>
+        </div>
+        <div class="box-body">
+          <strong>
+            <i class="fa fa-book margin-r-5"></i>
+            <%= t "users.profile.education" %>
+          </strong>
+          <p class="text-muted"  id="profile_university">
+            <%= @user.university %>
+          </p>
+          <hr>
+          <strong>
+            <i class="fa fa-file-text-o margin-r-5"></i>
+            <%= t "users.profile.notes" %>
+          </strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9" style="max-height: 628px;">
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#profile" data-toggle="tab" aria-expanded="true">
+              <%= t "users.profile.profile" %>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content" >
+          <div class="tab-pane active" id="profile">
+            <%= render "component/profile_component/boxprofile" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

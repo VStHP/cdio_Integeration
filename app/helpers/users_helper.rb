@@ -22,7 +22,7 @@ module UsersHelper
   end
 
   def show_avatar_for user
-    image_tag(user.avatar.url, class: "img-circle img-responsive")
+    image_tag(user.avatar.url, class: "img-circle img-responsive", id: "avatar_image")
   end
 
   def month_name int

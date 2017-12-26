@@ -1,0 +1,21 @@
+<tr id="user-adding-<%= user.id %>">
+  <td class="text-center">
+    <input type="checkbox" id="user_<%= user.id %>"
+      name="ids[]" value="<%= user.id %>">
+  </td>
+  <td class="text-center"><%= link_to user.name, user %></td>
+  <td class="text-center"><%= user.email %></td>
+  <td class="text-center"><%= user.university %></td>
+  <td class="text-center"><%= user.program %></td>
+  <td class="text-center">
+    <div class="btn-group btn-group-xs">
+      <% if @course.blank? %>
+        <% @course = course %>
+      <% end %>
+      <%= link_to user_courses_path(@course.user_courses.build, course_id: @course.id,
+        ids: [user.id]), method: :post, class: "btn btn-success btn-load", remote: true do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

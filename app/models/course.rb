@@ -11,6 +11,7 @@ class Course < ApplicationRecord
   validates :program, presence: true
   validates :training_standard, presence: true
   validates :status, presence: true
+  validates :date_start, presence: true
 
   default_scope ->{order(date_start: :desc)}
   scope :owner, ->(user_id){where users_id: user_id}
@@ -18,6 +19,8 @@ class Course < ApplicationRecord
   scope :need_active, ->{where status: "init"}
 
   enum status: [:init, :in_progress, :finish, :block]
+  mount_uploader :avatar, AvatarCourseUploader
+  mount_uploader :banner, BannerCourseUploader
   paginates_per  7
 
   def add_subject subject

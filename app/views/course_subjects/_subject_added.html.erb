@@ -1,7 +1,18 @@
-    <div class="checkbox" id="trainee-added-<%= coursesubject.id %>">
-      <% load_subject_of coursesubject %>
-      <input type="checkbox" id="trainee_uc<%= coursesubject.id %>" name="ids[]" value="<%= coursesubject.id %>"/>
-      <label style ="padding: 0px;" for="trainee_uc<%= coursesubject.id %>">
-        <span></span><%= @subject.name %>
-      </label>
+<tr id="subject-added-<%= coursesubject.id %>">
+  <% load_subject_of coursesubject %>
+  <td class="text-center">
+    <input type="checkbox" id="subject_uc<%= coursesubject.id %>"
+      name="ids[]" value="<%= coursesubject.id %>">
+  </td>
+  <td class="text-center"><%= link_to @subject.name, @subject %></td>
+  <td class="text-center"><%= @subject.teacher %></td>
+  <td class="text-center"><%= @subject.time %></td>
+  <td class="text-center"><%= @subject.tasks.size %></td>
+  <td class="text-center">
+    <div class="btn-group btn-group-xs">
+      <%= link_to coursesubject, method: :delete, class: "btn btn-danger btn-load", remote: true do %>
+        <i class="fa fa-times"></i>
+      <% end %>
     </div>
+  </td>
+</tr>

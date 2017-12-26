@@ -3,10 +3,18 @@
     <div class="col-md-3" >
       <div class="box box-primary">
         <div class="box-body box-profile">
+          <div class="avt_div">
             <%= show_avatar_for @user %>
+            <% if can? :update, @user %>
+              <%= form_for @user, url: avatar_path(@user), method: :patch,
+                html: {class: "avt_form"}, remote: true do |f| %>
+                <%= f.file_field :avatar, id: "avatarSelect" %>
+                <%= f.submit "Save" %>
+              <% end %>
+            <% end %>
+          </div>
           <h3 class="profile-username text-center" id="profile_name"><%= @user.name %></h3>
           <p class="text-muted text-center"><%= @user.email %></p>
-
         </div>
       </div>
       <div class="box box-primary">
@@ -32,37 +40,15 @@
     <div class="col-md-9" style="max-height: 628px;">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li>
-            <a href="#profile" data-toggle="tab">
+          <li class="active">
+            <a href="#profile" data-toggle="tab" aria-expanded="true">
               <%= t "users.profile.profile" %>
             </a>
           </li>
-          <li>
-            <a href="#timeline" data-toggle="tab">
-              <%= t "users.profile.timeline" %>
-            </a>
-          </li>
-          <li>
-            <a href="#activity" data-toggle="tab">
-              <%= t "users.profile.activity" %>
-            </a>
-          </li>
-          <li>
-            <a href="#progress" data-toggle="tab">
-              <%= t "users.profile.progress" %>
-            </a>
-          </li>
-
         </ul>
         <div class="tab-content" >
-          <div class="tab-pane" id="profile">
+          <div class="tab-pane active" id="profile">
             <%= render "component/profile_component/boxprofile" %>
-          </div>
-          <div class="active tab-pane" id="timeline">
-          </div>
-          <div class="tab-pane" id="activity">
-          </div>
-          <div class="tab-pane" id="progress">
           </div>
         </div>
       </div>

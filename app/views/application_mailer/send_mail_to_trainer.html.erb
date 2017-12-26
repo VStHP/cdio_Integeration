@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="body-build">
+    <div class="body-first">
+      <div class="first-a">
+        <div class="start-body">
+          <div class="a-left">
+            <a>
+            </a>
+            <div class="month">
+              he thong
+            </div>
+          </div>
+        </div>
+        <div class="clear-both"></div>
+      </div>
+      <div class="b-first"></div>
+      <div class="b-body">
+        <div class="menu-body">
+          <b class="title-first">
+            khoa hoc <%= @course.name %>,
+          </b>
+          <p class="count">
+            mon hoc <b><%= @subject.name %></b>
+          </p>
+        </div>
+        <div class="bodyname">
+          <div class="bottom-name">ung vien</div>
+          <div class="botton-div">&nbsp;</div>
+          <div class="row">
+            <div class="column">
+              <div class="card">
+                <div>
+                  <h2><%= @user.name %></h2>
+                  <p class="title">
+                    <strong>email :</strong>
+                    <%= @user.email %>
+                  </p>
+                  <p class="title">
+                    <strong>mo ta mon hoc :</strong>
+                    <%= @subject.description %>
+                  </p>
+                  <p></p>
+                  <p>
+                    <%= link_to "trang chu", root_url, class: "button" %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="botlast">
+            <div class="secondlast">
+              <div class="vooter">
+              </div>
+              <div class="bottom-high">
+                <p class="footer-ls">dia chi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

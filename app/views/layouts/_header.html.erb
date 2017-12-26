@@ -21,7 +21,7 @@
 
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="avatar_header">
             <%= image_tag(current_user.avatar.url, class: "user-image") %>
             <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" > -->
             <span class="hidden-xs"><%= current_user.name %></span>
@@ -34,7 +34,9 @@
               <p>
                 <%= current_user.name %>
                 <small><%= current_user.program %></small>
-                <small>Member since <%= month_name current_user.date_start.month %>, <%= current_user.date_start.year %></small>
+                <% if current_user.date_start.present? %>
+                  <small>Member since <%= month_name current_user.date_start.month %>, <%= current_user.date_start.year %></small>
+                <% end %>
               </p>
             <!-- Menu Footer-->
             <li class="user-footer">

@@ -1,13 +1,9 @@
 <% if @task.errors.any? %>
   alertify.error('<%= escape_javascript(render :partial => "shared/error_messages", :locals => {:object => @task })%>');
 <% else %>
-  <% if flash[:success].present? %>
-    $('#new_task').remove();
-    alertify.success('<%= flash[:success] %>');
-    <% flash.clear %>
-    $('#form-task').append('<%= j render(@task) %>');
-    $('#task-add-id').show();
-  <% else %>
-    alertify.error('<%= flash[:danger] %>');
-  <% end %>
+  $('#new_task').remove();
+  alertify.success('<%= @mes_success %>');
+  $('#form-task').append('<%= j render(@task) %>');
+  $('#task-add-id').show();
 <% end %>
+$('#img-load').hide();

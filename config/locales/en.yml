@@ -1,4 +1,6 @@
 en:
+  user_tasks:
+    notify_finish_task: "Congratulations! You have completed this subject. We will send you an email about the details of the finish subject's exam soon."
   public:
     init: "init"
     in_progress: "in_progress"
@@ -20,3 +22,28 @@ en:
   controllers:
     courses:
       create_success: "This course was created successfull!"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "Name can not be blank"
+              too_long: "Name must be less than 150 characters"
+            email:
+              blank: "Email can not be blank"
+              too_long: "Email must be less than 100 characters"
+        course:
+          attributes:
+            name:
+              blank: "Name can not be blank"
+              too_long: "Name must be less than 150 characters"
+              taken: "Course's name has been exist in data"
+            program:
+              blank: "Program can not be blank"
+              too_long: "Email must be less than 100 characters"
+            training_standard:
+              blank: "Training standard can not be blank"
+              too_long: "Email must be less than 100 characters"
+            date_start:
+              blank: "Date start can not be blank"

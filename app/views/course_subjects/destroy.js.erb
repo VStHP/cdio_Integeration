@@ -1,0 +1,8 @@
+<% if @mes_success.present? %>
+  $('#subject-added-<%= @course_subject.id %>').remove();
+  $('#subject-adding').append('<%= j (render partial: "subject_adding", locals: {subject: @course_subject.subject, course: @course_subject.course}) %>');
+  alertify.success('<%= @mes_success %>');
+<% else %>
+  alertify.danger('<%= @mes_danger %>');
+<% end %>
+$('#img-load').hide();

@@ -1,17 +1,48 @@
-<%= form_for @subject do |f| %>
-  <%= render "shared/error_messages", object: @subject %>
-
-  <%= f.label :name, "Subject name (*)" %>
-  <%= f.text_field :name, class: "form-control" %>
-
-  <%= f.label :description %>
-  <%= f.text_field :description, class: "form-control" %>
-
-  <%= f.label :teacher, "Teacher" %>
-  <%= f.text_field :teacher, class: "form-control" %>
-
-  <%= f.label :time, "Number days (Max days to learn this subject) (*)" %>
-  <%= f.number_field :time, class: "form-control", style: "width: 10%;" %>
-  <%= f.submit yield(:button_text), class: "btn btn-primary", id: "submit" %>
+<%= form_for @subject, html: {style: "width: 100%;"} do |f| %>
+  <div class="col-md-5">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Subject Elements</h3>
+      </div>
+      <div class="box-body">
+        <div class="form-group">
+          <%= render "shared/error_messages", object: @subject %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "Subject name (*)" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "Enter name" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_field :description, class: "form-control", placeholder: "Enter description" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :teacher, "Teacher" %>
+          <%= f.text_field :teacher, class: "form-control", placeholder: "Enter Teacher name" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :time, "Number days (Max days to learn this subject) (*)" %>
+          <%= f.number_field :time, class: "form-control", style: "width: 30%;" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Task of Subject Element</h3>
+      </div>
+      <div class="form-horizontal">
+        <div class="box-body" style="padding: 0px;">
+          <%= f.fields_for :tasks do |task| %>
+            <%= render 'task_fields', f: task %>
+          <% end %>
+        </div>
+        <div class="box-footer">
+          <%= link_to_add_association 'add task', f, :tasks, class: "btn btn-default " %>
+          <%= f.submit yield(:button_text), class: "btn btn-info pull-right", id: "submit" %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
-

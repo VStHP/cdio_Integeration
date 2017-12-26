@@ -1,0 +1,18 @@
+<tr id="user-added-<%= usercourse.id %>">
+  <% @user = usercourse.user %>
+  <td class="text-center">
+    <input type="checkbox" id="user_uc<%= usercourse.id %>"
+      name="ids[]" value="<%= usercourse.id %>">
+  </td>
+  <td class="text-center"><%= link_to @user.name, @user %></td>
+  <td class="text-center"><%= @user.email %></td>
+  <td class="text-center"><%= @user.university %></td>
+  <td class="text-center"><%= @user.program %></td>
+  <td class="text-center">
+    <div class="btn-group btn-group-xs">
+      <%= link_to usercourse, method: :delete, class: "btn btn-danger btn-load", remote: true do %>
+        <i class="fa fa-times"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

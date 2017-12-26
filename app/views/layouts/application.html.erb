@@ -8,10 +8,10 @@
   </head>
 
   <body class="hold-transition skin-blue sidebar-mini ">
-    <div class="wrapperr">
+    <div class="wrapper">
       <%= render "layouts/header" %>
       <%= render "layouts/asside" %>
-      <div class="content-wrapper" style="min-height: 916px;">
+      <div class="content-wrapper" style="min-height: 916px; padding-top: 50px;">
         <div class="clearfix">
           <script type="text/javascript">
             <% flash.each do |message_type, message| %>
@@ -24,11 +24,15 @@
               <% end %>
             <% end %>
           </script>
-
           <%= yield %>
         </div>
       </div>
+      <img src="/assets/loading.gif" id="img-load" style="display:none;
+                                                    position: fixed;
+                                                    left: 50%;
+                                                    top: 35%;
+                                                    width: 100px;
+                                                    z-index: 2;"/ >
     </div>
-  <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

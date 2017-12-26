@@ -4,7 +4,6 @@ class Task < ApplicationRecord
   has_many :having_users, through: :user_tasks, source: :user_subject
   validates :name, presence: true
   validate :name_is_only_1_with_a_subject
-
   scope :has_same_name, ->(name){where name: name.downcase}
   scope :of_subject, ->(subject_id){where subject_id: subject_id}
 
@@ -14,7 +13,7 @@ class Task < ApplicationRecord
   private
 
   def name_is_only_1_with_a_subject
-    return if Task.of_subject(subject_id).has_same_name(name).nil?
+    return if Task.of_subject(subject_id).has_same_name(name).blank?
     errors.add :name, 'Task name is already in system with this subject'
   end
 end

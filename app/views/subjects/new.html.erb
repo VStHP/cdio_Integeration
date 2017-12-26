@@ -1,9 +1,18 @@
 <% provide :title,  "Subject Create" %>
 <% provide :button_text, "Create" %>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3" style="width: 90%">
-    <h2 style="text-align: center;">Create New Subject</h2>
+<section class="content-header">
+  <h1>
+    Subject New
+    <small>form add</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Subjects</a></li>
+    <li class="active">New subject</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
     <%= render "form" %>
   </div>
-</div>
+</section>

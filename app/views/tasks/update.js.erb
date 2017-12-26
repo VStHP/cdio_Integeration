@@ -1,0 +1,9 @@
+<% if @task.errors.any? %>
+  alertify.error('<%= j (render partial: "shared/error_messages", locals: {object: @task })%>');
+<% else %>
+  $('#edit_task_<%= params[:id] %>').remove();
+  $('#info_task_<%= params[:id] %>').replaceWith('<%= j render(@task) %>').show();
+  $('#task-add-id').show();
+  alertify.success('<%= @mes_success %>');
+<% end %>
+$('#img-load').hide();

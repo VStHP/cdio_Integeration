@@ -36,15 +36,13 @@
   </div>
   <div class="course-show-body">
     <div class="col-md-12 col-list-subjects">
-      <div class="course-container xt-height content-block active" id="timeline">
+      <div class="course-container content-block active" id="timeline">
         <ul class="timeline timeline-inverse timeline-subject">
-          <%= render partial: "subject", collection: @subjects, as: :subject %>
+          <%= render partial: "subject", collection: @course_subjects, as: :course_subject %>
         </ul>
       </div>
       <div class="content-block" id="member" style="max-height: 100%">
-        <ul>
-          <%= render "component/member_component/box_member" %>
-        </ul>
+        <%= render "component/member_component/box_member" %>
       </div>
     </div>
   </div>
@@ -69,52 +67,52 @@
 </script>
 
 <style type="text/css">
-  .btn-danger {
-    color: rgb(255, 255, 255);
-    background-color: rgb(201, 48, 44);
-    border-color: rgb(172, 41, 37);
-  }
-  td {
-    width: 50%;
-    border-right: 1px solid #eee;
-  }
-  .search-form {
-    position: absolute;
-    right: 50px;
-    top: 105px;
-  }
-  .search-input {
-    width: 187px !important;
-    background: white !important;
-    border: 1px solid #b7b6b6 !important;
-    position: absolute;
-    right: 69px;
-  }
-  .search-btn {
-    position: absolute;
-    right: -33px;
-    top: -6px;
-  }
-  .list {
-    height: 300px;
-  }
-  .nav-tabs-custom {
-    background: #d4d2d2;
-  }
-  nav-tabs-custom>.nav-tabs>li.active {
-    border-top-color: #3c8dbc;
-  }
-  .nav-tabs .active a {
-      background: rgb(145, 209, 255) !important;
-  }
-  .content-block {
-    display: none;
-  }
-  .active {
-    display: block;
-  }
-  .img-member{
-    width: 30px;
-    height: 30px
-  }
+.btn-danger {
+  color: rgb(255, 255, 255);
+  background-color: rgb(201, 48, 44);
+  border-color: rgb(172, 41, 37);
+}
+td {
+  width: 50%;
+  border-right: 1px solid #eee;
+}
+.search-form {
+  position: absolute;
+  right: 50px;
+  top: 105px;
+}
+.search-input {
+  width: 187px !important;
+  background: white !important;
+  border: 1px solid #b7b6b6 !important;
+  position: absolute;
+  right: 69px;
+}
+.search-btn {
+  position: absolute;
+  right: -33px;
+  top: -6px;
+}
+.list {
+  height: 300px;
+}
+.nav-tabs-custom {
+  background: #d4d2d2;
+}
+nav-tabs-custom>.nav-tabs>li.active {
+  border-top-color: #3c8dbc;
+}
+.nav-tabs .active a {
+    background: rgb(145, 209, 255) !important;
+}
+.content-block {
+  display: none;
+}
+.active {
+  display: block;
+}
+.img-member{
+  width: 30px;
+  height: 30px
+}
 </style>

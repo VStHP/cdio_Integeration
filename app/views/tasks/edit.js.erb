@@ -1,1 +1,2 @@
-$('#task-add-id').hide().after('<%= j render("form") %>');
+$('#task-add-id').hide();
+$('#info_task_<%= params[:id] %>').hide().after('<%= j render("tasks/form") %>');

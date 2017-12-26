@@ -1,16 +1,50 @@
 <% provide :title,  "Update Course" %>
 <% provide :button_text, "Update" %>
+<section class="content-header">
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Courses</a></li>
+    <li><%= link_to @course.name, @course %></li>
+    <li class="active">edit</li>
+  </ol>
+</section>
 <div class="row">
   <div class="col-md-6 col-md-offset-3" style="width: 90%">
     <h2 style="text-align: center;color: red">
       <%= link_to @course.name, @course %>
-      <small> Edit</small></h2>
-    <h5 style="text-align: center;color: blue">
-      <%= link_to "Subjects of Course", course_subjects_path(course_id: @course.id) %>
-      <%= link_to "User of Course", user_courses_path(course_id: @course.id) %>
-    </h5>
-    <%= render "form" %>
+      <small> form edit</small></h2>
   </div>
 </div>
-
+<div style="margin-top: 20px;">
+  <ul class="nav nav-tabs three-tabs nav-tb-c" role="tablist">
+    <li role="presentation" class="active animated fadeIn">
+      <%= link_to "#" do %>
+        <span class="hidden-sm hidden-xs">Edit Course</span>
+        <span class="visible-sm visible-xs"> Edit</span>
+      <% end %>
+    </li>
+    <li role="presentation" class="animated ">
+      <%= link_to course_subjects_path(course_id: @course.id) do %>
+        <span class="hidden-sm hidden-xs">Subjects</span>
+        <span class="visible-sm visible-xs"> Edit</span>
+      <% end %>
+    </li>
+    <li class="animated fadeIn" role="presentation ">
+      <%= link_to user_courses_path(course_id: @course.id, option: "trainee") do %>
+        <span class="hidden-sm hidden-xs">Trainees</span>
+        <span class="visible-sm visible-xs">Trainees</span>
+      <% end %>
+    </li>
+    <li class="animated fadeIn" role="presentation">
+      <%= link_to user_courses_path(course_id: @course.id, option: "trainer") do %>
+        <span class="hidden-sm hidden-xs">Trainers</span>
+        <span class="visible-sm visible-xs">Trainers</span>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<section class="content">
+  <div class="row">
+    <%= render "form" %>
+  </div>
+</section>
 

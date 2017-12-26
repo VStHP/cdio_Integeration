@@ -1,8 +1,8 @@
-<tr>
+<tr id="course-<%= course.id %>">
   <% owner_info course %>
   <td>
     <% if can? :update && :destroy, course %>
-      <%= link_to "", course, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
+      <%= link_to "", course, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash", remote: true  %>
       <%= link_to "", edit_course_path(course), class: "fa fa-pencil-square-o" %>
     <% end %>
   </td>

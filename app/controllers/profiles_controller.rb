@@ -1,29 +1,32 @@
 class ProfilesController < ApplicationController
   before_action :logged_in_user
   before_action :load_user
+  before_action { unauthorized! if cannot? :update, @user }
 
-  def edit
-    if current_user.trainee?
-      check_user_permit
+  def edit; end
+
+  def update
+    if @user.update_attributes profile_params
+      @mes_success = "Success! Your profile has been update successfully"
     end
   end
 
-  def update
-    if current_user.trainee?
-      check_user_permit
+  def updateAvatar
+    if @user.update_attributes avatar_params
+      @mes_success_avatar = "Update avatar successfully!"
     else
-        if @user.update_attributes profile_params
-          flash[:success] = "Success! Your profile has been update successfully"
-        else
-          flash[:danger] = "Oops! Some error in the update process"
-        end
+      @mes_danger = "Update avatar failed!"
     end
   end
 
   private
 
   def profile_params
-    params.require(:user).permit(:name, :email, :university, :program, :date_start)
+    params.require(:user).permit :name, :email, :university, :program, :date_start
+  end
+
+  def avatar_params
+    params.require(:user).permit :avatar
   end
 
   def check_user_permit

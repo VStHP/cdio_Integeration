@@ -4,6 +4,7 @@ class SubjectsController < ApplicationController
 
   def new
     @subject = Subject.new
+    3.times { @subject.tasks.build}
   end
 
   def create
@@ -26,22 +27,21 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    respond_to do |f|
-      if @subject.update_attributes params_subejct
-        f.js{flash[:success] = "Success! This Subject has been update"}
-      else
-        f.js{flash[:danger] = "Oops! Can't update this subject"}
-      end
+    if @subject.update_attributes params_subejct
+      flash[:success] = "Success! This Subject has been update"
+      redirect_to subjects_path
+    else
+      flash[:danger] = "Oops! Can't update this subject"
+      render :edit
     end
   end
 
   def destroy
     if @subject.destroy
-      flash[:success] = "Success! This subject has been delete"
+      @mes_success = "Delete #{@subject.name} successfully"
     else
-      flash[:danger] = "Oops! Can't delete this subject"
+      @mes_fail = "Delete #{@subject.name} unsuccessfully"
     end
-    redirect_to subjects_path
   end
 
   def show
@@ -56,6 +56,7 @@ class SubjectsController < ApplicationController
   end
 
   def params_subejct
-    params.require(:subject).permit(:name, :desciption, :time, :teacher)
+    params.require(:subject).permit(:name, :desciption, :time, :teacher,
+      tasks_attributes: [:id, :name, :description, :subject_id, :_destroy])
   end
 end

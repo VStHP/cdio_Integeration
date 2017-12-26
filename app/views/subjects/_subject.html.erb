@@ -1,8 +1,8 @@
-<tr>
+<tr id="subject-<%= subject.id %>">
   <td>
     <% if can? :manage, subject %>
-      <%= link_to "", subject, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
-      <%= link_to "", edit_subject_path(subject), class: "fa fa-pencil-square-o", remote: true %>
+      <%= link_to "", subject, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash", remote: true %>
+      <%= link_to "", edit_subject_path(subject), class: "fa fa-pencil-square-o" %>
     <% end %>
   </td>
   <td>
