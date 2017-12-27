@@ -6,6 +6,12 @@
         <i class="fa fa-cog"></i>
       <% end %>
     <% end %>
+    <% unless current_user.trainee? %>
+      <%= link_to @user, method: :delete, data: {confirm: "Are you sure?"},
+        class: "btn btn-sm btn-default form-btn-trash" do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    <% end %>
     <div class="box-body">
       <p class="text-muted">
         <strong>Name :</strong> <%= @user.name %>
@@ -24,6 +30,10 @@
       </p>
       <hr>
       <p class="text-muted">
+        <strong>Type :</strong> <%= @user.suppervisor %>
+      </p>
+      <hr>
+      <p class="text-muted">
         <strong>Date Start :</strong> <%= @user.date_start %>
       </p>
       <hr>
@@ -34,6 +44,12 @@
   .form-btn-edit {
     position: absolute;
     right: 0;
+    top: 0;
+    z-index: 10;
+  }
+  .form-btn-trash{
+    position: absolute;
+    right: 35px;
     top: 0;
     z-index: 10;
   }

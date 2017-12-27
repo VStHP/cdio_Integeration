@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225050741) do
+ActiveRecord::Schema.define(version: 20171226181101) do
 
   create_table "course_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "course_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20171225050741) do
 
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171225050741) do
     t.string "training_standard"
     t.string "banner"
     t.string "avatar"
+    t.date "date_end"
     t.index ["program"], name: "index_courses_on_program"
     t.index ["training_standard"], name: "index_courses_on_training_standard"
     t.index ["users_id"], name: "index_courses_on_users_id"
@@ -44,7 +45,7 @@ ActiveRecord::Schema.define(version: 20171225050741) do
 
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "teacher"
     t.integer "time"
     t.datetime "created_at", null: false
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(version: 20171225050741) do
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.bigint "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

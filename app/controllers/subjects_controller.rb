@@ -56,7 +56,7 @@ class SubjectsController < ApplicationController
   end
 
   def params_subejct
-    params.require(:subject).permit(:name, :desciption, :time, :teacher,
+    params.require(:subject).permit(:name, :description, :time, :teacher,
       tasks_attributes: [:id, :name, :description, :subject_id, :_destroy])
   end
 end

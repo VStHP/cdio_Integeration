@@ -3,7 +3,7 @@ class CourseSubject < ApplicationRecord
   belongs_to :subject
   has_many :user_subjects, dependent: :destroy
   has_many :users, through: :user_subjects
-  enum status: [:init, :in_progress, :finish]
+  enum status: [:init, :in_progress, :finish, :block]
   default_scope ->{order(date_end: :desc)}
   default_scope ->{order(date_start: :desc)}
   scope :of_course, -> (course_id){where course_id: course_id}

@@ -6,12 +6,12 @@
       <span class="status <%= @user_subject.status %>"><%= @user_subject.status.upcase %></span>
     </div>
   </div>
-  <ol class="breadcrumb">
+  <ol class="breadcrumb" style="top: 0px">
     <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
     <li><%= link_to "My courses", mycourses_path %></li>
     <% course = Course.find_by(id: params[:course_id]) %>
-    <li><%= link_to course.name, trainee_course_view_path(course) %></li>
-    <li class="active"><%= @subject.name %></li>
+    <li><%= link_to course.name.slice(0...15), trainee_course_view_path(course), title: course.name %></li>
+    <li class="active"><%= @subject.name.slice(0...15) %>...</li>
   </ol>
 </section>
 <div class="subject-description" style="margin-left: 15px;">

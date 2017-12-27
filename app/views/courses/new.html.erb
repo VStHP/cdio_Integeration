@@ -1,9 +1,15 @@
 <% provide :title,  "Create Course" %>
 <% provide :button_text, "Create" %>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3" style="width: 90%">
-    <h2 style="text-align: center;">Create New Course</h2>
-    <%= render "form" %>
-  </div>
+<section class="content-header">
+  <h1>
+    New Course
+    <small>form add</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li class="active">New course</li>
+  </ol>
+</section>
+<div class="col-md-6 col-md-offset-3" style="width: 90%; padding-top: 20px">
+  <%= render "form" %>
 </div>

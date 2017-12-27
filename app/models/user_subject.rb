@@ -8,7 +8,7 @@ class UserSubject < ApplicationRecord
   has_many :add_tasks, through: :user_tasks, source: :task
   scope :with_course_subject, ->(id){where course_subject_id: id}
   #validates [:user_id, :course_subject_id], uniqueness: {case_sensitive: false}
-  enum status: [:init, :in_progress, :finish]
+  enum status: [:init, :in_progress, :finish, :block]
 
   def add_task_user task
     add_tasks << task

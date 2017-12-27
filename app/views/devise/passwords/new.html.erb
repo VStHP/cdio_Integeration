@@ -5,10 +5,10 @@
       <div id="login-form">
         <div class="content-top">Reset Password</div>
         <div class="content-body">
-          <div class="line-or"></div>
+          <div class="line-or"><%= devise_error_messages! %></div>
           <div class="form-modal">
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-              <%= devise_error_messages! %>
+
               <div class="form-group">
                 <%= f.email_field :email, autofocus: true, placeholder: "email", class: "form-control" %>
               </div>

@@ -9,10 +9,12 @@ class User < ApplicationRecord
   has_many :having_subject, through: :user_subjects, source: :course_subject
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: {maximum: 50},
+  validates :email, presence: true, length: {maximum: 250},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-  validates :name, presence: true, length: {maximum: 50}
-  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+  validates :name, presence: true, length: {maximum: 250}
+  validates :university, length: {maximum: 250}
+  validates :program, length: {maximum: 250}
+  validates :password, presence: true, length: {minimum: 6, maximum: 50}, allow_nil: true
   scope :belongs_to_suppervisor, ->(option){where suppervisor: option}
   scope :trainers, ->{where suppervisor: "trainer"}
   scope :trainees, ->{where suppervisor: "trainee"}

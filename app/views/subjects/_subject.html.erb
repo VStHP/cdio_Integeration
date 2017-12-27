@@ -9,7 +9,7 @@
     <%= link_to subject.name, subject , class: "cursor" %>
   </td>
   <td>
-    <div class="cursor"><%= subject.description %></div>
+    <div class="cursor"><%= subject.description.slice 1..30 if subject.description.present? %> ...</div>
   </td>
   <td>
     <div class="cursor"><%= subject.teacher %></div>

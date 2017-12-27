@@ -47,4 +47,12 @@ $(document).ready(function(){
       $('#timeline').removeClass('active');
     }
   });
+  $(document).on('click', '#show-course-description', function(){
+    if( $('#course-description').css("display") == "none"){
+      $('#course-description').show();
+    }
+    else{
+      $('#course-description').hide();
+    }
+  });
 });

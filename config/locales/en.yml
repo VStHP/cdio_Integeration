@@ -1,4 +1,7 @@
 en:
+  users:
+    form_add:
+      password: "Default password of all user is : 123123"
   user_tasks:
     notify_finish_task: "Congratulations! You have completed this subject. We will send you an email about the details of the finish subject's exam soon."
   public:
@@ -29,21 +32,50 @@ en:
           attributes:
             name:
               blank: "Name can not be blank"
-              too_long: "Name must be less than 150 characters"
+              too_long: "Name must be less than 250 characters"
             email:
               blank: "Email can not be blank"
-              too_long: "Email must be less than 100 characters"
+              too_long: "Email must be less than 250 characters"
+            password:
+              blank: "Password can not be blank"
+              too_long: "Password must be less than 50 characters"
+              too_short: "Password must be more than 6 characters"
+            university:
+              too_long: "University must be less than 250 characters"
+            program:
+              too_long: "Program must be less than 250 characters"
         course:
           attributes:
             name:
               blank: "Name can not be blank"
-              too_long: "Name must be less than 150 characters"
+              too_long: "Name must be less than 250 characters"
               taken: "Course's name has been exist in data"
             program:
               blank: "Program can not be blank"
-              too_long: "Email must be less than 100 characters"
+              too_long: "Email must be less than 250 characters"
             training_standard:
               blank: "Training standard can not be blank"
-              too_long: "Email must be less than 100 characters"
+              too_long: "Email must be less than 250 characters"
             date_start:
               blank: "Date start can not be blank"
+            description:
+              too_long: "Email must be less than 5000 characters"
+        subject:
+          attributes:
+            name:
+              blank: "Name subject can not be blank"
+              too_long: "Name must be less than 250 characters"
+              taken: "Subject's name has been exist in data"
+            description:
+              too_long: "Email must be less than 5000 characters"
+            teacher:
+              too_long: "Email must be less than 250 characters"
+            time:
+              blank: "Study time can not be blank"
+        task:
+          attributes:
+            name:
+              blank: "ERROR! Some tasks are missing name. Add a name to the task !"
+              too_long: "ERROR! Some tasks name are more than 250 characters. Make sure the task name is under 250 characters"
+            description:
+              too_long: "ERROR! Some tasks description are more than 5000 characters. Make sure the task description is under 5000 characters"

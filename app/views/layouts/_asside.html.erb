@@ -24,7 +24,7 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="treeview menu-open">
+      <li class="treeview">
         <a>
           <i class="fa fa-book"></i> <span>Courses Managerment</span>
           <span class="pull-right-container">
@@ -35,24 +35,44 @@
           <% if Course.owner(current_user.id).present? %>
             <li><div>
               <i class="fa fa-list-ol">
-                <%= link_to "My courses", courses_path(option: 1) %>
+                <%= link_to "My courses", courses_path(option: 1, view: "item") %>
               </i>
             </div></li>
           <% end %>
           <li><div>
             <i class="fa fa-list-ol">
-              <%= link_to "Courses Join-in", courses_path(option: 2) %>
+              <%= link_to "Courses Join-in", courses_path(option: 2, view: "item") %>
             </i>
           </div></li>
           <li><div>
             <i class="fa fa-list-ol">
-              <%= link_to "System courses", courses_path(option: 3) %>
+              <%= link_to "System courses", courses_path(option: 3, view: "item") %>
             </i>
           </div></li>
           <li><div>
             <i class="fa fa-plus">
               <%= link_to "Add new course", abcd_path %>
             </i>
+          </div></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a>
+          <i class="fa fa-newspaper-o"></i>
+          <span>Subjects</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><div>
+            <i class="fa fa-list-ol">
+              <%= link_to "Subjects List", subjects_path %></i>
+            </i>
+          </div></li>
+          <li><div>
+            <i class="fa fa-plus">
+              <%= link_to "Add new subject", new_subject_path %></i>
           </div></li>
         </ul>
       </li>
@@ -81,26 +101,6 @@
           </div></li>
         </ul>
       </li>
-      <li class="treeview">
-          <a>
-            <i class="fa fa-newspaper-o"></i>
-            <span>Subjects</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><div>
-              <i class="fa fa-list-ol">
-                <%= link_to "Subjects List", subjects_path %></i>
-              </i>
-            </div></li>
-            <li><div>
-              <i class="fa fa-plus">
-                <%= link_to "Add new subject", new_subject_path %></i>
-            </div></li>
-          </ul>
-        </li>
       <li>
         <a href="pages/calendar.html">
           <i class="fa fa-calendar"></i> <span>Calendar</span>

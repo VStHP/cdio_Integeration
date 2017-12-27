@@ -1,13 +1,13 @@
 <div class="col-md-4">
-  <div class="widget">
+  <div class="widget <%= course.status %>-widget">
     <div class="widget-advanced widget-advanced-alt">
       <div class="widget-header text-center">
         <%= image_tag(course.banner.url, class: "widget-background animation-pulseSlow") %>
-        <h3 class="widget-content widget-content-image widget-content-light">
+        <h4 class="widget-content widget-content-image widget-content-light">
           <%= link_to course.name, trainee_course_view_path(id: course.id),
             class: "themed-color-autumn" %><br>
-          <small><%= course.description %></small>
-        </h3>
+          <small><%= course.training_standard %></small>
+        </h4>
       </div>
       <div class="widget-main">
         <a href="page_ready_user_profile.html" class="widget-image-container animation-hatch">

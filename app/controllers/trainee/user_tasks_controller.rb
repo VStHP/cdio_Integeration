@@ -46,6 +46,10 @@ class Trainee::UserTasksController < ApplicationController
   end
 
   def verify_subject_must_be_active
+    unless @ut.user_subject.course.in_progress?
+      flash[:danger] = "Sorry, this course must in progress to report task"
+      redirect_back fallback_location: root_path
+    end
     unless @ut.user_subject.course_subject.in_progress?
       flash[:danger] = "Sorry, this subject must in progress to report task"
       redirect_back fallback_location: root_path

@@ -5,5 +5,5 @@ class UserTask < ApplicationRecord
   scope :not_this, ->(id){where.not id: id}
   scope :status_in_progress, ->{where status: "in_progress"}
   scope :finish, ->{where status: "finish"}
-  enum status: [:init, :in_progress, :finish]
+  enum status: [:init, :in_progress, :finish, :block]
 end

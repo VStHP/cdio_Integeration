@@ -1,52 +1,94 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3" style="width: 90%">
-    <h2 style="text-align: center;">Create New User</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-    <%= f.label :name, "User name (*)" %>
-    <%= f.text_field :name, autofocus: true, class: "form-control" %>
-    <div style="padding: 10px 0px;">
-        <%= f.label :gender %>
-        <div class="pretty p-icon p-round">
-            <%= f.radio_button :gender, "male", :checked => true %>
-            <div class="state p-primary">
+<section class="content-header">
+  <h1>
+    New User
+    <small>form add</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li class="active">New user</li>
+  </ol>
+</section>
+<div class="col-md-6 col-md-offset-3" style="width: 90%; padding-top: 20px">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">User Elements</h3>
+      </div>
+      <div class="box-body" style="padding-bottom: 0px">
+        <!-- <%= devise_error_messages! %> -->
+        <div class="form-group">
+          <label class="control-label" for="val_coursename">User Name
+            <span class="text-danger">*</span>
+          </label>
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+          <span class="error-message">
+            <%= show_errors resource, :name, "name" %>
+          </span>
+        </div>
+        <div class="form-group">
+          <div style="padding: 10px 0px;">
+            <%= f.label :gender %>
+            <div class="pretty p-icon p-round">
+              <%= f.radio_button :gender, "male", :checked => true %>
+              <div class="state p-primary">
                 <i class="icon mdi mdi-check"></i>
                 <%= f.label :gender, "Male", :value => "male"  %>
+              </div>
             </div>
-        </div>
-        <div class="pretty p-icon p-round">
-            <%= f.radio_button :gender, "female" %>
-            <div class="state p-primary">
+            <div class="pretty p-icon p-round">
+              <%= f.radio_button :gender, "female" %>
+              <div class="state p-primary">
                 <i class="icon mdi mdi-check"></i>
                 <%= f.label :autolyse, "Female", :value => "female" %>
+              </div>
             </div>
+          </div>
         </div>
+        <div class="form-group">
+          <label class="control-label" for="val_coursename">Email
+            <span class="text-danger">*</span>
+          </label>
+          <%= f.email_field :email, class: "form-control" %>
+          <span class="error-message">
+            <%= show_errors resource, :email, "email" %>
+          </span>
+        </div>
+        <div class="form-group">
+          <%= f.label :university %>
+          <%= f.text_field :university, class: "form-control" %>
+          <span class="error-message">
+            <%= show_errors resource, :university, "university" %>
+          </span>
+        </div>
+        <div class="form-group">
+          <%= f.label :program %>
+          <%= f.text_field :program, class: "form-control" %>
+          <span class="error-message">
+            <%= show_errors resource, :program, "program" %>
+          </span>
+        </div>
+        <div class="form-group">
+          <%= f.label :avatar do %>
+            <%= f.file_field :avatar %>
+            <%= f.hidden_field :avatar_cache %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="val_coursename">Type User
+            <span class="text-danger">*</span>
+          </label>
+          <% if current_user.admin? %>
+              <%= f.select :suppervisor, [['Trainer', 'trainer'], ['Trainee', 'trainee']] %>
+          <% else %>
+              <%= f.text_field :suppervisor, class: "form-control", disabled: true, value: "trainee" %>
+          <% end %>
+        </div>
+        <div class="box-footer" style="background: #3a4364bd; margin: 0px -10px">
+          <div class="col-sm-6" style="color: #ffffff">(<strong class="text-red">*</strong>)Existing requirement</div>
+          <div class="col-sm-9" style="color: #ffffff"><%= t "users.form_add.password" %></div>
+          <%= f.submit "Create", class: "btn btn-primary pull-right", id: "submit" %>
+        </div>
+      </div>
     </div>
-
-
-    <%= f.label :email %>
-    <%= f.email_field :email, class: "form-control" %>
-
-    <%= f.label :university %>
-    <%= f.text_field :university, class: "form-control" %>
-
-    <%= f.label :program %>
-    <%= f.text_field :program, class: "form-control" %>
-
-    <%= f.label :avatar do %>
-      <%= f.file_field :avatar %>
-      <%= f.hidden_field :avatar_cache %>
-    <% end %>
-
-    <%= f.label :suppervisor, "Type user" %>
-
-    <% if current_user.admin? %>
-        <%= f.select :suppervisor, [['Trainer', 'trainer'], ['Trainee', 'trainee']] %>
-    <% else %>
-        <%= f.text_field :suppervisor, class: "form-control", disabled: true, value: "trainee" %>
-    <% end %>
-    <%= f.submit "Create", class: "btn btn-primary", id: "submit" %>
-    <% end %>
-  </div>
+  <% end %>
 </div>
-

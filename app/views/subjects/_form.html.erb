@@ -6,24 +6,40 @@
       </div>
       <div class="box-body">
         <div class="form-group">
-          <%= render "shared/error_messages", object: @subject %>
         </div>
         <div class="form-group">
-          <%= f.label :name, "Subject name (*)" %>
+          <label class="control-label" for="val_coursename">Subject Name
+            <span class="text-danger">*</span>
+          </label>
           <%= f.text_field :name, class: "form-control", placeholder: "Enter name" %>
+          <span class="error-message">
+            <%= show_errors @subject, :name, "name" %>
+          </span>
         </div>
         <div class="form-group">
           <%= f.label :description %>
-          <%= f.text_field :description, class: "form-control", placeholder: "Enter description" %>
+          <%= f.text_area :description, class: "form-control", style: "max-width: 100%;", placeholder: "Enter description" %>
+          <span class="error-message">
+            <%= show_errors @subject, :description, "description" %>
+          </span>
         </div>
         <div class="form-group">
           <%= f.label :teacher, "Teacher" %>
           <%= f.text_field :teacher, class: "form-control", placeholder: "Enter Teacher name" %>
+          <span class="error-message">
+            <%= show_errors @subject, :teacher, "teacher" %>
+          </span>
         </div>
         <div class="form-group">
-          <%= f.label :time, "Number days (Max days to learn this subject) (*)" %>
-          <%= f.number_field :time, class: "form-control", style: "width: 30%;" %>
+          <label class="control-label" for="val_coursename">Number days (Max days to learn this subject)
+            <span class="text-danger">*</span>
+          </label>
+          <%= f.number_field :time, min: 1, value: 1, class: "form-control", style: "width: 30%;" %>
+          <span class="error-message">
+            <%= show_errors @subject, :time, "time" %>
+          </span>
         </div>
+        <div class="col-sm-6">(<strong class="text-red">*</strong>)Existing requirement</div>
       </div>
     </div>
   </div>
@@ -37,12 +53,22 @@
           <%= f.fields_for :tasks do |task| %>
             <%= render 'task_fields', f: task %>
           <% end %>
-        </div>
-        <div class="box-footer">
-          <%= link_to_add_association 'add task', f, :tasks, class: "btn btn-default " %>
-          <%= f.submit yield(:button_text), class: "btn btn-info pull-right", id: "submit" %>
+          <div class="box-footer" style="background: #3a4364bd">
+            <%= link_to_add_association 'Add task', f, :tasks, class: "btn btn-warning " %>
+            <%= f.submit yield(:button_text), class: "btn btn-info pull-right", id: "submit" %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 <% end %>
+<% task_error_name = show_errors @subject, :"tasks.name", "name" %>
+<% task_error_des = show_errors @subject, :"tasks.description", "description" %>
+<script type="text/javascript">
+  <% if task_error_name.present? %>
+    alertify.error('<%= task_error_name %>');
+  <% end %>
+  <% if task_error_des.present? %>
+    alertify.error('<%= task_error_des %>');
+  <% end %>
+</script>

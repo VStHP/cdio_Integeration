@@ -1,14 +1,20 @@
 <li>
   <% subject = course_subject.subject %>
   <span class="label timeline-label start_date_label">
-    <% if course_subject.user_subjects.find_by(user_id: current_user.id).date_start.present? %>
+    <!-- <% if course_subject.user_subjects.find_by(user_id: current_user.id).date_start.present? %>
       <%= course_subject.user_subjects.find_by(user_id: current_user.id).date_start %>
+    <% else %>
+      Not activated
+    <% end %> -->
+    <% if course_subject.date_start.present? %>
+      <%= course_subject.date_start %>
     <% else %>
       Not activated
     <% end %>
   </span>
   <div class="subject-timeline subject">
-    <% check_status_cs course_subject.user_subjects.find_by(user_id: current_user.id) %>
+    <!-- <% check_status_cs course_subject.user_subjects.find_by(user_id: current_user.id) %> -->
+    <% check_status_cs course_subject %>
     <div class="subject-status-box <%= @status %>-background-color corner-ribbon">
       <%= t "courses._status.#{@status}" %>
     </div>
@@ -24,13 +30,20 @@
           <span class="subject-name"><%= link_to subject.name,
             show_subject_in_course_path(@course, subject) %></span>
         </div>
-        <i class="td-subject-description"><%= subject.description %></i>
+        <i class="td-subject-description">
+          <%= subject.description.slice 1..80 if subject.description.present? %>
+        </i>
       </div>
     </div>
   </div>
-  <% if course_subject.user_subjects.find_by(user_id: current_user.id).finish? %>
+  <!-- <% if course_subject.user_subjects.find_by(user_id: current_user.id).finish? %>
     <span class="label timeline-label end_date_label">
        <%= course_subject.user_subjects.find_by(user_id: current_user.id).date_end %>
+    </span>
+  <% end %> -->
+  <% if course_subject.finish? %>
+    <span class="label timeline-label end_date_label">
+       <%= course_subject.date_end %>
     </span>
   <% end %>
   <div class="clearfix"></div>

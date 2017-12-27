@@ -3,21 +3,21 @@
   <% show_title_index_course params[:option] %>
   <h1>
     <%= @title %>
-    <small>advanced tables</small>
+    <small>advanced boxs</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Data tables</li>
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li class="active"><%= @title %></li>
   </ol>
 </section>
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
-        <% if params[:option] == "3" %>
+        <% if params[:view] == "table-list" %>
           <div class="box-header">
             <h3 class="box-title">Hover Data Table</h3>
+            <a href="#" id="view_item" class="select_view" title="View by Item"><i class="fa fa-th-large"></i></a>
           </div>
           <div class="box-body">
             <table id="example2" class="table table-bordered table-hover dataTable">
@@ -45,6 +45,7 @@
           </div>
         <% else %>
           <div class="row" style="padding: 20px;">
+            <a href="#" id="view_item" class="select_view" title="View by Table list"><i class="fa fa-table"></i></a>
             <%= render partial: "course_item", collection: @courses, as: :course %>
           </div>
         <% end %>
@@ -76,4 +77,20 @@
 .themed-color-autumn {
   color: #e67e22 !important;
 }
+.select_view {
+  position: absolute;
+  right: 5px;
+  top: 0px;
+}
 </style>
+<script type="text/javascript">
+  $(document).on('click', '#view_item', function(){
+    var url = window.location.href;
+    if (url.indexOf('view=item') > -1){
+      url = url.replace('view=item','view=table-list')
+    }else{
+      url = url.replace('view=table-list','view=item')
+    }
+    window.location.href = url;
+  });
+</script>

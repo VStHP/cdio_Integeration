@@ -6,9 +6,10 @@
     <small>form edit</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Subjects</a></li>
-    <li class="active">Edit subject</li>
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li><%= link_to "Subjects", subjects_path %></li>
+    <li><%= link_to @subject.name, @subject %></li>
+    <li class="active">edit</li>
   </ol>
 </section>
 <section class="content">

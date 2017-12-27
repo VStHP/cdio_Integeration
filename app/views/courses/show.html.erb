@@ -1,5 +1,12 @@
 <% provide :title, @course.name %>
-<div class="dbox td-course-show">
+<div class="content-header">
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li><%= link_to "Courses", courses_path(option: 2) %></li>
+    <li class="active"><%= @course.name %></li>
+  </ol>
+</div>
+<div class="dbox">
   <div class="dbox-header clearfix">
     <div class="col-md-12 course-subject">
       <div class="course-header">
@@ -17,6 +24,10 @@
             <h4><%= owner.name %></h4>
           <% end %>
         </div>
+        <a href="#" id="show-course-description">Show descriptions</a>
+        <div id="course-description" style="width: 90%; display: none">
+          <%= @course.description %>
+        </div>
       </div>
     </div>
   </div>
@@ -24,12 +35,12 @@
     <ul class="nav nav-tabs course-menu-items">
       <li class="active">
         <a id="active-timeline" data-toggle="tab">
-          <i class="fa fa-address-book-o"></i>Subjects
+          <i class="fa fa-book"></i> Subjects
         </a>
       </li>
       <li>
         <a id="active-member" data-toggle="tab">
-          <i class="fa fa-address-book-o"></i>Members
+          <i class="fa fa-address-book-o"></i> Members
         </a>
       </li>
     </ul>

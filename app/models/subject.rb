@@ -3,8 +3,9 @@ class Subject < ApplicationRecord
   has_many :courses, through: :course_subjects
   has_many :tasks, inverse_of: :subject, dependent: :destroy
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
-  validates :name, presence: true, length: {maximum: 100}, uniqueness: {case_sensitive: false}
-  validates :description, length: {maximum: 250, minimun: 20}
+  validates :name, presence: true, length: {maximum: 250}, uniqueness: {case_sensitive: false}
+  validates :description, length: {maximum: 5000}
+  validates :teacher, length: {maximum: 250}
   validates :time, presence: true
   default_scope ->{order(name: :asc)}
   scope :without_course, ->(course){where.not id: course.subjects.pluck(:id)}

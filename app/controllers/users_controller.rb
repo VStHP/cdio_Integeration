@@ -2,6 +2,7 @@ class UsersController < Devise::RegistrationsController
   before_action :logged_in_user
   skip_before_action :require_no_authentication
   load_and_authorize_resource
+  before_action :load_user, only: :destroy
   before_action :reg_avatar_default, only: %i(create)
 
   def index
@@ -40,6 +41,15 @@ class UsersController < Devise::RegistrationsController
     @user = User.find_by id: params[:id]
   end
 
+  def destroy
+    if @user.destroy
+      flash[:success] = "Success! #{@user.name} has been delete successfully"
+    else
+      flash[:danger] = "Error! Can't be delete user #{@user.name}"
+    end
+    redirect_to root_path
+  end
+
   private
 
   def reg_avatar_default
@@ -66,6 +76,14 @@ class UsersController < Devise::RegistrationsController
   end
 
   def user_params
-    params.require(:user).permit(:name, :gender, :email, :university, :program, :suppervisor, :password, :password_confirmation)
+    params.require(:user).permit(:name, :gender, :email, :university,
+      :program, :suppervisor, :password, :password_confirmation).merge date_start: Time.zone.today
+  end
+
+  def load_user
+    @user = User.find_by id: params[:id]
+    return if @user
+    flash[:danger] = "Error! Can't find user"
+    redirect_to root_path
   end
 end

@@ -33,6 +33,17 @@
       </div>
     </div>
     <div class="form-group">
+      <label class="col-md-4 control-label" for="val_username">Program
+      </label>
+      <div class="col-md-6">
+        <% if current_user.admin? %>
+          <%= f.select :suppervisor, [['Trainer', 'trainer'], ['Trainee', 'trainee']] %>
+        <% else %>
+          <%= f.text_field :suppervisor, class: "form-control", disabled: true, value: "trainee" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-md-4 control-label" for="val_username">Date Start
       </label>
       <div class="col-md-6">

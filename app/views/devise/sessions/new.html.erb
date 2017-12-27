@@ -4,10 +4,16 @@
       <div id="login-form" style="position: relative;">
         <div class="content-top">Login</div>
         <div class="content-body">
-          <% flash.each do |message_type, message| %>
-            <span class="alert-login"><%= message %></span>
-          <% end %>
-          <div class="line-or"></div>
+          <div class="line-or">
+            <% if flash.present? %>
+              <div class="alert alert-error alert-block" style="color: red;">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <% flash.each do |message_type, message| %>
+                  <%= message %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
           <div class="form-modal">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="form-group">

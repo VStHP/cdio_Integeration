@@ -21,22 +21,20 @@
       <% end %>
     </script>
     <header id="header">
-      <h1><a href="index.html">Transit</a></h1>
+      <h1><a href="#">Transit</a></h1>
       <nav id="nav">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="generic.html">Generic</a></li>
-          <li><a href="elements.html">Elements</a></li>
+          <li><a href="#">Home</a></li>
           <li><%= link_to "Sign up", new_user_session_path, class: "button special" %></li>
         </ul>
       </nav>
     </header>
     <section id="banner">
-      <h2>Hi. This is Transit.</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <h2>Hi. This is HomePage.</h2>
+      <p>We are working to finish this feature soon!</p>
       <ul class="actions">
         <li>
-          <a href="#" class="button big">Lorem ipsum dolor</a>
+          <%= link_to "You can log in here", new_user_session_path, class: "button big" %></li>
         </li>
       </ul>
     </section>
@@ -47,8 +45,8 @@
             <div class="8u 12u$(medium)">
               <ul class="copyright">
                 <li>&copy; Untitled. All rights reserved.</li>
-                <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
-                <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+                <li>Design: <a href="#">TEMPLATED</a></li>
+                <li>Images: <a href="#">Unsplash</a></li>
               </ul>
             </div>
             <div class="4u$ 12u$(medium)">
@@ -72,3 +70,13 @@
       </footer>
   </body>
 </html>
+<style type="text/css">
+  .alertify-logs {
+    position: fixed;
+    z-index: 5000;
+    top: 70px;
+    left: 38%;
+    /* left: 50%; */
+    width: 303px;
+  }
+</style>

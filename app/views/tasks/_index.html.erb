@@ -12,9 +12,6 @@
       <div id="form-task">
         <%= render partial: "tasks/task", collection: @tasks, as: :task %>
       </div>
-      <%= link_to "Addition Task", new_task_path(id: @subject.id), id: "task-add-id",
-        class: "btn btn-default btn-block no-border add-one-more-section",
-        remote: true %>
     </fieldset>
   </div>
 </div>

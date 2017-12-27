@@ -33,7 +33,17 @@
 
   def update
     if @course.update_attributes course_params
-      @course.update_attributes date_start: Time.zone.today
+      if params[:course][:status] == "finish"
+        @course.update_attributes date_end: Time.zone.today
+        @course.course_subjects.each do |cs|
+          cs.update_attributes status: "finish"
+          cs.user_subjects.each do |us|
+            unless us.finish?
+              us.update_attributes status: "block"
+            end
+          end
+        end
+      end
       flash[:success] = "Success! This course has been update successful"
       redirect_to @course
     else
@@ -71,7 +81,8 @@
 
   def course_params
     params[:course][:date_start] = Date.strptime(params[:course][:date_start], "%m/%d/%Y")
-    params.require(:course).permit(:name, :description, :users_id, :program, :training_standard, :date_start, :status)
+    params.require(:course).permit(:name, :description, :users_id, :program, :training_standard,
+      :date_start, :status, :avatar, :banner)
   end
 
   def load_course

@@ -2,7 +2,8 @@ class Task < ApplicationRecord
   belongs_to :subject
   has_many :user_tasks, dependent: :destroy
   has_many :having_users, through: :user_tasks, source: :user_subject
-  validates :name, presence: true
+  validates :name, presence: true, length: {maximum: 250}
+  validates :description, length: {maximum: 5000}
   validate :name_is_only_1_with_a_subject
   scope :has_same_name, ->(name){where name: name.downcase}
   scope :of_subject, ->(subject_id){where subject_id: subject_id}

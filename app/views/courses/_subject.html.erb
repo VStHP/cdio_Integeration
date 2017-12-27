@@ -28,7 +28,8 @@
             <span class="subject-name"><%= link_to subject.name, subject %></span>
           <% end %>
         </div>
-        <i class="td-subject-description"><%= subject.description %></i>
+        <i class="td-subject-description">
+          <%= subject.description.slice 1..80 if subject.description.present? %></i>
         <% if can? :update, Course %>
           <% unless course_subject.finish? %>
             <%= form_for (sub_of_course @course, subject), method: :put do |f| %>

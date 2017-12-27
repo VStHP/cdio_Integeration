@@ -6,11 +6,12 @@ class Course < ApplicationRecord
   has_many :users, through: :user_courses
   has_many :adding_user, through: :user_courses, source: :user
 
-  validates :name, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, presence: true, length: {maximum: 250}, uniqueness: {case_sensitive: false}
   validates :users_id, presence: true
-  validates :program, presence: true
-  validates :training_standard, presence: true
+  validates :program, presence: true, length: {maximum: 250}
+  validates :training_standard, presence: true, length: {maximum: 250}
   validates :status, presence: true
+  validates :description, length: {maximum: 5000}
   validates :date_start, presence: true
 
   default_scope ->{order(date_start: :desc)}
