@@ -17,7 +17,16 @@
 <div class="subject-description" style="margin-left: 15px;">
   <a id="show-details">Show details</a>
   <div id="details" class="details">
-    <%= @subject.description %>
+    <span><%= @subject.description %></span>
+    <h4>References</h4>
+    <div>
+      <% @subject.detail_links.each do |x| %>
+        <p>
+          <strong>[<%= x.name %>]</strong>
+          <a href="<%= x.link %>"><%= x.link %></a>
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="wrapper" style="background: #fff; height: 587px;">
@@ -41,43 +50,3 @@
     alertify.alert("<%= flash[:notify_finish_subject] %>");
   </script>
 <% end %>
-<style type="text/css">
-.chart {
-  border: solid 1px #000;
-  border-radius: 2px;
-}
-.chart-item > label {
-  padding-top: 4px;
-  float: left;
-  font-size: 9px;
-  font-family: monospace;
-  font-style: italic;
-  font-weight: 400;
-  width: 100px;
-}
-.subject-description > a {
-  cursor: pointer;
-}
-.details {
-  display: none;
-}
-.row-cus {
-  background-color: #eee;
-  margin: 0px;
-  box-shadow: 6px 8px 10px 0px #ddd;
-}
-.content-header > .title {
-  position: relative;
-  bottom: 10px;
-}
-</style>
-<script type="text/javascript">
-  $(document).on('click', '#show-details', function(){
-    if( $('#details').css("display") == "none"){
-      $('#details').show();
-    }
-    else{
-      $('#details').hide();
-    }
-  });
-</script>

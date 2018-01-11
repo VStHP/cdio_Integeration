@@ -24,13 +24,6 @@
           </span>
         </div>
         <div class="form-group">
-          <%= f.label :teacher, "Teacher" %>
-          <%= f.text_field :teacher, class: "form-control", placeholder: "Enter Teacher name" %>
-          <span class="error-message">
-            <%= show_errors @subject, :teacher, "teacher" %>
-          </span>
-        </div>
-        <div class="form-group">
           <label class="control-label" for="val_coursename">Number days (Max days to learn this subject)
             <span class="text-danger">*</span>
           </label>
@@ -38,6 +31,12 @@
           <span class="error-message">
             <%= show_errors @subject, :time, "time" %>
           </span>
+        </div>
+        <%= f.fields_for :detail_links do |detail_link| %>
+          <%= render 'detail_link_fields', f: detail_link %>
+        <% end %>
+        <div class="form-group">
+          <%= link_to_add_association 'Add detail link', f, :detail_links, class: "btn btn-warning " %>
         </div>
         <div class="col-sm-6">(<strong class="text-red">*</strong>)Existing requirement</div>
       </div>

@@ -44,7 +44,7 @@ module CoursesHelper
 
   def display_column_course_index
       %w(# Course Owner ) + Course.column_names -
-      %w(id name description created_at updated_at banner avatar users_id date_start training_standard) + %w(Standard)
+      %w(id name date_end description created_at updated_at banner avatar users_id date_start training_standard) + %w(Standard)
   end
 
   def define_stt_index course
@@ -55,7 +55,7 @@ module CoursesHelper
     when "in_progress"
       @class = "cursor sttcourse sttcourse-in-progress"
       @status = "In Progress"
-    when "in_progress"
+    when "finish"
       @class = "cursor sttcourse sttcourse-finish"
       @status = "Finish"
     else

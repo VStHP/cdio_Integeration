@@ -30,9 +30,9 @@
           <span class="subject-name"><%= link_to subject.name,
             show_subject_in_course_path(@course, subject) %></span>
         </div>
-        <i class="td-subject-description">
-          <%= subject.description.slice 1..80 if subject.description.present? %>
-        </i>
+        <div class="td-subject-description">
+          <%= subject.description %>
+        </div>
       </div>
     </div>
   </div>

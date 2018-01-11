@@ -1,8 +1,7 @@
   class CoursesController < ApplicationController
   before_action :logged_in_user
   before_action :verify_suppervisor_true
-  before_action :load_course, except: %i(new create index )
-  load_and_authorize_resource except: :create
+  load_and_authorize_resource param_method: :course_params
 
   def index
     unless user_signed_in?
@@ -56,7 +55,6 @@
   end
 
   def create
-    @course = Course.new course_params
     if @course.save
       flash[:success] = "Success! This course has been create successful"
       redirect_to courses_path
@@ -77,19 +75,24 @@
     end
   end
 
+  def block_course
+    if @course.update_attributes status: params[:status]
+      if params[:status] == "block"
+        @mes_success = "#{@course.name} has been locked"
+      else
+        @mes_success = "#{@course.name} has been unlocked"
+      end
+    else
+      @mes_danger = "WARNING! HAS AN ERROR"
+    end
+  end
+
   private
 
   def course_params
     params[:course][:date_start] = Date.strptime(params[:course][:date_start], "%m/%d/%Y")
     params.require(:course).permit(:name, :description, :users_id, :program, :training_standard,
-      :date_start, :status, :avatar, :banner)
-  end
-
-  def load_course
-    @course = Course.find_by id: params[:id]
-    return if @course
-    flash[:danger] = "Oop! Can't found course"
-    redirect_to :root
+      :date_start, :avatar, :banner)
   end
 
   def load_trainers course

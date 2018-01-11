@@ -1,0 +1,27 @@
+<% @course_subject = course_subject_define(params[:course_id], params[:subject_id]) %>
+<div class="info-box ">
+  <span class="info-box-icon">
+    <%= image_tag(@subject.avatar.url) %>
+  </span>
+  <div class="info-box-content">
+    <div class="info-box-text">
+      <%= task.name %>
+    </div>
+    <% if task.link_video.present? %>
+      <button class="fa fa-caret-square-o-right video video-open open<%= task.id %>"
+        value = "<%= task.id %>" id= "video-open" ></button>
+    <% end %>
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <% if task.link_video.present? %>
+      <span class="progress-description">
+        <div class="video-div" id="video_task<%= task.id %>">
+          <iframe id="player<%= task.id %>" width="400" height="300"
+            src="https://www.youtube.com/embed/<%= task.link_video %>?enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0"
+            allowfullscreen="true" allowscriptaccess="always"></iframe>
+        </div>
+      </span>
+    <% end %>
+  </div>
+</div>

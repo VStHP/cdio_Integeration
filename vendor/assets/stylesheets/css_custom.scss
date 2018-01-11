@@ -66,27 +66,23 @@ input[type="checkbox"]:checked + label span {
 
 
 .box {
-  background: #eaedf1;
+  background: #fff;
   margin-bottom: 15px;
   border: 1px #ded7d766 solid;
   box-shadow: 3px 4px 17px #3a4364;
-}
-.box-md {
-  padding: 32px;
 }
 .placeholder {
   color: #999;
   font-style: italic;
 }
-.my-profile .section-detail legend.box-md {
-  background: #fff !important;
-  color: #666 !important;
+.section-detail legend.box-md {
+  background: #fff!important;
+  color: #666!important;
   margin: 0;
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
   padding: 12px 25px;
-    padding-left: 25px;
   border-bottom: 1px solid #eee;
   border-top: 1px solid #ddd;
 }
@@ -98,8 +94,11 @@ input[type="checkbox"]:checked + label span {
 }
 .content-section{
   position: relative;
-  padding: 25px 30px;
-  border-bottom: 1px #edeaea99 solid;
+  padding: 10px 25px;
+  border-bottom: 1px #eaedf1 solid;
+  &:hover {
+    box-shadow: 0px 0px 3px 2px #999;
+  }
 }
 .new-section{
   position: relative;

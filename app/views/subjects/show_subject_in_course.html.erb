@@ -1,0 +1,52 @@
+<% provide(:title, @subject.name) %>
+<section class="content-header">
+  <div class="title">
+    <h3 class="box-title name"><%= @subject.name.upcase %></h3>
+    <div class="subject-status clearfix">
+      <span class="status <%= @course_subject.status %>"><%= @course_subject.status.upcase %></span>
+    </div>
+  </div>
+  <ol class="breadcrumb" style="top: 0px">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li><%= link_to "Courses", courses_path %></li>
+    <% course = Course.find_by(id: params[:course_id]) %>
+    <li><%= link_to course.name.slice(0...15), course, title: course.name %></li>
+    <li class="active" title="<%= @subject.name %>"><%= @subject.name.slice(0...15) %>...</li>
+  </ol>
+</section>
+<div class="subject-description" style="margin-left: 15px;">
+  <a id="show-details">Show details</a>
+  <div id="details" class="details">
+    <span><%= @subject.description %></span>
+    <h4>References</h4>
+    <div>
+      <%  @subject.detail_links.each do |x| %>
+        <p>
+          <strong>[<%= x.name %>]</strong>
+          <a href="<%= x.link %>" target="_blank" ><%= x.link %></a>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="wrapper" style="background: #fff; height: 587px;">
+  <section class="content">
+    <div class="row row-cus">
+      <div class="col-sm-7">
+        <%= render partial: "task", collection: @tasks, as: :task%>
+      </div>
+      <div class="col-sm-5 chart">
+        <div>
+          <h4 class="sub-header">Processing Chart
+            <small> Total tasks: <%= @tasks.size %></small></h4>
+          <%= render partial: "trainee/subjects/process_item", collection: @user_subjects, as: :user_subject%>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<% if flash[:notify_finish_subject].present? %>
+  <script type="text/javascript">
+    alertify.alert("<%= flash[:notify_finish_subject] %>");
+  </script>
+<% end %>

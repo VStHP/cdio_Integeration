@@ -1,7 +1,7 @@
 module UsersHelper
 
   def display_column_user_index
-      %w(# Name Email University Program DateStart )
+    %w(# Name Email Gender University Program DateStart )
   end
 
   def style_get arg
@@ -22,7 +22,7 @@ module UsersHelper
   end
 
   def show_avatar_for user
-    image_tag(user.avatar.url, class: "img-circle img-responsive", id: "avatar_image")
+    image_tag(user.avatar.url, class: "img-responsive", id: "avatar_image", style: "width: 200px; height: 250px;")
   end
 
   def month_name int

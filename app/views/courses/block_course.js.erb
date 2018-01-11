@@ -1,0 +1,10 @@
+<% if @mes_success.present? %>
+  alertify.success('<%= @mes_success %>');
+  <% if @course.block? %>
+    $('#action_block_<%= @course.id %>').html('<%= link_to block_course_path(id: @course.id, status: "in_progress"), data: {confirm: "Are you sure to unblock this course?"}, class: "btn btn-xs btn-danger", method: :patch, remote: true do %><i class="fa fa-lock"></i><% end %>');
+  <% else %>
+    $('#action_block_<%= @course.id %>').html('<%= link_to block_course_path(id: @course.id, status: "block"), data: {confirm: "Are you sure to block this course?"}, class: "btn btn-xs btn-success", method: :patch, remote: true do %><i class="fa fa-unlock"></i><% end %>');
+  <% end %>
+<% else %>
+  alertify.error('<%= @mes_danger %>');
+<% end %>

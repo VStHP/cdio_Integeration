@@ -1,19 +1,37 @@
-<div class="col-md-4">
+<div class="col-md-4" id="course-<%= course.id %>">
   <div class="widget <%= course.status %>-widget">
     <div class="widget-advanced widget-advanced-alt">
       <div class="widget-header text-center">
         <%= image_tag(course.banner.url, class: "widget-background animation-pulseSlow") %>
-        <% if can? :update, Course %>
+        <% if can? :manage, Course %>
           <div class="widget-options-left">
             <%= link_to edit_course_path(course), class: "btn btn-xs btn-primary" do %>
               <i class="fa fa-pencil"></i>
             <% end %>
           </div>
-          <div class="widget-options" style="right: 0px;">
-            <%= link_to course, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger", remote: true do %>
-              <i class="fa fa-trash"></i>
-            <% end %>
-          </div>
+          <% if course.init? %>
+            <div class="widget-options" style="right: 0px;">
+              <%= link_to course, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger", remote: true do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </div>
+          <% elsif course.in_progress? %>
+            <div class="widget-options" style="right: 0px;" id="action_block_<%= course.id %>">
+              <%= link_to block_course_path(id: course.id, status: "block"),
+                data: {confirm: "Are you sure to block this course?"},
+                class: "btn btn-xs btn-success", method: :patch, remote: true do %>
+                <i class="fa fa-unlock"></i>
+              <% end %>
+            </div>
+          <% elsif course.block? %>
+            <div class="widget-options" style="right: 0px;" id="action_block_<%= course.id %>">
+              <%= link_to block_course_path(id: course.id, status: "in_progress"),
+                data: {confirm: "Are you sure to unblock this course?"},
+                class: "btn btn-xs btn-danger", method: :patch, remote: true do %>
+                <i class="fa fa-lock"></i>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
         <h4 class="widget-content widget-content-image widget-content-light">
             <%= link_to course.name, course, class: "themed-color-autumn" %><br>
@@ -21,9 +39,9 @@
         </h4>
       </div>
       <div class="widget-main">
-        <a href="page_ready_user_profile.html" class="widget-image-container animation-hatch">
+        <%= link_to course, class: "widget-image-container animation-hatch" do %>
           <%= image_tag(course.avatar.url, class: "widget-image img-circle") %>
-        </a>
+        <% end %>
         <div class="list-group remove-margin">
           <a href="javascript:void(0)" class="list-group-item">
             <span class="pull-right"><strong><%= course.subjects.size %></strong></span>

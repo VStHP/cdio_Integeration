@@ -1,8 +1,12 @@
-<% if @mes_success.present? %>
-  $('#user-added-<%= @user_course.id %>').remove();
-  $('#user-adding').append('<%= j (render partial: "user_adding", locals: {user: @user_course.user, course: @user_course.course}) %>');
-  alertify.success('<%= @mes_success %>');
+<% if @mes_fail.present? %>
+  alertify.error('<%= @mes_fail %>');
 <% else %>
-  alertify.danger('<%= @mes_danger %>');
+  <% if @mes_success.present? %>
+    $('#user-added-<%= @user_course.id %>').remove();
+    $('#user-adding').append('<%= j (render partial: "user_adding", locals: {user: @user_course.user, course: @user_course.course}) %>');
+    alertify.success('<%= @mes_success %>');
+  <% else %>
+    alertify.danger('<%= @mes_danger %>');
+  <% end %>
 <% end %>
 $('#img-load').hide();

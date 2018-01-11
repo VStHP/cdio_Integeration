@@ -12,7 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:warning] = exception.message
+    flash[:danger] = "WARNING! YOU ARE UNPERMITED"
+    redirect_to root_path
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    flash[:danger] = " ~404~ ! NOT FOUND"
     redirect_to root_path
   end
 

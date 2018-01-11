@@ -10,7 +10,8 @@
   <td class="text-center"><%= @user.program %></td>
   <td class="text-center">
     <div class="btn-group btn-group-xs">
-      <%= link_to usercourse, method: :delete, class: "btn btn-danger btn-load", remote: true do %>
+      <%= link_to user_course_path(id: usercourse.id, course_id: usercourse.course_id),
+        method: :delete, class: "btn btn-danger btn-load", remote: true do %>
         <i class="fa fa-times"></i>
       <% end %>
     </div>

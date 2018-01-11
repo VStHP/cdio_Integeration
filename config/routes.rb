@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   as :user do
     delete "/users/:id", to: "users#destroy", as: :user
+    patch "/users/:id/block", to: "users#block_user", as: :block_user
     get "/trainer", to: "users#index", as: :user_trainer
     get "/trainee", to: "users#index", as: :user_trainee
     get "/users/:id", to: "users#show"
@@ -20,20 +21,25 @@ Rails.application.routes.draw do
   as :course do
     get "/mycourse/:id", to: "trainee/courses#show", as: :trainee_course_view
     get "/mycourses", to: "trainee/courses#index"
-    get "/course/new", to: "courses#new", as: :abcd
+    get "/course/new", to: "courses#new", as: :new_course
+    patch "/courses/:id/block", to: "courses#block_course", as: :block_course
     get "/courses/:id", to: "courses#show"
     as :subjects do
       get "/mycourse/:course_id/subjects/:subject_id", to: "trainee/subjects#show", as: :show_subject_in_course
+      get "/courses/:course_id/subjects/:subject_id", to: "subjects#show_subject_in_course", as: :show_subject_in_course_trainer
     end
   end
 
   patch "/update_progress/:id", to: "trainee/user_tasks#update", as: :user_task
   root to: "static_pages#home"
-  get "/introduction", to: "intro_pages#home"
+  get "/introduction", to: "trainee/candidates#new"
   get "/login", to: "session#new"
   post "/login", to: "session#create"
   delete "/logout", to: "session#destroy"
   resources :subjects
+  resources :candidates, except: %i(new create)
+  post "candidates", to: "trainee/candidates#create"
+  resources :detail_links
   resources :courses
   resources :course_subjects, only: [:create, :update, :destroy, :index]
   resources :user_courses, only: [:create, :update, :destroy, :index]

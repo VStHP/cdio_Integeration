@@ -1,7 +1,13 @@
 <tr>
-  <td>
-    <% if can? :update && :destroy, user %>
-      <%= link_to "", user, method: :delete, data: {confirm: "Are you sure?"}, class: "fa fa-trash" %>
+  <td id="action_block_<%= user.id %>">
+    <% if can? :block_user, user %>
+      <% if user.active? %>
+        <%= link_to "", block_user_path(id: user.id, status: "block"), method: :patch,
+          remote: true, class: "fa fa-unlock" %>
+      <% else %>
+        <%= link_to "", block_user_path(id: user.id, status: "active"), method: :patch,
+          remote: true, class: "fa fa-lock" %>
+      <% end %>
     <% end %>
   </td>
   <td>
@@ -9,6 +15,9 @@
   </td>
   <td>
     <div class="cursor"><%= user.email %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= user.gender %></div>
   </td>
   <td>
     <div class="cursor"><%= user.university %></div>

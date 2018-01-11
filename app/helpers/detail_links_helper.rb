@@ -1,0 +1,2 @@
+module DetailLinksHelper
+end

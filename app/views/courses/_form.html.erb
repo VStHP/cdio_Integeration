@@ -68,24 +68,22 @@
           </span>
         </div>
         <div class="form-group">
-          <%= f.label :status %>
-          <%= select "course", "status",
-            Course.statuses.map {|name, index| [t("courses._status.#{name}"),
-            name]}, {disabled: ['init', 'in_progress']}, class: "form-control" %>
-        </div>
-        <div class="form-group">
           <label>Avatar</label>
           <%= f.label :avatar do %>
-            <%= f.file_field :avatar %>
+            <%= f.file_field :avatar, id: "avatarCourse" %>
             <%= f.hidden_field :avatar_cache %>
           <% end %>
+          <%= image_tag(@course.avatar.url, class: "img-responsive", style: "height: 100px;",
+            id: "avatar_image_course") %>
         </div>
         <div class="form-group">
           <label>Banner</label>
           <%= f.label :banner do %>
-            <%= f.file_field :banner %>
+            <%= f.file_field :banner, id: "bannerCourse" %>
             <%= f.hidden_field :banner_cache %>
           <% end %>
+          <%= image_tag(@course.banner.url, class: "img-responsive", style: "height: 100px;",
+            id: "banner_image_course") %>
         </div>
         <div class="form-group">
           <% unless @course.finish? %>

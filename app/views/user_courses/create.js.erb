@@ -1,21 +1,25 @@
-<% if params[:ids].present? %>
-  <% if @ids_deny.present? %>
-    <% @name = String.new %>
-    <% @ids_deny.each do |x| %>
-      <% @name << User.find(x).name << ", " %>
-      alertify.error('Some user insert into course unsuccess: <%= @name %>');
-    <% end %>
-  <% end %>
-  <% @name = String.new %>
-  <% (params[:ids]-@ids_deny).each do |x| %>
-    $('#user-adding-<%= x %>').remove();
-    <% @name << User.find(x).name << ", " %>
-  <% end %>
-  <% @user_courses.each do |uc| %>
-    $('#user-added').append('<%= j (render partial: "user_added", locals: {usercourse: uc}) %>');
-  <% end %>
-  alertify.success('<%= @mes_success %> : <%= @name %>');
+<% if @mes_fail.present? %>
+  alertify.error('<%= @mes_fail %>');
 <% else %>
-  alertify.log('<%= @mes_success %>');
+  <% if params[:ids].present? %>
+    <% if @ids_deny.present? %>
+      <% @name = String.new %>
+      <% @ids_deny.each do |x| %>
+        <% @name << User.find(x).name << ", " %>
+        alertify.error('Some user insert into course unsuccess: <%= @name %>');
+      <% end %>
+    <% end %>
+    <% @name = String.new %>
+    <% (params[:ids]-@ids_deny).each do |x| %>
+      $('#user-adding-<%= x %>').remove();
+      <% @name << User.find(x).name << ", " %>
+    <% end %>
+    <% @user_courses.each do |uc| %>
+      $('#user-added').append('<%= j (render partial: "user_added", locals: {usercourse: uc}) %>');
+    <% end %>
+    alertify.success('<%= @mes_success %> : <%= @name %>');
+  <% else %>
+    alertify.log('<%= @mes_success %>');
+  <% end %>
 <% end %>
 $('#img-load').hide();

@@ -6,6 +6,5 @@ class Trainee::SubjectsController < ApplicationController
     @user_subjects = cs.user_subjects
     @user_subject = UserSubject.find_by user_id: current_user.id, course_subject_id: cs.id
     @user_tasks = @user_subject.user_tasks
-    @user
   end
 end

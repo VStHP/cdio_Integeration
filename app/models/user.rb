@@ -25,6 +25,7 @@ class User < ApplicationRecord
   scope :alphabet_name, ->{order(name: :desc)}
   enum suppervisor: [:trainee, :trainer, :admin]
   enum gender: [:male, :female]
+  enum status: [:active, :block]
   mount_uploader :avatar, AvatarUploader
   validates_integrity_of  :avatar
   validates_processing_of :avatar
@@ -72,6 +73,10 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
+  def active_for_authentication?
+    super && self.active?
+  end
+
   private
 
   def downcase_email
@@ -81,4 +86,6 @@ class User < ApplicationRecord
   def avatar_size_validation
     errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
   end
+
+
 end

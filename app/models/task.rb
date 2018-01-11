@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   belongs_to :subject
   has_many :user_tasks, dependent: :destroy
   has_many :having_users, through: :user_tasks, source: :user_subject
+  has_many :detail_links
   validates :name, presence: true, length: {maximum: 250}
   validates :description, length: {maximum: 5000}
   validate :name_is_only_1_with_a_subject
@@ -14,6 +15,7 @@ class Task < ApplicationRecord
   private
 
   def name_is_only_1_with_a_subject
+    return if Task.of_subject(subject_id).pluck(:id).include? id
     return if Task.of_subject(subject_id).has_same_name(name).blank?
     errors.add :name, 'Task name is already in system with this subject'
   end

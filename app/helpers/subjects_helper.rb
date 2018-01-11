@@ -1,6 +1,6 @@
 module SubjectsHelper
   def display_column_subject_index
-    %w(#) + Subject.column_names + %w(Numberdays Tasks) - %w(id created_at updated_at time avatar)
+    %w(#) + Subject.column_names + %w(Numberdays Tasks) - %w(id created_at updated_at time avatar teacher)
   end
 
   def style_get_subject arg

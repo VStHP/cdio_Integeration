@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:user).permit :name, :email, :university, :program, :date_start, :suppervisor
+    params.require(:user).permit :name, :email, :gender, :university, :program, :date_start, :suppervisor
   end
 
   def avatar_params

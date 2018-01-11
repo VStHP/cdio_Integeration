@@ -18,11 +18,19 @@ class Ability
   end
 
   def permitted_trainer user
-    can :create, User, suppervisor: "trainee"
-    can :update, User do |u|
-      u.id == user.id || u.trainee?
+    can :read, User
+    can :new, User
+    can :create, User do |u|
+      u.trainee?
     end
-    can :manage, :all
+    can :update, User do |u|
+      u.trainee?
+    end
+    can :block_user, User do |u|
+      u.trainee?
+    end
+    can :update, User, id: user.id
+    can :manage, [Course, Subject, Task, UserCourse, UserSubject]
   end
 
   def permitted_trainee user

@@ -3,7 +3,6 @@ class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   load_and_authorize_resource
   before_action :load_user, only: :destroy
-  before_action :reg_avatar_default, only: %i(create)
 
   def index
     case params[:option]
@@ -37,6 +36,18 @@ class UsersController < Devise::RegistrationsController
     super
   end
 
+  def block_user
+    if @user.update_attributes status: params[:status]
+      if params[:status] == "block"
+        @mes_success = "#{@user.name} has been locked"
+      else
+        @mes_success = "#{@user.name} has been unlocked"
+      end
+    else
+      @mes_danger = "WARNING! HAS AN ERROR"
+    end
+  end
+
   def show
     @user = User.find_by id: params[:id]
   end
@@ -51,14 +62,6 @@ class UsersController < Devise::RegistrationsController
   end
 
   private
-
-  def reg_avatar_default
-    if params[:user][:gender] == "male"
-      params[:user][:avatar] = "male-avatar-default.png"
-    else
-      params[:user][:avatar] = "female-avatar-default.png"
-    end
-  end
 
   def params_update
     params.require(:user).permit(:email, :password, :password_confirmation, :current_password)
@@ -76,7 +79,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def user_params
-    params.require(:user).permit(:name, :gender, :email, :university,
+    params.require(:user).permit(:name, :gender, :email, :university, :avatar,
       :program, :suppervisor, :password, :password_confirmation).merge date_start: Time.zone.today
   end
 

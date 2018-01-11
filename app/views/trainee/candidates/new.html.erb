@@ -1,0 +1,133 @@
+<!--<section id="one" class="wrapper-intro style1 special">
+  <div class="container">
+    <header class="major">
+      <h2>Consectetur adipisicing elit</h2>
+      <p>Lorem ipsum dolor sit amet, delectus consequatur, similique quia!</p>
+    </header>
+    <div class="row 150%">
+      <div class="4u 12u$(medium)">
+        <section class="box">
+          <i class="icon big rounded color1 fa-cloud"></i>
+          <h3>Lorem ipsum dolor</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quam consectetur quibusdam magni minus aut modi aliquid.</p>
+        </section>
+      </div>
+      <div class="4u 12u$(medium)">
+        <section class="box">
+          <i class="icon big rounded color9 fa-desktop"></i>
+          <h3>Consectetur adipisicing</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime.</p>
+        </section>
+      </div>
+      <div class="4u$ 12u$(medium)">
+        <section class="box">
+          <i class="icon big rounded color6 fa-rocket"></i>
+          <h3>Adipisicing elit totam</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="two" class="wrapper-intro style2 special">
+  <div class="container">
+    <header class="major">
+      <h2>Lorem ipsum dolor sit</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.</p>
+    </header>
+    <section class="profiles">
+      <div class="row">
+        <section class="3u 6u(medium) 12u$(xsmall) profile">
+          <img src="profile_placeholder.gif" alt="" />
+          <h4>Lorem ipsum</h4>
+          <p>Lorem ipsum dolor</p>
+        </section>
+        <section class="3u 6u$(medium) 12u$(xsmall) profile">
+          <img src="profile_placeholder.gif" alt="" />
+          <h4>Voluptatem dolores</h4>
+          <p>Ullam nihil repudi</p>
+        </section>
+        <section class="3u 6u(medium) 12u$(xsmall) profile">
+          <img src="profile_placeholder.gif" alt="" />
+          <h4>Doloremque quo</h4>
+          <p>Harum corrupti quia</p>
+        </section>
+        <section class="3u$ 6u$(medium) 12u$(xsmall) profile">
+          <img src="profile_placeholder.gif" alt="" />
+          <h4>Voluptatem dicta</h4>
+          <p>Et natus sapiente</p>
+        </section>
+      </div>
+    </section>
+    <footer>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolore illum, temporibus veritatis eligendi, aliquam, dolor enim itaque veniam aut eaque sequi qui quia vitae pariatur repudiandae ab dignissimos ex!</p>
+      <ul class="actions">
+        <li>
+          <a href="#" class="button big">Lorem ipsum dolor sit</a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+</section> -->
+<section id="registry-div" class="wrapper-intro style3 special">
+  <div class="container">
+    <header class="major">
+      <h2>Register Internship</h2>
+      <p>Please enter the required information!</p>
+    </header>
+  </div>
+  <div class="container 50%">
+    <%= form_for @candidate, remote: true do |f| %>
+      <div class="row uniform">
+        <div class="6u 12u$(small) name-candidate">
+          <%= f.text_field :name, placeholder: "Name", class: "candidate-input" %>
+          <span class="candidate-name-invalid error-message"></span>
+        </div>
+        <div class="6u$ 12u$(small) email-candidate">
+          <%= f.text_field :email, placeholder: "Email", class: "candidate-input" %>
+          <span class="candidate-email-invalid error-message"></span>
+        </div>
+        <div class="6u 12u$(small) phone-candidate">
+          <%= f.text_field :phone, placeholder: "Phone", class: "candidate-input" %>
+          <span class="candidate-phone-invalid error-message"></span>
+        </div>
+        <div class="6u$ 12u$(small) expected_intern-candidate">
+          <%= f.text_field :expected_intern, placeholder: "Internship's position",
+            class: "candidate-input" %>
+          <span class="candidate-expected_intern-invalid error-message"></span>
+        </div>
+        <div class="12u$ note-candidate">
+          <%= f.text_area :note, placeholder: "Message", rows: "6", class: "candidate-input" %>
+          <span class="candidate-note-invalid error-message"></span>
+        </div>
+        <div class="row cv_url-candidate">
+          <label class="text-special">Curriculum Vitae</label>
+          <span><%= f.file_field :cv_url, class: "transparent absolute candidate-input",
+            style: "color: #fff" %></span>
+          <span class="candidate-cv_url-invalid error-message"></span>
+        </div>
+        <div class="12u$">
+          <ul class="actions">
+            <li><%= f.submit "Send Message", class: "special big btn-load" %></li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+<style type="text/css">
+  .has-error > input {
+    border: 2px solid #e74c3c;
+  }
+  .text-special{
+    font-size: 20px;
+    font-weight: 700;
+    color: yellow;
+  }
+  .error-message {
+    color: red;
+    float: left;
+    margin-top: 10px;
+    text-shadow: 0 0 0.2em #fff
+  }
+</style>

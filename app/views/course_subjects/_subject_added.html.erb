@@ -10,7 +10,8 @@
   <td class="text-center"><%= @subject.tasks.size %></td>
   <td class="text-center">
     <div class="btn-group btn-group-xs">
-      <%= link_to coursesubject, method: :delete, class: "btn btn-danger btn-load", remote: true do %>
+      <%= link_to course_subject_path(id: coursesubject.id, course_id: params[:course_id]),
+        method: :delete, class: "btn btn-danger btn-load", remote: true do %>
         <i class="fa fa-times"></i>
       <% end %>
     </div>

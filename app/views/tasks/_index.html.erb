@@ -3,6 +3,11 @@
     <fieldset>
       <legend class="box-md">
         <i class="fa fa-fw fa-bank"></i><%= @subject.name %>
+        <span class="form-btn-edit">
+          <%= link_to edit_subject_path(@subject), class: "btn btn-sm btn-warning" do %>
+            <i class="fa fa-cog"></i>
+          <% end %>
+        </span>
       </legend>
       <% if @tasks.blank? %>
         <div class="placeholder-section box-md">
@@ -10,7 +15,22 @@
         </div>
       <% end %>
       <div id="form-task">
-        <%= render partial: "tasks/task", collection: @tasks, as: :task %>
+        <div class="sortable content-section section-catalogy">
+          <span class="catalogy-espand fa fa-angle-double-right" id="catalogy-link">
+          </span>
+          <label style="font-size: 20px">Detail Links</label>
+        </div>
+        <div class="display-none" id="link-content">
+          <%= render partial: "tasks/detail_link", collection: @detail_links, as: :detail_link %>
+        </div>
+        <div class="sortable content-section section-catalogy">
+          <span class="catalogy-espand fa fa-angle-double-right" id="catalogy-task">
+          </span>
+          <label style="font-size: 20px">Tasks</label>
+        </div>
+        <div class="display-none" id="task-content">
+          <%= render partial: "tasks/task", collection: @tasks, as: :task %>
+        </div>
       </div>
     </fieldset>
   </div>

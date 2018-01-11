@@ -21,10 +21,11 @@
       <% end %>
     </script>
     <header id="header">
-      <h1><a href="#">Transit</a></h1>
+      <h1><%= link_to "Online Education", root_path %></h1>
       <nav id="nav">
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><%= link_to "Home", root_path %></li>
+          <li><a id="registry" style="cursor: pointer;">Registry Internship</a></li>
           <li><%= link_to "Sign up", new_user_session_path, class: "button special" %></li>
         </ul>
       </nav>
@@ -68,6 +69,8 @@
           </div>
         </div>
       </footer>
+      <img src="/assets/loading.gif" id="img-load"
+        style="display:none;position: fixed;left: 44%;top: 35%;width: 200px;z-index: 2;"/ >
   </body>
 </html>
 <style type="text/css">

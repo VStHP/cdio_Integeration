@@ -1,0 +1,12 @@
+<% if @mes_success.present? %>
+  alertify.success('<%= @mes_success %>');
+  <% if @user.block? %>
+    $('#action_block_<%= @user.id %>').html('<%= link_to "", block_user_path(id: @user.id, status: "active"), method: :patch, remote: true, class: "fa fa-lock" %>');
+    $('#action_block_<%= @user.id %>_2').html('<%= link_to block_user_path(id: @user.id, status: "active"), method: :patch, data: {confirm: " Are you sure to block this user?"}, remote: true, class: "btn btn-sm btn-default form-btn-trash" do %><i class="fa fa-lock"></i><% end %>');
+  <% else %>
+    $('#action_block_<%= @user.id %>').html('<%= link_to "", block_user_path(id: @user.id, status: "block"), method: :patch, remote: true, class: "fa fa-unlock" %>');
+    $('#action_block_<%= @user.id %>_2').html('<%= link_to block_user_path(id: @user.id, status: "block"), method: :patch, data: {confirm: " Are you sure to block this user?"}, remote: true, class: "btn btn-sm btn-default form-btn-trash" do %><i class="fa fa-unlock"></i><% end %>');
+  <% end %>
+<% else %>
+  alertify.error('<%= @mes_danger %>');
+<% end %>

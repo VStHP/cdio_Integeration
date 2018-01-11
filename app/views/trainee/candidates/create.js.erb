@@ -1,0 +1,18 @@
+<% if @candidate.errors.present? %>
+  <% @candidate.errors.messages.keys.each do |x| %>
+  $('.candidate-name-invalid').text('<%= @candidate.errors[:name][0] %>');
+  $('.candidate-email-invalid').text('<%= @candidate.errors[:email][0] %>');
+  $('.candidate-phone-invalid').text('<%= @candidate.errors[:phone][0] %>');
+  $('.candidate-expected_intern-invalid').text('<%= @candidate.errors[:expected_intern][0] %>');
+  $('.candidate-note-invalid').text('<%= @candidate.errors[:note][0] %>');
+  $('.candidate-cv_url-invalid').text('<%= @candidate.errors[:cv_url][0] %>');
+  <% end %>
+<% else %>
+  <% if @mes_success.present? %>
+    alertify.success('<%= @mes_success %>');
+    $('.candidate-input').val('');
+    var elmnt = document.getElementById("banner");
+    elmnt.scrollIntoView({ behavior: 'smooth' });
+  <% end %>
+<% end %>
+$('#img-load').hide();

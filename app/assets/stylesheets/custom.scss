@@ -95,6 +95,8 @@
 }
 .td-subject-description {
   color: #404040;
+  word-break: word-breaking;
+  width: 90%;
 }
 .start_date_label {
   background-color: #04b404 !important;
@@ -288,7 +290,7 @@ nav.pagination {
   white-space: nowrap;
 }
 .pagination>span {
-  padding: 6px 12px;
+  padding: 6px 0px;
   cursor: pointer;
   display: inline;
   background: #fafafa;
@@ -308,6 +310,10 @@ nav.pagination {
   border-color: #337ab7;
   z-index: 3;
   color: #fff;
+  padding: 6px 12px;
+}
+.page > a {
+  padding: 6px 12px;
 }
 div.dataTables_filter {
   text-align: right;
@@ -446,27 +452,27 @@ input[type="checkbox"] {
   }
 }
 .init-widget {
-  box-shadow: 3px 4px 4px 0 #84fb6e7a;
+  box-shadow: 0px 0px 4px 3px #84fb6e7a;
   &:hover {
-  box-shadow: 5px 4px 4px 0 #2aa513a6;
+  box-shadow: 0px 0px 4px 5px #2aa513a6;
   }
 }
 .in_progress-widget {
-  box-shadow: 3px 4px 4px 0 #e9fb58b5;
+  box-shadow: 0px 0px 4px 3px #e9fb58b5;
   &:hover {
-  box-shadow: 5px 4px 4px 0 #bfd41be0;
+  box-shadow: 0px 0px 4px 5px #bfd41be0;
   }
 }
 .finish-widget {
-  box-shadow: 3px 4px 4px 0 #f9545494;
+  box-shadow: 0px 0px 4px 3px #f9545494;
   &:hover {
-  box-shadow: 5px 4px 4px 0 #c52222d6;
+  box-shadow: 0px 0px 4px 5px #c52222d6;
   }
 }
 .block-widget {
-  box-shadow: 3px 4px 4px 0 #333333bf;
+  box-shadow: 0px 0px 4px 3px #333333bf;
   &:hover {
-  box-shadow: 5px 4px 4px 0 #101010e0;
+  box-shadow: 0px 0px 4px 5px #101010e0;
   }
 }
 .widget-advanced .widget-header {
@@ -704,4 +710,147 @@ b, strong {
 }
 .info-box:hover {
   box-shadow: 2px 3px 1px rgba(10, 9, 9, 0.85);
+}
+.chart {
+  border: solid 1px #9c9898;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px 5px #151010;
+}
+.chart-item > label {
+  padding-top: 4px;
+  float: left;
+  font-size: 10px;
+  font-family: Helvetica;
+  font-weight: 700;
+  width: 100px;
+}
+.subject-description > a {
+  cursor: pointer;
+}
+.details {
+  display: none;
+}
+.row-cus {
+  background-color: #eee;
+  margin: 0px;
+  box-shadow: 6px 8px 10px 0px #ddd;
+  padding-top: 15px;
+  padding-right: 15px;
+}
+.content-header > .title {
+  position: relative;
+  bottom: 10px;
+}
+.video-div {
+  display: none;
+}
+.video {
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+  background: #fb6f6fcc;
+}
+.info-info {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 20px;
+  background: #44f5f154;
+}
+.video-close {
+  display: none;
+  color: red;
+}
+
+.ship-info-ic {
+  display: inline-block;
+  background: url(//checkout.scdn.vn/images/ecom/sprite-checkout.png) no-repeat 0 -119px;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  left: 180px;
+  box-shadow: 0px 0px 4px 0.5px red;
+}
+.ship-info-ic:before {
+  content: attr(data-title);
+  color: #fff;
+  background-color: #4caf50;
+  border-radius: 2px;
+  padding: 10px;
+  position: absolute;
+  top: -55px;
+  left: 50%;
+  margin-left: -100px;
+  line-height: 18px;
+  width: 200px;
+  font-family: arial;
+  display: none;
+  z-index: 5;
+}
+.ship-info-ic:hover::before {
+  display: block;
+}
+.display-none {
+  display: none;
+}
+.task-tlt {
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.view-control {
+  word-wrap: break-word;
+
+}
+.table_profile tr {
+    font-size: 13px;
+}
+.form-btn-edit {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+.btn-danger {
+  background-color: #ef8a80 !important;
+  border-color: #e74c3c;
+  color: #ffffff;
+}
+.btn-danger:hover {
+  background-color: #e74c3c;
+  border-color: #9c3428;
+  color: #ffffff;
+}
+.view-field {
+  width: 20%;
+}
+.section-catalogy{
+  background: #ddd;
+}
+.catalogy-espand {
+  font-size: 22px;
+  cursor: pointer;
+  color: #1b91fd;
+  margin-right: 10px;
+}
+.profile_content{
+  word-break: break-word;
+}
+.left-corner-status {
+  background: #e43;
+  color: #f0f0f0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 41px;
+  position: absolute;
+  text-align: center;
+  top: 7px;
+  left: -45px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(-50deg);
+  width: 140px;
+  z-index: 99;
+  height: 40px;
+  font-family: monospace;
 }

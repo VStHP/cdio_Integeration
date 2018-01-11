@@ -21,15 +21,11 @@
       </div>
       <div class="infor">
         <div>
-          <% if current_user.trainee? %>
-            <span class="subject-name"><%= link_to subject.name,
-              show_subject_in_course_path(@course, subject) %></span>
-          <% else %>
-            <span class="subject-name"><%= link_to subject.name, subject %></span>
-          <% end %>
+          <span class="subject-name"><%= link_to subject.name,
+            show_subject_in_course_trainer_path(@course, subject) %></span>
         </div>
-        <i class="td-subject-description">
-          <%= subject.description.slice 1..80 if subject.description.present? %></i>
+        <div class="td-subject-description">
+          <%= subject.description %></div>
         <% if can? :update, Course %>
           <% unless course_subject.finish? %>
             <%= form_for (sub_of_course @course, subject), method: :put do |f| %>

@@ -36,6 +36,7 @@ en:
             email:
               blank: "Email can not be blank"
               too_long: "Email must be less than 250 characters"
+              taken: "Email has been exist in data"
             password:
               blank: "Password can not be blank"
               too_long: "Password must be less than 50 characters"
@@ -79,3 +80,22 @@ en:
               too_long: "ERROR! Some tasks name are more than 250 characters. Make sure the task name is under 250 characters"
             description:
               too_long: "ERROR! Some tasks description are more than 5000 characters. Make sure the task description is under 5000 characters"
+        candidate:
+          attributes:
+            name:
+              blank: "Name can not be blank"
+              too_long: "Name must be less than 250 characters"
+            email:
+              blank: "Email can not be blank"
+              too_long: "Email must be less than 250 characters"
+              invalid: "Email is invalid format"
+            phone:
+              blank: "Phone can not be blank"
+              too_long: "Phone must be less than 15 characters"
+            expected_intern:
+              blank: "Position of internship can not be blank"
+              too_long: "Position of internship must be less than 250 characters"
+            note:
+              too_long: "Message must be less than 5000 characters"
+            cv_url:
+              blank: "CV can not be blank - CV must be a PDF, DOC or DOCX file"

@@ -1,6 +1,6 @@
 class ReportProgressMailer < ApplicationMailer
   add_template_helper(EmailHelper)
-  default from: "educationonline@gmail.com"
+  default from: "it_stCompany@gmail.com"
 
   def report_subject user_subject
     @user = user_subject.user
@@ -9,6 +9,6 @@ class ReportProgressMailer < ApplicationMailer
     @course.users.trainers.each do |user|
       mail(to: user.email, subject: "Trainee had been finished all tasks of subject")
     end
-    mail(to: "ngoctam3096@gmail.com", subject: "Trainee had been finished all tasks of subject")
+    mail(to: "lengocson1996vn@gmail.com", subject: "Trainee had been finished all tasks of subject")
   end
 end

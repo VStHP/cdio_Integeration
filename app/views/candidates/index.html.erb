@@ -1,0 +1,61 @@
+<% provide :title, "Subject" %>
+<section class="content-header">
+  <h1>
+    Register Internship List
+    <small>advanced tables</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to root_path do %><i class="fa fa-dashboard"></i> Home<% end %></li>
+    <li class="active">Register Internship List</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Hover Data Table</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <div id="example1_filter" class="dataTables_filter">
+                <label>Search:
+                  <input id="myInput" type="search" class="form-control input-sm" placeholder="Search for names.." aria-controls="example1">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table id="example2" class="table table-bordered table-hover dataTable">
+                <thead>
+                  <% display_column_candidate_index.each do |item| %>
+                      <th><%= item.capitalize %></th>
+                    <% end %>
+                </thead>
+                <tbody>
+                  <%= render partial: "candidate", collection: @candidates, as: :candidate %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                <%= page_entries_info @candidates, entry_name: 'candidate' %>
+              </div>
+            </div>
+            <div class="col-sm-7">
+              <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                <%= paginate @candidates, :outer_window => 3 %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

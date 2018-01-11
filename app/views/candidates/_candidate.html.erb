@@ -1,0 +1,34 @@
+<tr id="candidate-<%= candidate.id %>">
+  <td>
+    <div class="cursor"><%= candidate.name %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= candidate.email %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= candidate.phone %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= candidate.expected_intern %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= candidate.note %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= link_to "View CV", candidate.cv_url.url, target: "_blank" %></div>
+  </td>
+  <td>
+    <div class="cursor"><%= candidate.created_at %></div>
+  </td>
+  <td>
+    <div class="cursor">
+      <%= form_for candidate, remote: true do |f| %>
+        <div>
+          <%= f.select :status, Candidate.statuses.map{|key, value| [t("#{key}"), key]}, {},
+            onchange: "javascript: this.form.commit.click();", class: "form-control" %>
+          <%= f.submit "save", class: "display-none btn-load" %>
+        </div>
+      <% end %>
+    </div>
+  </td>
+</tr>

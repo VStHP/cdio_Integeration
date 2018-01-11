@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226181101) do
+ActiveRecord::Schema.define(version: 20180108102157) do
+
+  create_table "candidates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "expected_intern"
+    t.text "note"
+    t.string "cv_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+  end
 
   create_table "course_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "course_id"
@@ -43,6 +55,19 @@ ActiveRecord::Schema.define(version: 20171226181101) do
     t.index ["users_id"], name: "index_courses_on_users_id"
   end
 
+  create_table "detail_links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "link"
+    t.bigint "course_id"
+    t.bigint "subject_id"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_detail_links_on_course_id"
+    t.index ["subject_id"], name: "index_detail_links_on_subject_id"
+    t.index ["task_id"], name: "index_detail_links_on_task_id"
+  end
+
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
@@ -59,6 +84,7 @@ ActiveRecord::Schema.define(version: 20171226181101) do
     t.bigint "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link_video"
     t.index ["subject_id"], name: "index_tasks_on_subject_id"
   end
 
@@ -119,12 +145,16 @@ ActiveRecord::Schema.define(version: 20171226181101) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "course_subjects", "courses"
   add_foreign_key "course_subjects", "subjects"
+  add_foreign_key "detail_links", "courses"
+  add_foreign_key "detail_links", "subjects"
+  add_foreign_key "detail_links", "tasks"
   add_foreign_key "tasks", "subjects"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"

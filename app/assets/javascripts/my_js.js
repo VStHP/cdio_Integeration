@@ -49,10 +49,58 @@ $(document).ready(function(){
   });
   $(document).on('click', '#show-course-description', function(){
     if( $('#course-description').css("display") == "none"){
-      $('#course-description').show();
+      $('#course-description').show(400);
     }
     else{
-      $('#course-description').hide();
+      $('#course-description').hide(400);
     }
+  });
+  $(document).on('click', '#show-details', function(){
+    if( $('#details').css("display") == "none"){
+      $(this).text('close');
+      $('#details').show(500);
+    }
+    else{
+      $(this).text('Show details');
+      $('#details').hide(500);
+    }
+  });
+  $(document).on('click', '#video-open', function(){
+    var task_id = $(this).val();
+    if( $('#video_task' + task_id).css("display") == "none"){
+      $('#video_task' + task_id).show(400);
+      $(this).removeClass('fa-caret-square-o-right');
+      $(this).addClass('fa-times');
+    }else{
+      $('#video_task' + task_id).hide(400);
+      $(this).removeClass('fa-times');
+      $(this).addClass('fa-caret-square-o-right');
+    }
+  });
+  $(document).on('click', '#catalogy-task', function(){
+    if( $('#task-content').css("display") == "none"){
+      $(this).removeClass('fa-angle-double-right');
+      $(this).addClass('fa-angle-double-down');
+      $('#task-content').show(600);
+    }else{
+      $(this).removeClass('fa-angle-double-down');
+      $(this).addClass('fa-angle-double-right');
+      $('#task-content').hide(600);
+    }
+  });
+  $(document).on('click', '#catalogy-link', function(){
+    if( $('#link-content').css("display") == "none"){
+      $(this).removeClass('fa-angle-double-right');
+      $(this).addClass('fa-angle-double-down');
+      $('#link-content').show(600);
+    }else{
+      $(this).removeClass('fa-angle-double-down');
+      $(this).addClass('fa-angle-double-right');
+      $('#link-content').hide(600);
+    }
+  });
+  $(document).on('click', '#registry', function(){
+    var elmnt = document.getElementById("registry-div");
+    elmnt.scrollIntoView({ behavior: 'smooth' });
   });
 });

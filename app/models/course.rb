@@ -5,6 +5,7 @@ class Course < ApplicationRecord
   has_many :user_courses, dependent: :destroy
   has_many :users, through: :user_courses
   has_many :adding_user, through: :user_courses, source: :user
+  has_many :detail_links
 
   validates :name, presence: true, length: {maximum: 250}, uniqueness: {case_sensitive: false}
   validates :users_id, presence: true
